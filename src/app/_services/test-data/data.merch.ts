@@ -3,6 +3,7 @@ import { MerchantModel } from '../../models/merchant-model';
 /* tslint:disable */
 export const merchData: Array<MerchantModel> = [
     {
+        "id": 1,
         "midNumber": 123,
         "dbaName": "Johns Computer Business",
         "legalBusinessName": "Johns Business Supplies",
@@ -19,6 +20,7 @@ export const merchData: Array<MerchantModel> = [
         "monthlyStatement": "View"
     },
     {
+        "id": 2,
         "midNumber": 999,
         "dbaName": "Johns Computer Business",
         "legalBusinessName": "Johns Business Supplies",
@@ -35,6 +37,7 @@ export const merchData: Array<MerchantModel> = [
         "monthlyStatement": "View"
     },
     {
+        "id": 3,
         "midNumber": 998,
         "dbaName": "Johns Computer Business",
         "legalBusinessName": "Johns Business Supplies",
@@ -51,6 +54,7 @@ export const merchData: Array<MerchantModel> = [
         "monthlyStatement": "View"
     },
     {
+        "id": 4,
         "midNumber": 321,
         "dbaName": "Johns Computer Business",
         "legalBusinessName": "Johns Business Supplies",

@@ -83,10 +83,10 @@
   </div>
 
   <div *ngIf="reportType == reportTypeData[1]" class="mt-2">
-    <app-time-to-resolve-report #timeToResolveReport></app-time-to-resolve-report>
+    <app-time-to-resolve-report #timeToResolveReport [startDate]="startDate" [endDate]="endDate"></app-time-to-resolve-report>
   </div>
 
   <div *ngIf="reportType == reportTypeData[2]" class="mt-2">
-    <app-open-tickets-report #openTicketsReport [type]="filterType"></app-open-tickets-report>
+    <app-open-tickets-report #openTicketsReport [type]="filterType" [startDate]="startDate" [endDate]="endDate"></app-open-tickets-report>
   </div>
 </div>

@@ -14,6 +14,10 @@ export class OpenTicketsReportComponent implements OnInit, OnDestroy, OnChanges 
 
   @Input()
   public type: string;
+  @Input()
+  public startDate?: number;
+  @Input()
+  public endDate?: number;
 
   @ViewChild('ticketsGrid') public ticketsGrid: IgxGridComponent;
   dataSource: SupportDataSource;
@@ -61,8 +65,10 @@ export class OpenTicketsReportComponent implements OnInit, OnDestroy, OnChanges 
     return {
       page: page,
       pageSize: perPage,
-      // ticketStatus: this.valueService.statusOpen + '|' + this.valueService.statusInPropgress,
+      ticketStatuses: [this.valueService.statusOpen, this.valueService.statusInPropgress],
       ticketType: this.valueService.getTicketTypeValue(this.type),
+      startDate: this.startDate,
+      endDate: this.endDate,
       search: null,
       sortByName: null,
       sortAscending: true

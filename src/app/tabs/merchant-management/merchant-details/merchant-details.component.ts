@@ -1,7 +1,8 @@
 import { Component, OnInit, Input, EventEmitter, Output, ViewChild, TemplateRef } from '@angular/core';
-import { MerchantModel } from 'src/app/models/merchant-model';
 import { MerchantDataService } from '../../../_services/merchant-data.service';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
+import { MerchantDetailsModel } from 'src/app/models/merchant-details-model';
+import { MerchantModel } from 'src/app/models/merchant-model';
 
 @Component({
   selector: 'app-merchant-details',
@@ -11,7 +12,8 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 export class MerchantDetailsComponent implements OnInit {
   @Input() id: number;
   @Input() btnTitle = 'View Complete Merchant Details';
-  m: MerchantModel;
+  m: MerchantDetailsModel;
+  @Input() merchant: MerchantModel;
   @ViewChild('template', { read: TemplateRef }) public tmpl: TemplateRef<any>;
   lgModal: BsModalRef;
 
@@ -27,9 +29,10 @@ export class MerchantDetailsComponent implements OnInit {
     this.lgModal = this.modalService.show(template, {initialState, class: 'modal-lg'});
   }
 
-  public show(id) {
-    if (id) {
-      this.merchDataService.getById(id).subscribe(m => {
+  public show(merchant: MerchantModel) {
+    if (merchant) {
+      this.merchant = merchant;
+      this.merchDataService.getMerchantDelails(merchant.id).subscribe(m => {
         this.m = m;
         this.openModal(this.tmpl);
       });

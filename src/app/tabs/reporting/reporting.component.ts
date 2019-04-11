@@ -102,7 +102,7 @@ export class ReportingComponent implements OnInit {
         }
         case this.valueService.reportRangeCurrentMonth: {
           this.endDate = null;
-          this.startDate = new Date(now.getMonth() + '/01/' + now.getFullYear()).getTime();
+          this.startDate = new Date((now.getMonth() + 1).toString() + '/01/' + now.getFullYear()).getTime();
           break;
         }
         case this.valueService.reportRangePast3Months: {
@@ -117,7 +117,8 @@ export class ReportingComponent implements OnInit {
         }
         case this.valueService.reportRangePast12Months: {
           this.endDate = null;
-          this.startDate = new Date(now.getMonth() + '/' + now.getDate() + '/' + (now.getFullYear() - 1).toString()).getTime();
+          this.startDate = new Date((now.getMonth() + 1).toString() + '/' + now.getDate() + '/' +
+            (now.getFullYear() - 1).toString()).getTime();
           break;
         }
         case lastYear: {
@@ -135,7 +136,7 @@ export class ReportingComponent implements OnInit {
   }
 
   subtractMonths(date: Date, months: number): Date {
-    let m = date.getMonth();
+    let m = date.getMonth() + 1;
     let d = date.getDate();
     let y = date.getFullYear();
 

@@ -95,7 +95,7 @@
 
               <ng-template #menuTemplate>
                 <div>
-                  <div><button class="btn btn-link btn-sm" (click)="pop.hide();merchDetails.show(cell.row.rowData.midNumber)">View Details</button></div>
+                  <div><button class="btn btn-link btn-sm" (click)="pop.hide();merchDetails.show(cell.row.rowData)">View Details</button></div>
                   <div><button class="btn btn-link btn-sm" (click)="pop.hide();merchStatements.show(cell.row.rowData.midNumber)">Statements</button></div>
                   <div><button class="btn btn-link btn-sm">Add a Note</button></div>
                 </div>
@@ -149,7 +149,7 @@
                 <div>Account Status: <b>{{m.accountStatus}}</b></div>
             </div>
           </div>
-          <app-merchant-details [id]="m.midNumber"><button class="btn btn-primary" style="width:100%;">View Complete Merchant Details</button></app-merchant-details>
+          <app-merchant-details [merchant]="m"><button class="btn btn-primary" style="width:100%;">View Complete Merchant Details</button></app-merchant-details>
         </div>
       </div>
     </div>

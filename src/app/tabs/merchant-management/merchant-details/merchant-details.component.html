@@ -1,4 +1,4 @@
-<span (click)="show(id)">
+<span (click)="show(merchant)">
   <ng-content></ng-content>
 </span>
 
@@ -7,14 +7,14 @@
       <div class="modal-header bg-light">
         <div class="row">
           <div class="col-4">
-            <igx-avatar [initials]="m.dbaName | initials" [roundShape]="true" size="medium"></igx-avatar>
+            <igx-avatar [initials]="merchant.dbaName | initials" [roundShape]="true" size="medium"></igx-avatar>
           </div>
           <div class="col-8">
-            <h3>{{m.dbaName | uppercase}}</h3>
+            <h3>{{merchant.dbaName | uppercase}}</h3>
             <div class="small">
-              <div>MID Number: <b>{{m.midNumber}}</b></div>
-              <div>Name: <b>{{m.merchantFirstName}} {{m.merchantLastName}}</b></div>
-              <div>Address: <b>{{m.address}}</b></div>
+              <div>MID Number: <b>{{m.mid}}</b></div>
+              <div>Name: <b>{{merchant.merchantFirstName}} {{merchant.merchantLastName}}</b></div>
+              <div>Address: <b>{{merchant.address}}</b></div>
             </div>
           </div>
         </div>
@@ -26,61 +26,77 @@
               <div class="container">
                 <div class="row">
                   <div class="col-4">Affiliate Name:</div>
-                  <div class="col-8">{{m.dbaName}}</div>
+                  <div class="col-8">{{m.affiliateName}}</div>
                 </div>
                 <div class="row">
                   <div class="col-4">Trade Name:</div>
-                  <div class="col-8">{{m.dbaName}}</div>
+                  <div class="col-8">{{m.tradeName}}</div>
                 </div>
                 <div class="row">
                   <div class="col-4">Legal Business Name:</div>
-                  <div class="col-8">{{m.legalBusinessName}}</div>
+                  <div class="col-8">{{merchant.legalBusinessName}}</div>
                 </div>
                 <div class="row">
                   <div class="col-4">MID:</div>
-                  <div class="col-8">{{m.midNumber}}</div>
+                  <div class="col-8">{{m.mid}}</div>
                 </div>
                 <div class="row">
                   <div class="col-4">Base Currency Code:</div>
-                  <div class="col-8">USD</div>
+                  <div class="col-8">{{m.baseCurrencyCode}}</div>
                 </div>
                 <div class="row">
                   <div class="col-4">Pricing Method:</div>
-                  <div class="col-8"></div>
+                  <div class="col-8">{{m.pricingMethod}}</div>
                 </div>
                 <div class="row">
                   <div class="col-4">Rebate Indicator:</div>
-                  <div class="col-8">10%</div>
+                  <div class="col-8">{{m.rebateIndicator}}</div>
                 </div>
                 <div class="row">
                   <div class="col-4">Relationship Manager:</div>
-                  <div class="col-8">Elsa Johnson</div>
+                  <div class="col-8">{{m.relationshipManagerCode}}</div>
                 </div>
-                <div class="row">
+                <!-- <div class="row">
                   <div class="col-4">Funding Days:</div>
-                  <div class="col-8">30</div>
-                </div>
+                  <div class="col-8"></div>
+                </div> -->
                 <div class="row">
                   <div class="col-4">Discount Field Mastercard:</div>
-                  <div class="col-8">5%</div>
+                  <div class="col-8">{{m.discountFieldMc}}</div>
+                </div>
+                <div class="row">
+                  <div class="col-4">Discount Field Visa:</div>
+                  <div class="col-8">{{m.discountFieldVisa}}</div>
+                </div>
+                <div class="row">
+                  <div class="col-4">Discount Field Discover:</div>
+                  <div class="col-8">{{m.discountFieldDiscover}}</div>
                 </div>
                 <div class="row">
                   <div class="col-4">Hierarchy Level:</div>
-                  <div class="col-8">1</div>
+                  <div class="col-8">{{m.hierarchyLevel}}</div>
                 </div>
                 <div class="row">
                   <div class="col-4">Merchant ID:</div>
-                  <div class="col-8">{{m.midNumber}}</div>
+                  <div class="col-8">{{m.merchantId}}</div>
                 </div>
                 <div class="row">
-                  <div class="col-4">Annual Volume:</div>
-                  <div class="col-8">$1,000,000</div>
+                  <div class="col-4">Mastercard Annual Volume:</div>
+                  <div class="col-8">{{m.mcAnnualVolume}}</div>
                 </div>
                 <div class="row">
-                  <div class="col-4">Average Sale:</div>
-                  <div class="col-8">$10</div>
+                  <div class="col-4">Visa Annual Volume:</div>
+                  <div class="col-8">{{m.visaAnnualVolume}}</div>
                 </div>
                 <div class="row">
+                  <div class="col-4">Mastercard Average Sale:</div>
+                  <div class="col-8">{{m.mcAverageTicket}}</div>
+                </div>
+                <div class="row">
+                  <div class="col-4">Visa Average Sale:</div>
+                  <div class="col-8">{{m.visaAverageTicket}}</div>
+                </div>
+                <!-- <div class="row">
                   <div class="col-4">Sales Limit:</div>
                   <div class="col-8">No limit</div>
                 </div>
@@ -91,10 +107,10 @@
                 <div class="row">
                   <div class="col-4">Auth Limit:</div>
                   <div class="col-8">$1,000</div>
-                </div>
+                </div> -->
                 <div class="row">
                   <div class="col-4">Lease Comp Code:</div>
-                  <div class="col-8">9451</div>
+                  <div class="col-8">{{m.leaseCompCode}}</div>
                 </div>
               </div>
           </tab>
@@ -102,23 +118,23 @@
             <div class="container">
               <div class="row">
                 <div class="col-4">First Name:</div>
-                <div class="col-8">{{m.merchantFirstName}}</div>
+                <div class="col-8">{{merchant.merchantFirstName}}</div>
               </div>
               <div class="row">
                 <div class="col-4">Last Name:</div>
-                <div class="col-8">{{m.merchantLastName}}</div>
+                <div class="col-8">{{merchant.merchantLastName}}</div>
               </div>
               <div class="row">
                 <div class="col-4">Phone Number:</div>
-                <div class="col-8">{{m.phoneNumber}}</div>
+                <div class="col-8">{{merchant.phoneNumber}}</div>
               </div>
               <div class="row">
                 <div class="col-4">Email Address:</div>
-                <div class="col-8">{{m.emailAddress}}</div>
+                <div class="col-8">{{merchant.emailAddress}}</div>
               </div>
               <div class="row">
                 <div class="col-4">Address:</div>
-                <div class="col-8">{{m.address}}</div>
+                <div class="col-8">{{merchant.address}}</div>
               </div>
             </div>
           </tab>

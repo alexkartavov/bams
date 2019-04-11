@@ -1,4 +1,5 @@
 export class MerchantModel {
+    id: number;
     midNumber: number;
     dbaName: string;
     legalBusinessName: string;

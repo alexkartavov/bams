@@ -17,10 +17,15 @@ export const environment = {
 
     // listPostUrl: 'api/application',
 
+    ocpApimSubscriptionKey: 'e6b34ffa249940aba8ce5086f4273fd1'
+  },
+
+  merchantDetails: {
+    detailsGetUrl: 'https://cep-support-dev-api-management.azure-api.net/core/api/v1/cep-support/merchants/{merchantId}',
     // merchantStatementsGetUrl: 'https://cep-support-dev-api-management.azure-api.net/core/api/v1/support/list/statements',
     statementsGetUrl: 'api/statements',
 
-    ocpApimSubscriptionKey: 'e6b34ffa249940aba8ce5086f4273fd1'
+    ocpApimSubscriptionKey: '7b46d6296b674122b4737b0308312b93'
   },
 
   users: {

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, TemplateRef, OnDestroy } from '@angular/core';
+import { Component, OnInit, ViewChild, TemplateRef, OnDestroy, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { SupportDataSource } from 'src/app/tabs/my-support/support-datasource';
 import { SupportDataService } from 'src/app/_services/support-data.service';
 import { ValueProcessingService } from 'src/app/_services/value-processing.service';
@@ -10,10 +10,15 @@ import { ExportService } from 'src/app/_services/export.service';
   templateUrl: './time-to-resolve-report.component.html',
   styleUrls: ['./time-to-resolve-report.component.scss']
 })
-export class TimeToResolveReportComponent implements OnInit, OnDestroy {
+export class TimeToResolveReportComponent implements OnInit, OnDestroy, OnChanges {
 
   @ViewChild('ticketsGrid') public ticketsGrid: IgxGridComponent;
   dataSource: SupportDataSource;
+
+  @Input()
+  public startDate?: number;
+  @Input()
+  public endDate?: number;
 
   public page = 1;
   public lastPage = false;
@@ -46,6 +51,10 @@ export class TimeToResolveReportComponent implements OnInit, OnDestroy {
     this.dataSource.disconnect();
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    this.paginate(0);
+  }
+
   pageChanged(event) {
     this.paginate(event.page - 1);
   }
@@ -55,6 +64,8 @@ export class TimeToResolveReportComponent implements OnInit, OnDestroy {
       page: page,
       pageSize: perPage,
       ticketStatus: this.valueService.statusClosed,
+      startDate: this.startDate,
+      endDate: this.endDate,
       search: null,
       sortByName: null,
       sortAscending: true

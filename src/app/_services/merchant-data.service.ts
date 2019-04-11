@@ -4,6 +4,8 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { MerchantModel } from '../models/merchant-model';
+import { MerchantDetailsModel } from '../models/merchant-details-model';
+import { idLocale } from 'ngx-bootstrap';
 
 @Injectable({
   providedIn: 'root'
@@ -13,15 +15,26 @@ export class MerchantDataService implements OnDestroy {
   public postUrl = environment.merchants.listPostUrl;
   public getUrl = environment.merchants.getUrl;
   httpOptions: any;
+  httpDetailsOptions: any;
   totalCountSubject = new BehaviorSubject<number>(0);
 
-  public getStatementsUrl = environment.merchants.statementsGetUrl;
+  public getDetailsUrl = environment.merchantDetails.detailsGetUrl;
+  public getStatementsUrl = environment.merchantDetails.statementsGetUrl;
 
   constructor(private http: HttpClient) {
 
     this.httpOptions = {
       headers: new HttpHeaders({
         'Ocp-Apim-Subscription-Key': environment.merchants.ocpApimSubscriptionKey,
+        'Ocp-Api-Trace': 'true',
+        'Cache-Control': 'no-cache',
+        'Content-Type': 'application/json',
+        'token': ''
+      })
+    };
+    this.httpDetailsOptions = {
+      headers: new HttpHeaders({
+        'Ocp-Apim-Subscription-Key': environment.merchantDetails.ocpApimSubscriptionKey,
         'Ocp-Api-Trace': 'true',
         'Cache-Control': 'no-cache',
         'Content-Type': 'application/json',
@@ -38,6 +51,14 @@ export class MerchantDataService implements OnDestroy {
     return this.http.post(this.postUrl, params, this.httpOptions)
       .pipe(map<any, MerchantModel[]>(data => {
         this.totalCountSubject.next(data.totalCount);
+
+        // TODO remove once the endpoint returns merchantIds
+        let id = 0;
+        data.items.forEach(item => {
+          item.id = ++id;
+        });
+        // END TODO
+
         return data.items;
       })
     );
@@ -50,6 +71,12 @@ export class MerchantDataService implements OnDestroy {
   getById(mid: number): Observable<MerchantModel> {
     return this.http.get(this.getUrl.replace('{mid}', mid.toString()), this.httpOptions)
       .pipe(map<any, MerchantModel>(data => data.items[0])
+    );
+  }
+
+  getMerchantDelails(id: number): Observable<MerchantDetailsModel> {
+    return this.http.get(this.getDetailsUrl.replace('{merchantId}', id.toString()), this.httpDetailsOptions)
+      .pipe(map<any, MerchantDetailsModel>(data => data)
     );
   }
 
