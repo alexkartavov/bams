@@ -12,7 +12,7 @@
           <div class="col-8">
             <h3>{{merchant.dbaName | uppercase}}</h3>
             <div class="small">
-              <div>MID Number: <b>{{m.mid}}</b></div>
+              <div>Merchant ID: <b>{{m.merchantId}}</b></div>
               <div>Name: <b>{{merchant.merchantFirstName}} {{merchant.merchantLastName}}</b></div>
               <div>Address: <b>{{merchant.address}}</b></div>
             </div>
@@ -24,6 +24,10 @@
         <tabset #detailTabs class="tabs-material">
           <tab heading="Merchant Details">
               <div class="container">
+                <div class="row">
+                  <div class="col-4">MID:</div>
+                  <div class="col-8">{{m.mid}}</div>
+                </div>
                 <div class="row">
                   <div class="col-4">Affiliate Name:</div>
                   <div class="col-8">{{m.affiliateName}}</div>
@@ -37,8 +41,8 @@
                   <div class="col-8">{{merchant.legalBusinessName}}</div>
                 </div>
                 <div class="row">
-                  <div class="col-4">MID:</div>
-                  <div class="col-8">{{m.mid}}</div>
+                  <div class="col-4">Tax ID:</div>
+                  <div class="col-8">{{m.taxId}}</div>
                 </div>
                 <div class="row">
                   <div class="col-4">Base Currency Code:</div>
@@ -75,10 +79,6 @@
                 <div class="row">
                   <div class="col-4">Hierarchy Level:</div>
                   <div class="col-8">{{m.hierarchyLevel}}</div>
-                </div>
-                <div class="row">
-                  <div class="col-4">Merchant ID:</div>
-                  <div class="col-8">{{m.merchantId}}</div>
                 </div>
                 <div class="row">
                   <div class="col-4">Mastercard Annual Volume:</div>
@@ -138,12 +138,12 @@
               </div>
             </div>
           </tab>
-          <tab heading="Tax Information">
+          <!-- <tab heading="Tax Information">
               <div>Tax Information</div>
           </tab>
           <tab heading="Product Information">
               <div>Product Information</div>
-          </tab>
+          </tab> -->
         </tabset>
 
       </div>
