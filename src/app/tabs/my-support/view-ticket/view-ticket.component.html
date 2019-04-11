@@ -1,0 +1,112 @@
+<span (click)="openModal(template)">
+  <ng-content></ng-content>
+</span>
+
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left primary-color">Edit Ticket</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide();update();">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form  [formGroup]="updateForm" (ngSubmit)="modalRef.hide();update();" autocomplete="off">
+      <input autocomplete="false" name="hidden" type="text" style="display:none;">
+      <div class="container">
+        
+        <div class="row primary-color mb-3">
+          <div class="col-3">
+            <b>Ticket Number:</b> {{model.id}}
+          </div>
+          <div class="col-3">
+            <b>Ticket Type:</b><br/>{{ticketTypeTitle(model.type)}}
+          </div>
+          <div class="col-3">
+            <b>Ticket Status:</b><br/>{{ticketStatusTitle(model.status)}}
+          </div>
+          <div class="col-3">
+            <b>Rep Assigned:</b><br/>{{model.assignedTo}}
+          </div>
+        </div>
+
+        <div class="row primary-color mb-3">
+          <div class="col">
+            <b>Updates needed:</b> {{model.desc}}
+          </div>
+        </div>
+
+        <div class="row mb-2">
+          <div class="form-group col-6">
+            <label for="ticketStatus">Change To:</label>
+            <select type="text" class="form-control" name="ticketStatus" formControlName="ticketStatus" [value]="model.status" (change)="statusChanged($event)">
+              <option value="" selected disabled>Select...</option>
+              <option *ngFor="let p of statusData" [value]="p">{{ticketStatusTitle(p)}}</option>
+            </select>
+          </div>
+          <div class="form-group col-6">
+            <label for="repAssigned">Assign Ticket To:</label>
+            <input type="text" class="form-control" name="repAssigned" formControlName="repAssigned" [value]="model.assignedTo"
+                [typeaheadAsync]="true" [typeahead]="usersData" [typeaheadOptionsLimit]="7" [typeaheadItemTemplate]="customItemTemplate" typeaheadOptionField="lastName" typeaheadWaitMs="1000"
+                (typeaheadOnSelect)="typeaheadSelect($event)" (typeaheadLoading)="changeTypeaheadLoading($event)" (change)="repChanged()">
+            <ng-template #customItemTemplate let-model="item" let-index="index">
+              {{model.firstName}} {{model.lastName}}
+            </ng-template>
+          </div>
+        </div>
+
+        <div class="mb-2" *ngIf="model.attachments && model.attachments.length > 0">
+          Attachments:
+          <ul>
+            <li style="display:inline;padding-right:15px;"><igx-icon fontSet="fa" name="fa-paperclip" color="#aaaaaa" style="position:absolute;margin-top:5px;"></igx-icon></li>
+            <li *ngFor="let a of model.attachments" style="display:inline;">
+              <button class="btn btn-link" (click)="downloadAttachment(a.id, a.title);">{{a.title}}</button>
+            </li>
+          </ul>
+        </div>
+
+        <div class="container mb-5">
+          <div class="row">
+            <div class="col p-0">
+              <input class="form-control" rows="2" placeholder="Enter your comments here..."
+                [(ngModel)]="newComment" [ngModelOptions]="{standalone: true}" (keydown.enter)="keydownEnter()" (keyup.enter)="postNewComment()"
+                style="border-bottom-width:0px;border-bottom-style:none;">
+            </div>
+          </div>
+      
+          <div class="row">
+            <div class="col-10 p-0 custom-file">
+                <input id="attachmentFile" class="form-control" type="file" class="custom-file-input rounded-0" (change)="attachmentChanged($event)" accept=".jpg,.gif,.jpeg,.png,.txt,.pdf">
+                <label class="custom-file-label" for="attachmentFile" [ngStyle]="attachmentStyle()">{{attachmentFileName}}</label>
+                <igx-icon fontSet="fa" name="fa-paperclip" color="#aaaaaa" style="position:absolute;margin-left:-135px;margin-top:7px;z-index:10;"></igx-icon>
+              </div>
+            <div class="col-2 p-0">
+              <button type="button" class="btn btn-primary" style="width:100%;height:100%" [disabled]="!newComment && !submitting" (click)="postNewComment($event)">Post</button>
+            </div>
+          </div>
+
+      
+          <div class="row mt-3" *ngIf="hasComments()" style="overflow-y:auto;" [ngStyle]="{'max-height.px': getMaxHeight()}">
+            <div class="col">
+                <h5 class="primary-color">Comments</h5>
+                <div class="row comment" *ngFor="let comment of commentsData">
+                  <div class="col-1">
+                      <igx-avatar [initials]="getUserName(comment.createdById, comment.createdBy) | initials" roundShape="true"></igx-avatar>
+                  </div>
+                  <div class="col-9">
+                    <div class="comment-name primary-color">{{ getUserName(comment.createdById, comment.createdBy) }}</div>
+                    <div class="comment-info">{{ comment.body }}</div>
+                  </div>
+                  <div class="col-2 timepassed">{{ getDate(comment.createdOn) | timepassed }}</div>
+                </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" (click)="modalRef.hide();update();">Close</button>
+        <!-- <button type="submit" class="btn btn-primary" [disabled]="!updateForm.valid">Save</button> -->
+      </div>
+    </form>
+  </div>
+</ng-template>

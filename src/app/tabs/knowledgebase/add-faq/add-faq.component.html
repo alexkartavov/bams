@@ -1,0 +1,49 @@
+<span (click)="openModal(template)">
+  <ng-content></ng-content>
+</span>
+
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left primary-color">Create FAQ</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form #addFaqForm="ngForm" (ngSubmit)="modalRef.hide();update()" autocomplete="off">
+      <input autocomplete="false" name="hidden" type="text" style="display:none;">
+      <div class="container">
+        
+        <div class="row">
+          <div class="form-group col-12">
+            <label for="topic">Topic:</label>
+            <!-- <input type="text" class="form-control" required name="topic" [(ngModel)]="model.topic" [typeahead]="topicsData" typeaheadOptionField="topic" (typeaheadOnSelect)="typeaheadSelect($event)"> -->
+            <select type="text" class="form-control" required name="topic" [(ngModel)]="model.topic">
+              <option value="" selected disabled>Select...</option>
+              <option *ngFor="let p of topicsData" [value]="p.topic">{{p.topic}}</option>
+            </select>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="form-group col-12">
+            <label for="question">Question:</label>
+            <input type="text" class="form-control" required name="question" [(ngModel)]="model.question">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group col-12">
+            <label for="answer">Answer:</label>
+            <textarea class="form-control" required name="answer" [(ngModel)]="model.answer" style="height:300px;"></textarea>
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" (click)="modalRef.hide()">Close</button>
+        <button type="button" class="btn btn-primary" type="submit" [disabled]="!addFaqForm.valid">Submit</button>
+      </div>
+    </form>
+  </div>
+</ng-template>

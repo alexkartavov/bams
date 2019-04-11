@@ -1,0 +1,92 @@
+<div class="bg-white p-3 shadow-sm">
+  <div class="row">
+
+    <div class="col-auto">
+      <span class="mt-3 mr-3">Select a report</span>
+      <div class="btn-group mt-1 mr-2" dropdown>
+        <button id="select-reporttype" title="Select a Report" dropdownToggle type="button" class="btn btn-outline-primary dropdown-toggle"
+                aria-controls="select-reporttype-dropdown">{{reportType}}<span class="caret"></span>
+        </button>
+        <ul id="select-reporttype-dropdown" *dropdownMenu class="dropdown-menu"
+            role="menu" aria-labelledby="select-reporttype">
+          <li role="menuitem" *ngFor="let p of reportTypeData; let i = index"><span class="dropdown-item" (click)="selectReport(i)">{{p}}</span></li>
+        </ul>
+      </div>
+
+      <div class="btn-group mt-1 mr-2" dropdown #datesDropdown="bs-dropdown" [autoClose]="false">
+        <button id="select-reportrange" title="Select a Range" dropdownToggle type="button" class="btn btn-outline-primary dropdown-toggle"
+                aria-controls="select-reportrange-dropdown">{{reportRange}}<span class="caret"></span>
+        </button>
+        <ul id="select-reportrange-dropdown" *dropdownMenu class="dropdown-menu"
+            role="menu" aria-labelledby="select-reportrange">
+          <li role="menuitem" *ngFor="let p of reportRangeData; let i = index" (click)="datesDropdown.hide()">
+            <span class="dropdown-item" (click)="selectReportRange(i)">{{p}}</span>
+          </li>
+          <li>
+            <span class="dropdown-item disabled" (click)="cancel($event)">Custom</span>
+          </li>
+          <div class="text-center mt-2 mb-1">
+            <div class="row no-gutters align-items-center pl-1 ml-3 mr-3" style="border: 1px black solid; border-radius: 4px">
+              <div class="col">
+                <input #fromDatePicker type="text"
+                  placeholder="From"
+                  class="form-control"
+                  bsDatepicker
+                  [bsConfig]="{containerClass: 'theme-dark-blue'}"
+                  style="border: 0px transparent none;">
+              </div>
+              <div class="col-auto theme-blue-color ml-1 mr-1">
+                <igx-icon fontSet="fa" name="fa-calendar"></igx-icon>
+              </div>
+            </div>
+            <div class="row no-gutters align-items-center pl-1 ml-3 mr-3 mt-2" style="border: 1px black solid; border-radius: 4px">
+              <div class="col">
+                <input #toDatePicker type="text"
+                  placeholder="To"
+                  class="form-control"
+                  bsDatepicker
+                  [bsConfig]="{containerClass: 'theme-dark-blue'}"
+                  style="border: 0px transparent none;">
+              </div>
+              <div class="col-auto theme-blue-color ml-1 mr-1">
+                <igx-icon fontSet="fa" name="fa-calendar"></igx-icon>
+              </div>
+              </div>
+            <button class="btn btn-primary mt-2" style="width:75%;" (click)="selectCustomRange(fromDatePicker.value, toDatePicker.value);datesDropdown.hide()">OK</button>
+          </div>
+        </ul>
+      </div>
+    </div>
+
+    <div *ngIf="reportType == reportTypeData[0]" class="col-auto left-border-only">
+      <app-filter-tickets [type]="filterType" (typeChange)="selectType($event)"
+        [status]="filterStatus" (statusChange)="selectStatus($event)"
+        [priority]="filterPriority" (priorityChange)="selectPriority($event)"
+        (clearFilters)="clearFilters()"></app-filter-tickets>
+    </div>
+
+    <div *ngIf="reportType == reportTypeData[2]" class="col-auto left-border-only">
+      <app-filter-tickets [filterMode]="'type'" [type]="filterType" (typeChange)="selectType($event)"
+        (clearFilters)="clearFilters()"></app-filter-tickets>
+    </div>
+
+    <div class="col text-right pb-2 mt-1">
+      <button class="btn btn-primary" (click)="downloadReport()">Download</button>
+    </div>
+    
+  </div>
+
+  <div *ngIf="reportType == reportTypeData[0]" class="mt-2">
+    <app-all-tickets-report #allTicketsReport
+      [type]="filterType" [status]="filterStatus" [priority]="filterPriority"
+      [startDate]="startDate" [endDate]="endDate"></app-all-tickets-report>
+  </div>
+
+  <div *ngIf="reportType == reportTypeData[1]" class="mt-2">
+    <app-time-to-resolve-report #timeToResolveReport></app-time-to-resolve-report>
+  </div>
+
+  <div *ngIf="reportType == reportTypeData[2]" class="mt-2">
+    <app-open-tickets-report #openTicketsReport [type]="filterType"></app-open-tickets-report>
+  </div>
+</div>

@@ -1,0 +1,128 @@
+<div *ngIf="loggedIn()" class="row home-background">
+  <div class="col-lg-3 col-md-2 col-sm-1"></div>
+  <div class="col-lg-6 col-md-8 col-sm-10 home-search">
+    <app-search-box (search)="search($event)"></app-search-box>
+  </div>
+  <div class="col-lg-3 col-md-2 col-sm-1"></div>
+</div>
+
+<div class="container mt-5">
+  <div *ngIf="!loggedIn()" class="jumbotron">
+    <div class="row">
+      <div class="col-6">
+        <img src="../../assets/cepsupport.png" />
+      </div>
+      <div class="col-6 p-5">
+          <h4 class="primary-color">Welcome</h4>
+          <h2 class="primary-color">Login to your account</h2>
+          <br/>
+          
+          <form
+            #loginForm="ngForm"
+            (ngSubmit)="login()">
+
+            <div class="container">
+              <div class="row form-group">
+                <label for="username" class="primary-color">Email address</label>
+                <input
+                  class="form-control"
+                  type="text"
+                  name="username"
+                  placeholder="Email address"
+                  required
+                  [(ngModel)]="model.username" />
+              </div>
+
+              <div class="row form-group">
+                <label for="password" class="primary-color">Email address</label>
+                <input
+                  class="form-control"
+                  type="password"
+                  name="password"
+                  placeholder="Password"
+                  required
+                  [(ngModel)]="model.password" />
+              </div>
+
+              <div class="row mb-3">
+                <div class="col-6">
+                  <igx-checkbox name="remember" class="primary-color" [(ngModel)]="model.remember">Remember me</igx-checkbox>
+                </div>
+                <div class="col-6">
+                  <a href="#" class="pull-right">Forgot password?</a>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-6 text-center">
+                  <button
+                    [disabled]="!loginForm.valid"
+                    class="btn-lg btn-primary"
+                    type="submit">
+                    Sign In
+                  </button>
+                </div>
+
+                <div class="col-6 text-center">
+                  <button
+                    class="btn-lg btn-outline-primary" type="button">
+                    Create Account
+                  </button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        </div>
+  </div>
+
+  <div *ngIf="loggedIn()" class="row mb-5">
+    <div class="col-3 text-center">
+      <!-- <igx-icon class="primary-color" style="font-size:44px;margin-left:-28px;">person</igx-icon><br/> -->
+      <img src="../../assets/home_merchantmgmt.png" /><br/>
+      <a class="btn btn-light mb-3" role="button" style="min-width: 190px;" [routerLink]="[tabsNav.routeFromIndex(0)]">{{tabsNav.headingFromIndex(0)}}</a>
+      <ul class="text-left ml-4">
+        <li class="text-muted"><igx-icon class="boldred">check</igx-icon> Merchant Application Status</li>
+        <li class="text-muted"><igx-icon class="boldred">check</igx-icon> Update Merchant Email</li>
+        <li class="text-muted"><igx-icon class="boldred">check</igx-icon> Resend Merchant Log in Email</li>
+      </ul>
+    </div>
+    <div class="col-3 text-center">
+      <!-- <igx-icon class="primary-color" style="font-size:44px;margin-left:-28px;">person</igx-icon><br/> -->
+      <img src="../../assets/home_useraccessmgmt.png" /><br/>
+      <a class="btn btn-light mb-3" role="button" style="min-width: 190px;" [routerLink]="[tabsNav.routeFromIndex(1)]">{{tabsNav.headingFromIndex(1)}}</a>
+      <ul class="text-left ml-4">
+          <li class="text-muted"><igx-icon class="boldred">check</igx-icon> SBC User Access</li>
+          <li class="text-muted"><igx-icon class="boldred">check</igx-icon> Support Tool User Access</li>
+        </ul>
+      </div>
+    <div class="col-3 text-center">
+      <!-- <igx-icon class="primary-color" style="font-size:44px;margin-left:-28px;">person</igx-icon><br/> -->
+      <img src="../../assets/home_knowledgebase.png" /><br/>
+      <a class="btn btn-light mb-3" role="button" style="min-width: 190px;" [routerLink]="[tabsNav.routeFromIndex(2)]">{{tabsNav.headingFromIndex(2)}}</a>
+      <ul class="text-left ml-4">
+          <li class="text-muted"><igx-icon class="boldred">check</igx-icon> Add New FAQs</li>
+          <li class="text-muted"><igx-icon class="boldred">check</igx-icon> Modify/Update FAQs</li>
+          <li class="text-muted"><igx-icon class="boldred">check</igx-icon> View Previous FAQs</li>
+        </ul>
+      </div>
+    <div class="col-3 text-center">
+      <!-- <igx-icon class="primary-color" style="font-size:44px;margin-left:-28px;">person</igx-icon><br/> -->
+      <img src="../../assets/home_reporting.png" /><br/>
+      <a class="btn btn-light mb-3" role="button" style="min-width: 190px;" [routerLink]="[tabsNav.routeFromIndex(3)]">{{tabsNav.headingFromIndex(3)}}</a>
+      <ul class="text-left ml-4">
+        <li class="text-muted"><igx-icon class="boldred">check</igx-icon> Opt out Reports</li>
+        <li class="text-muted"><igx-icon class="boldred">check</igx-icon> Summary Statistics</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="row bg-darker p-1">
+  <div class="col-6 text-right pt-3">Connect with us</div>
+  <div class="col-6 pt-1">
+    &nbsp;<a href="#"><img src="../../assets/facebook.svg"/></a>
+    &nbsp;<a href="#"><img src="../../assets/linkedin.svg"/></a>
+    &nbsp;<a href="#"><img src="../../assets/youtube.svg"/></a>
+  </div>
+</div>

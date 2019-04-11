@@ -1,0 +1,106 @@
+<span (click)="openModal(template)">
+  <ng-content></ng-content>
+</span>
+
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left primary-color">Create Ticket</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form #updateForm="ngForm" (ngSubmit)="update()" autocomplete="off">
+      <input autocomplete="false" name="hidden" type="text" style="display:none;">
+      <div class="container">
+        
+        <div class="row">
+          <div class="form-group col-12">
+            <label for="dbaName">DBA Name:</label>
+            <input #dbaName type="text" class="form-control" required name="dbaName" [(ngModel)]="model.merchant.dbaName" [attr.disabled]="!editable ? '' : null"
+                [typeaheadAsync]="true" [typeahead]="merchData" [typeaheadOptionsLimit]="7" typeaheadOptionField="dbaName" typeaheadWaitMs="1000"
+                (typeaheadOnSelect)="typeaheadSelect($event)" (typeaheadLoading)="changeTypeaheadLoading($event, dbaName.value)">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group col-6">
+            <label for="merchantFirstName">Merchant First Name:</label>
+            <input type="text" class="form-control" required name="merchantFirstName" [(ngModel)]="model.merchant.firstName" [attr.disabled]="!editable ? '' : null">
+          </div>
+          <div class="form-group col-6">
+            <label for="merchantLastName">Merchant Last Name:</label>
+            <input type="text" class="form-control" required name="merchantLastName" [(ngModel)]="model.merchant.lastName" [attr.disabled]="!editable ? '' : null">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group col-6">
+            <label for="merchantPhoneNumber">Merchant Phone Number:</label>
+            <input #phoneNumber type="text" class="form-control" required name="merchantPhoneNumber" [(ngModel)]="model.merchant.phoneNumber" [attr.disabled]="!editable ? '' : null"
+                [typeaheadAsync]="true" [typeahead]="merchData" [typeaheadOptionsLimit]="7" typeaheadOptionField="phoneNumber" typeaheadWaitMs="1000"
+                (typeaheadOnSelect)="typeaheadSelect($event)" (typeaheadLoading)="phoneTypeaheadLoading($event, phoneNumber.value)">
+          </div>
+          <div class="form-group col-6">
+            <label for="merchantID">Merchant ID:</label>
+            <input #midNumber type="text" class="form-control" name="merchantID" [(ngModel)]="model.mid" [attr.disabled]="!editable ? '' : null"
+                [typeaheadAsync]="true" [typeahead]="merchData" [typeaheadOptionsLimit]="7" typeaheadOptionField="midNumber" typeaheadWaitMs="1000"
+                (typeaheadOnSelect)="typeaheadSelect($event)" (typeaheadLoading)="midTypeaheadLoading($event, midNumber.value)">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group col-12">
+            <label for="merchantEmail">Merchant Email Address:</label>
+            <input #email type="email" class="form-control" required email name="merchantEmail" [(ngModel)]="model.merchant.emailAddress" [attr.disabled]="!editable ? '' : null"
+            [typeaheadAsync]="true" [typeahead]="merchData" [typeaheadOptionsLimit]="7" typeaheadOptionField="emailAddress" typeaheadWaitMs="1000"
+            (typeaheadOnSelect)="typeaheadSelect($event)" (typeaheadLoading)="emailTypeaheadLoading($event, email.value)">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group col-6">
+            <label for="ticketType">Ticket Type:</label>
+            <select type="text" class="form-control" required name="ticketType" [(ngModel)]="model.type">
+              <option value="" selected disabled>Select...</option>
+              <option *ngFor="let p of typeData" [value]="p">{{p}}</option>
+            </select>
+          </div>
+          <div class="form-group col-6">
+            <label for="priority">Priority:</label>
+            <select type="text" class="form-control" required name="priority" [(ngModel)]="model.priority">
+              <option value="" selected disabled>Select...</option>
+              <option *ngFor="let p of priorityData" [value]="p">{{p}}</option>
+            </select>
+          </div>
+        </div>
+        <hr/>
+        <div class="medium"><span class="primary-color"><b>Subject:</b></span>
+          {{model.mid}}
+          <span *ngIf="model.type">/</span>
+          {{model.type}}
+          <span>/</span>
+          {{model.merchant.firstName}} {{model.merchant.lastName}}
+        </div>
+        <br/>
+        <div class="row medium">
+          <div class="form-group col">
+            <label for="updatesNeeded">Describe the updates needed to be made:</label>
+            <textarea class="form-control" required name="updatesNeeded" [(ngModel)]="model.desc" rows="5" cols="30"></textarea>
+          </div>
+        </div>
+
+        <div class="custom-file mb-2">
+          <input id="attachmentFile" class="form-control" type="file" class="custom-file-input rounded-0" (change)="attachmentChanged($event)" accept=".jpg,.gif,.jpeg,.png,.txt,.pdf">
+          <label class="custom-file-label" for="attachmentFile" [ngStyle]="attachmentStyle()">{{attachmentFileName}}</label>
+          <igx-icon fontSet="fa" name="fa-paperclip" color="#aaaaaa" style="position:absolute;margin-left:-135px;margin-top:7px;z-index:10;"></igx-icon>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" (click)="modalRef.hide()">Close</button>
+        <button type="button" class="btn btn-primary" type="submit" [disabled]="!updateForm.valid || submitting">Submit</button>
+      </div>
+    </form>
+  </div>
+</ng-template>

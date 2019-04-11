@@ -1,0 +1,51 @@
+<div class="bg-white p-3 shadow-sm">
+  <div class="row justify-content-left">
+    <div class="col-12 col-md-10 col-lg-7 pt-2">
+        <app-search-box (search)="search($event)"></app-search-box>
+    </div>
+    <div class="col-lg-5 d-none d-sm-block p-1">
+      <igx-navbar [isActionButtonVisible]="false" class="p-0">
+        <app-add-faq (success)="faqAdded($event)"><button class="btn btn-primary">Add FAQ</button></app-add-faq>
+        <span title="Print"><igx-icon (click)="print()">print</igx-icon></span>
+        <span title="Download CSV"><igx-icon (click)="startDownload()">save_alt</igx-icon></span>
+      </igx-navbar>
+    </div>
+  </div>
+
+  <div class="row mt-3">
+    <div class="col-auto pl-5">
+      <ul *ngFor="let item of topics; let i = index">
+        <li>
+          <div class="card border-light mb-3 center-block shadow-sm" style="max-width:400px;" [ngClass]="topicClass(i)" (mouseout)="mouseOuted(i)" (mouseover)="mouseOvered(i)" (click)="topicClicked(i)">
+            <div class="row">
+              <div class="col-3 justify-content-center text-center">
+                <div class="ml-3 mt-5">
+                  <img src="{{topicIcon(item)}}" />
+                </div>
+              </div>
+              <div class=" col-9 card-body">
+                <h4 class="primary-color">{{item}}</h4>
+                <p class="card-text">Knowledgebase section description text to build on the card title and make up the bulk of the card's content.</p>
+              </div>
+            </div>
+        </div>
+        </li>
+      </ul>
+    </div>
+    <div class="col">
+        <h2 class="primary-color mb-3">{{currentTopic}}</h2>
+        <ul *ngFor="let item of articles">
+            <li class="mb-3" style="max-width: 60rem;">
+              <h3 class="text-dark">{{item.question}}</h3>
+              <p [innerHtml]="item.answer"></p>
+            </li>
+          </ul>
+    </div>
+  </div>
+
+  <div *ngIf="dataSource.loading$ | async" style="position:absolute;margin-left:45%;">
+    <div class="spinner-border text-primary" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+</div>

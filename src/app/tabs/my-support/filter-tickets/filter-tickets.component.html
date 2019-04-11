@@ -1,0 +1,40 @@
+<div *ngIf="isTypeVisible()" class="btn-group mt-1 mr-2" dropdown>
+  <button id="select-tickettype" title="Filter by Type" dropdownToggle type="button" class="btn btn-outline-primary dropdown-toggle"
+          aria-controls="select-tickettype-dropdown">{{type ? type : 'Ticket Type'}}<span class="caret"></span>
+  </button>
+  <ul id="select-tickettype-dropdown" *dropdownMenu class="dropdown-menu"
+      role="menu" aria-labelledby="select-tickettype">
+    <li role="menuitem"><span class="dropdown-item disabled">Ticket Type</span></li>
+    <li class="divider dropdown-divider"></li>
+    <li role="menuitem" *ngFor="let p of typeData; let i = index"><span class="dropdown-item" (click)="selectType(i)">{{p}}</span></li>
+  </ul>
+</div>
+
+<div *ngIf="isStatusVisible()" class="btn-group mt-1 mr-2" dropdown>
+  <button id="select-ticketstatus" title="Filter by Status" dropdownToggle type="button" class="btn btn-outline-primary dropdown-toggle"
+          aria-controls="select-ticketstatus-dropdown">{{status ? status : 'Ticket Status'}}<span class="caret"></span>
+  </button>
+  <ul id="select-ticketstatus-dropdown" *dropdownMenu class="dropdown-menu"
+      role="menu" aria-labelledby="select-ticketstatus">
+    <li role="menuitem"><span class="dropdown-item disabled">Ticket Status</span></li>
+    <li class="divider dropdown-divider"></li>
+    <li role="menuitem" *ngFor="let p of statusData; let i = index"><span class="dropdown-item" (click)="selectStatus(i)">{{p}}</span></li>
+  </ul>
+</div>
+
+<div *ngIf="isPriorityVisible()" class="btn-group mt-1" dropdown>
+  <button id="select-ticketpriority" title="Filter by Priority" dropdownToggle type="button" class="btn btn-outline-primary dropdown-toggle"
+          aria-controls="select-ticketpriority-dropdown">{{priority ? priority : 'Ticket Priority'}}<span class="caret"></span>
+  </button>
+  <ul id="select-ticketpriority-dropdown" *dropdownMenu class="dropdown-menu"
+      role="menu" aria-labelledby="select-ticketpriority">
+    <li role="menuitem"><span class="dropdown-item disabled">Ticket Priority</span></li>
+    <li class="divider dropdown-divider"></li>
+    <li role="menuitem" *ngFor="let p of priorityData; let i = index"><span class="dropdown-item" (click)="selectPriority(i)">{{p}}</span></li>
+  </ul>
+</div>
+
+<button *ngIf="hasFilters()" type="button" class="btn btn-link mt-1 ml-2 p-0" title="Clear filters" (click)="clear()">
+  <igx-icon fontSet="fa" name="fa-filter" style="position:relative;padding-top:5px;"></igx-icon>
+  <igx-icon fontSet="fa" name="fa-remove" style="position:relative;margin-left:-12px;padding-top:5px;font-size:small;"></igx-icon>
+</button>

@@ -1,0 +1,126 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+@import url('https://fonts.googleapis.com/css?family=Titillium+Web:300,400,600,700');
+@import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+@import '../node_modules/bootswatch/dist/cosmo/bootstrap.min.css';
+@import '../node_modules/font-awesome/css/font-awesome.min.css';
+@import '../node_modules/alertifyjs/build/css/alertify.min.css';
+@import '../node_modules/alertifyjs/build/css/themes/bootstrap.min.css';
+@import '../node_modules/ngx-bootstrap/datepicker/bs-datepicker.css';
+@import '~igniteui-angular/lib/core/styles/themes/index';
+
+$primary: #0C63AB !default;
+$secondary: #0C63AB !default;
+$theme-blue: #2780E3;
+$dark-text: #000A23;
+$light-text: #c1b3a2;
+
+.nav-link.active {
+    color: $dark-text !important;
+    font-size: small;
+    font-weight: bold;
+    border-top-color: $light-text !important;
+    border-top-width: 5px;
+    border-top-style: solid;
+    margin-right: 5px;
+}
+
+.nav-link {
+    color: $dark-text !important;
+    font-size: small;
+    font-weight: bold;
+    background-color: #ede6de;
+    border-top-color: #ede6de !important;
+    border-top-width: 5px !important;
+    border-top-style: solid !important;
+    margin-right: 5px;
+}
+
+$app-palette: igx-palette($primary, $secondary);
+
+@include igx-core();
+@include igx-theme($app-palette);
+
+@import "app/app.component";
+
+.bg-lightgray
+{
+    background-color: #f8f7f3;
+}
+
+.primary-color
+{
+    color: $primary;
+}
+
+$my-navbar-theme: igx-navbar-theme(
+    $background: white,
+    $disable-shadow: true,
+    $idle-icon-color: $primary,
+    $hover-icon-color: $secondary);
+
+@include igx-navbar($my-navbar-theme);
+
+$my-grid-theme: igx-grid-theme(
+  $header-text-color: $dark-text,
+  $row-odd-background: white,
+  $row-even-background: #fbfbfb,
+  $row-odd-text-color: $dark-text,
+  $row-even-text-color: $dark-text
+);
+
+@include igx-grid($my-grid-theme);
+
+.btn-light {
+    color: $dark-text;
+    background-color: $light-text;
+    border-color: $light-text;
+    border-radius: 2px; 
+    font-weight: bold;
+    font-size: small;
+}
+
+.btn-light:hover {
+    color: white;
+    background-color: $primary;
+    border-color: $primary;
+    border-radius: 2px; 
+}
+
+.bg-darker {
+    background-color: $light-text;
+    color: $dark-text;
+    font-size: large;
+    font-weight: bold;
+}
+
+.igx-grid__th-icons {
+    visibility: hidden !important;
+}
+
+.left-border-only {
+    border-left: 2px solid $theme-blue;
+}
+
+.bs-datepicker-body table td {
+    color: $dark-text;
+}
+
+.theme-blue-color {
+    color: $theme-blue;
+}
+
+.theme-dark-blue .bs-datepicker-head,
+.theme-dark-blue .bs-datepicker-body table td span.selected {
+    background-color: $theme-blue;
+}
+
+ul {
+    margin:0;
+    padding:0;
+}
+
+li {
+    display: table-row;
+}

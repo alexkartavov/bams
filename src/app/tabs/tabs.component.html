@@ -1,0 +1,20 @@
+<div class="main-nav">
+  <tabset #staticTabs>
+    <tab heading="{{tabsNav.headingFromIndex(0)}}" (select)="onSelect($event)">
+      <app-merchant-management></app-merchant-management>
+    </tab>
+    <tab heading="{{tabsNav.headingFromIndex(1)}}" (select)="onSelect($event)">
+      <app-user-access-management></app-user-access-management>
+    </tab>
+    <tab heading="{{tabsNav.headingFromIndex(2)}}" (select)="onSelect($event)">
+      <app-knowledgebase></app-knowledgebase>
+    </tab>
+    <tab heading="{{tabsNav.headingFromIndex(3)}}" (select)="onSelect($event)">
+      <app-reporting></app-reporting>
+    </tab>
+    <tab heading="{{tabsNav.headingFromIndex(4)}}" (select)="onSelect($event)">
+      <app-my-support></app-my-support>
+    </tab>
+  </tabset>
+</div>
+<div class="p-2"></div>

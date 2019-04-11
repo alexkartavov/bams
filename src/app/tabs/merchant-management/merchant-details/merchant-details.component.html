@@ -1,0 +1,138 @@
+<span (click)="show(id)">
+  <ng-content></ng-content>
+</span>
+
+<ng-template #template>
+    <div class="modal-content">
+      <div class="modal-header bg-light">
+        <div class="row">
+          <div class="col-4">
+            <igx-avatar [initials]="m.dbaName | initials" [roundShape]="true" size="medium"></igx-avatar>
+          </div>
+          <div class="col-8">
+            <h3>{{m.dbaName | uppercase}}</h3>
+            <div class="small">
+              <div>MID Number: <b>{{m.midNumber}}</b></div>
+              <div>Name: <b>{{m.merchantFirstName}} {{m.merchantLastName}}</b></div>
+              <div>Address: <b>{{m.address}}</b></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-body">
+        <tabset #detailTabs class="tabs-material">
+          <tab heading="Merchant Details">
+              <div class="container">
+                <div class="row">
+                  <div class="col-4">Affiliate Name:</div>
+                  <div class="col-8">{{m.dbaName}}</div>
+                </div>
+                <div class="row">
+                  <div class="col-4">Trade Name:</div>
+                  <div class="col-8">{{m.dbaName}}</div>
+                </div>
+                <div class="row">
+                  <div class="col-4">Legal Business Name:</div>
+                  <div class="col-8">{{m.legalBusinessName}}</div>
+                </div>
+                <div class="row">
+                  <div class="col-4">MID:</div>
+                  <div class="col-8">{{m.midNumber}}</div>
+                </div>
+                <div class="row">
+                  <div class="col-4">Base Currency Code:</div>
+                  <div class="col-8">USD</div>
+                </div>
+                <div class="row">
+                  <div class="col-4">Pricing Method:</div>
+                  <div class="col-8"></div>
+                </div>
+                <div class="row">
+                  <div class="col-4">Rebate Indicator:</div>
+                  <div class="col-8">10%</div>
+                </div>
+                <div class="row">
+                  <div class="col-4">Relationship Manager:</div>
+                  <div class="col-8">Elsa Johnson</div>
+                </div>
+                <div class="row">
+                  <div class="col-4">Funding Days:</div>
+                  <div class="col-8">30</div>
+                </div>
+                <div class="row">
+                  <div class="col-4">Discount Field Mastercard:</div>
+                  <div class="col-8">5%</div>
+                </div>
+                <div class="row">
+                  <div class="col-4">Hierarchy Level:</div>
+                  <div class="col-8">1</div>
+                </div>
+                <div class="row">
+                  <div class="col-4">Merchant ID:</div>
+                  <div class="col-8">{{m.midNumber}}</div>
+                </div>
+                <div class="row">
+                  <div class="col-4">Annual Volume:</div>
+                  <div class="col-8">$1,000,000</div>
+                </div>
+                <div class="row">
+                  <div class="col-4">Average Sale:</div>
+                  <div class="col-8">$10</div>
+                </div>
+                <div class="row">
+                  <div class="col-4">Sales Limit:</div>
+                  <div class="col-8">No limit</div>
+                </div>
+                <div class="row">
+                  <div class="col-4">Credit/Refund Limit:</div>
+                  <div class="col-8">$1,000</div>
+                </div>
+                <div class="row">
+                  <div class="col-4">Auth Limit:</div>
+                  <div class="col-8">$1,000</div>
+                </div>
+                <div class="row">
+                  <div class="col-4">Lease Comp Code:</div>
+                  <div class="col-8">9451</div>
+                </div>
+              </div>
+          </tab>
+          <tab heading="Contact Information">
+            <div class="container">
+              <div class="row">
+                <div class="col-4">First Name:</div>
+                <div class="col-8">{{m.merchantFirstName}}</div>
+              </div>
+              <div class="row">
+                <div class="col-4">Last Name:</div>
+                <div class="col-8">{{m.merchantLastName}}</div>
+              </div>
+              <div class="row">
+                <div class="col-4">Phone Number:</div>
+                <div class="col-8">{{m.phoneNumber}}</div>
+              </div>
+              <div class="row">
+                <div class="col-4">Email Address:</div>
+                <div class="col-8">{{m.emailAddress}}</div>
+              </div>
+              <div class="row">
+                <div class="col-4">Address:</div>
+                <div class="col-8">{{m.address}}</div>
+              </div>
+            </div>
+          </tab>
+          <tab heading="Tax Information">
+              <div>Tax Information</div>
+          </tab>
+          <tab heading="Product Information">
+              <div>Product Information</div>
+          </tab>
+        </tabset>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" (click)="lgModal.hide()">Close</button>
+      </div>
+    </div>
+</ng-template>

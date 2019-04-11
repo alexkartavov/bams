@@ -1,0 +1,168 @@
+<div class="bg-white p-3 shadow-sm">
+  <div class="row justify-content-left">
+    <div class="col-12 col-md-10 col-lg-7 pt-2">
+      <app-search-box (search)="search($event)" [searchText]="searchBoxText"></app-search-box>
+    </div>
+    <div class="col-lg-5 d-none d-sm-block p-1">
+      <igx-navbar [isActionButtonVisible]="false" class="p-0">
+        <app-add-ticket [model]="supportTicket" [editable]="selectedMerchantId < 0" (success)="ticketAdded($event)"><button class="btn btn-primary" (click)="prePopulateSupportTicket()">Add New Ticket</button></app-add-ticket>
+        <span #colHiding="bs-popover" [popover]="popTemplate" placement="bottom" title="Hide columns"><igx-icon *ngIf="!showCards">flip</igx-icon></span>
+        <span title="Print"><igx-icon (click)="print()">print</igx-icon></span>
+        <span title="Download CSV"><igx-icon (click)="download()">save_alt</igx-icon></span>
+        <igx-icon [class.grayedIcon]="showCards" (click)="cardsView()">apps</igx-icon>
+        <igx-icon [class.grayedIcon]="!showCards" (click)="gridView()">grid_on</igx-icon>
+      </igx-navbar>
+    </div>
+  </div>
+
+  <ng-template #popTemplate>
+    <app-column-hiding #columnHidingUI [columns]="merchGrid.columns" (updated)="columnVisibility($event);colHiding.hide()"></app-column-hiding>
+  </ng-template>
+  
+  <div *ngIf="!showCards">
+    <igx-grid #merchGrid [primaryKey]="'midNumber'" [paging]="true" [paginationTemplate]="pagerTemplate" [data]="dataSource.connect() | async" [perPage]="perPage" height="500px" width="100%" 
+      [displayDensity]="'cosy'" [rowSelectable]="false" (onSelection)="handleRowSelection($event)" [emptyGridMessage]="' '" (onSortingDone)="sortingDone()" (onColumnResized)="columnResized($event)">
+        <igx-column [field]="columnObj(0).field" [header]="columnObj(0).header" width="100px" [sortable]="true" [resizable]="true">
+          <ng-template igxHeader let-value>
+            <span title="{{value.header}}">{{value.header}}</span>
+            <app-sort-indicator [isSorted]="value.field == sortedColumn" [sortDir]="sortDirection"></app-sort-indicator>
+          </ng-template>
+        </igx-column>
+        <igx-column [field]="columnObj(1).field" [header]="columnObj(1).header" [dataType]="'string'" [sortable]="true" [resizable]="true">
+          <ng-template igxHeader let-value>
+            <span title="{{value.header}}">{{value.header}}</span>
+            <app-sort-indicator [isSorted]="value.field == sortedColumn" [sortDir]="sortDirection"></app-sort-indicator>
+          </ng-template>
+        </igx-column>
+        <igx-column [field]="columnObj(2).field" [header]="columnObj(2).header" [dataType]="'string'" [sortable]="true" [resizable]="true">
+          <ng-template igxHeader let-value>
+            <span title="{{value.header}}">{{value.header}}</span>
+            <app-sort-indicator [isSorted]="value.field == sortedColumn" [sortDir]="sortDirection"></app-sort-indicator>
+          </ng-template>
+        </igx-column>
+        <igx-column [header]="columnObj(3).header" width="150px" [dataType]="'string'" [resizable]="true">
+          <ng-template igxHeader let-value>
+            <span title="{{value.header}}">{{value.header}}</span>
+          </ng-template>
+          <ng-template igxCell let-cell="cell">
+            {{cell.row.rowData.merchantFirstName}} {{cell.row.rowData.merchantLastName}}
+          </ng-template>
+        </igx-column>
+        <igx-column [field]="columnObj(4).field" [header]="columnObj(4).header" width="150px" [dataType]="'string'" [resizable]="true">
+          <ng-template igxHeader let-value>
+            <span title="{{value.header}}">{{value.header}}</span>
+          </ng-template>
+        </igx-column>
+        <igx-column [field]="columnObj(5).field" [header]="columnObj(5).header" [dataType]="'string'" [sortable]="true" [resizable]="true">
+          <ng-template igxHeader let-value>
+            <span title="{{value.header}}">{{value.header}}</span>
+            <app-sort-indicator [isSorted]="value.field == sortedColumn" [sortDir]="sortDirection"></app-sort-indicator>
+          </ng-template>
+        </igx-column>
+        <igx-column [field]="columnObj(6).field" [header]="columnObj(6).header" [dataType]="'string'" [sortable]="true" [resizable]="true">
+          <ng-template igxHeader let-value>
+            <span title="{{value.header}}">{{value.header}}</span>
+            <app-sort-indicator [isSorted]="value.field == sortedColumn" [sortDir]="sortDirection"></app-sort-indicator>
+          </ng-template>
+        </igx-column>
+        <igx-column [field]="columnObj(7).field" [header]="columnObj(7).header" width="100px" [dataType]="'number'" [sortable]="true" [resizable]="true">
+          <ng-template igxHeader let-value>
+            <span title="{{value.header}}">{{value.header}}</span>
+            <app-sort-indicator [left]="true" [isSorted]="value.field == sortedColumn" [sortDir]="sortDirection"></app-sort-indicator>
+          </ng-template>
+        </igx-column>
+        <igx-column [field]="columnObj(8).field" [header]="columnObj(8).header" [dataType]="'string'" [sortable]="true" [resizable]="true">
+          <ng-template igxHeader let-value>
+            <span title="{{value.header}}">{{value.header}}</span>
+            <app-sort-indicator [isSorted]="value.field == sortedColumn" [sortDir]="sortDirection"></app-sort-indicator>
+          </ng-template>
+        </igx-column>
+        <igx-column [field]="columnObj(9).field" [header]="columnObj(9).header" [dataType]="'string'" [sortable]="true" [resizable]="true">
+          <ng-template igxHeader let-value>
+            <span title="{{value.header}}">{{value.header}}</span>
+            <app-sort-indicator [isSorted]="value.field == sortedColumn" [sortDir]="sortDirection"></app-sort-indicator>
+          </ng-template>
+        </igx-column>
+        <igx-column [field]="columnObj(10).field" [header]="columnObj(10).header" width="130px" [dataType]="'string'" [resizable]="true">
+          <ng-template igxHeader let-value>
+            <span title="{{value.header}}">{{value.header}}</span>
+          </ng-template>
+        </igx-column>
+        <igx-column header="Actions" width="100px" disableHiding="true">
+          <ng-template igxCell let-cell="cell">
+            <div class="actions_cell_class">
+              <igx-icon #pop="bs-popover" fontSet="material" class="primary-color" [popover]="menuTemplate" placement="bottom" container="body" [outsideClick]="true" >more_horiz</igx-icon>
+
+              <ng-template #menuTemplate>
+                <div>
+                  <div><button class="btn btn-link btn-sm" (click)="pop.hide();merchDetails.show(cell.row.rowData.midNumber)">View Details</button></div>
+                  <div><button class="btn btn-link btn-sm" (click)="pop.hide();merchStatements.show(cell.row.rowData.midNumber)">Statements</button></div>
+                  <div><button class="btn btn-link btn-sm">Add a Note</button></div>
+                </div>
+              </ng-template>
+
+              <app-merchant-details #merchDetails></app-merchant-details>
+              <app-merchant-statements #merchStatements></app-merchant-statements>
+
+              <igx-icon fontSet="material" class="primary-color" title="View Notes">note</igx-icon>
+            </div>
+          </ng-template>
+      </igx-column>
+    </igx-grid>
+
+    <div *ngIf="dataSource.loading$ | async" style="position:absolute;margin-top:-300px;margin-left:45%;">
+      <div class="spinner-border text-primary" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+
+    <ng-template #pagerTemplate>
+      <pagination [totalItems]="totalCount" [itemsPerPage]="perPage" [(ngModel)]="page" [previousText]="'&lt; Previous'" [nextText]="'Next &gt;'" (pageChanged)="pageChanged($event)"></pagination>
+    </ng-template>
+  </div>
+
+  <div *ngIf="showCards" class="container" [ngStyle]="cardContainerStyle()">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-6 col-lg-4" *ngFor="let m of cardData">
+        <div class="card bg-light mb-3">
+          <div class="card-header">
+            <div class="row">
+              <div class="col-3">
+                <igx-avatar [initials]="m.dbaName | initials" [roundShape]="true" size="medium"></igx-avatar>
+              </div>
+              <div class="col-9">
+                <h3>{{m.dbaName | uppercase}}</h3>
+                <div class="small">
+                  <div>MID Number: <b>{{m.midNumber}}</b></div>
+                  <div>Name: <b>{{m.merchantFirstName}} {{m.merchantLastName}}</b></div>
+                  <div>Address: <b>{{m.address}}</b></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-text">
+                <div style="width:100%;height:23px;overflow:hidden;text-overflow:ellipsis">Legal Business Name: <b title="{{m.legalBusinessName}}">{{m.legalBusinessName}}</b></div>
+                <div>Email Address: <b>{{m.emailAddress}}</b></div>
+                <div>Phone Number: <b>{{m.phoneNumber}}</b></div>
+                <div>Tax ID: <b>{{m.taxIdNumber}}</b></div>
+                <div>Account Status: <b>{{m.accountStatus}}</b></div>
+            </div>
+          </div>
+          <app-merchant-details [id]="m.midNumber"><button class="btn btn-primary" style="width:100%;">View Complete Merchant Details</button></app-merchant-details>
+        </div>
+      </div>
+    </div>
+
+
+    <div *ngIf="dataSource.loading$ | async" class="text-center">
+      <div class="spinner-border text-primary" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+
+    <div *ngIf="!allCardsLoaded()" class="row justify-content-center">
+      <button class="btn btn-link" (click)="loadMoreCards()">Load more</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+.actions_cell_class {
+    width: 100%;
+    text-align: center;
+    cursor: pointer;
+}
+
+[igxButton] {
+    max-width: 200px;
+}
+
+.edit-form {
+    padding: 24px;
+}
+
+.icon {
+    font-size: .75em;
+}
+
+igx-input-group+igx-input-group {
+    margin-top: 24px;
+}
+
+popover-container {
+    margin-left: 0px !important;
+}
+
+.grayedIcon, .grayedIcon:hover {
+    color: gray;
+    cursor: default;
+}

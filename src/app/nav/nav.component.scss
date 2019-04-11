@@ -1,0 +1,16 @@
+.dropdown-toggle, .dropdown-item {
+    cursor: pointer;
+}
+
+.navbar-text-small {
+    text-transform: capitalize;
+    font-size: small;
+}
+
+.divider-vertical {
+    height: 50px;                   /* any height */
+    border-left: 1px solid gray;     /* right or left is the same */
+    float: left;                     /* so BS grid doesn't break */
+    opacity: 0.5;                    /* optional */
+    margin: 0 15px;                  /* optional */
+}

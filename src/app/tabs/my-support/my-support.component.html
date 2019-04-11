@@ -1,0 +1,121 @@
+<div class="bg-white p-3 shadow-sm">
+  <div class="row justify-content-left">
+    <div class="col-12 col-md-10 col-lg-5 pt-2">
+        <app-search-box (search)="search($event)" [searchText]="searchBoxText"></app-search-box>
+    </div>
+
+    <div class="col-lg-4 pt-2">
+      <app-filter-tickets [type]="filterType" (typeChange)="selectType($event)"
+        [status]="filterStatus" (statusChange)="selectStatus($event)"
+        [priority]="filterPriority" (priorityChange)="selectPriority($event)"
+        (clearFilters)="clearFilters()"></app-filter-tickets>
+    </div>
+
+    <div class="col-lg-3 d-none d-sm-block p-1">
+      <igx-navbar [isActionButtonVisible]="false" class="p-0">
+        <app-add-ticket [model]="supportTicket" (success)="ticketAdded($event)"><button class="btn btn-primary" (click)="newSupportTicket()">Add New Ticket</button></app-add-ticket>
+        <span #colHiding="bs-popover" [popover]="popTemplate" placement="bottom" title="Hide columns"><igx-icon>flip</igx-icon></span>
+        <span title="Print"><igx-icon (click)="print()">print</igx-icon></span>
+        <span title="Download CSV"><igx-icon (click)="download()">save_alt</igx-icon></span>
+      </igx-navbar>
+    </div>
+  </div>
+
+  <ng-template #popTemplate>
+    <app-column-hiding #columnHidingUI [columns]="ticketsGrid.columns" (updated)="columnVisibility($event);colHiding.hide()"></app-column-hiding>
+  </ng-template>
+
+  <div class="mt-2">
+    <igx-grid #ticketsGrid [data]="dataSource.connect() | async" [primaryKey]="'id'" height="500px" width="100%" 
+      [paging]="true" [paginationTemplate]="pagerTemplate" [perPage]="perPage" [emptyGridMessage]="' '"
+      [displayDensity]="'cosy'" [rowSelectable]="false" (onSelection)="handleRowSelection($event)" (onSortingDone)="sortingDone()" (onColumnResized)="columnResized($event)">
+        <igx-column field="merchant" header="DBA Name" [dataType]="'string'" width="180px" [resizable]="true">
+          <ng-template igxCell let-value>
+            {{ value?.dbaName }}
+          </ng-template>
+        </igx-column>
+        <igx-column field="merchant" header="Merchant Name" [dataType]="'string'" width="150px" [resizable]="true">
+          <ng-template igxCell let-value>
+            {{ value?.firstName }} {{ value?.lastName }}
+          </ng-template>
+        </igx-column>
+        <igx-column field="merchant" header="Phone Number" [dataType]="'string'" width="130px" [resizable]="true">
+          <ng-template igxCell let-value>
+            {{ value?.phoneNumber }}
+          </ng-template>
+        </igx-column>
+        <igx-column field="merchant" header="Email Address" [dataType]="'string'" width="150px" [resizable]="true">
+          <ng-template igxCell let-value>
+            {{ value?.emailAddress }}
+          </ng-template>
+        </igx-column>
+        <igx-column field="mid" header="MID Number" [dataType]="'number'" width="100px" [resizable]="true"></igx-column>
+        <igx-column field="desc" header="Updates Needed" [dataType]="'string'" [resizable]="true"></igx-column>
+        <igx-column field="id" header="Ticket Number" [dataType]="'number'" width="100px" [sortable]="true" [resizable]="true">
+          <ng-template igxHeader let-value>
+            <span title="{{value.header}}">{{value.header}}</span>
+            <app-sort-indicator [left]="true" [isSorted]="value.field == sortedColumn" [sortDir]="sortDirection"></app-sort-indicator>
+          </ng-template>
+        </igx-column>
+        <igx-column field="type" header="Ticket Type" [dataType]="'string'" [sortable]="true" width="130px" [resizable]="true">
+          <ng-template igxHeader let-value>
+            {{value.header}}
+            <app-sort-indicator [isSorted]="value.field == sortedColumn" [sortDir]="sortDirection"></app-sort-indicator>
+          </ng-template>
+          <ng-template igxCell let-value>
+            {{ ticketTypeTitle(value) }}
+          </ng-template>
+        </igx-column>
+        <igx-column field="priority" header="Priority" [dataType]="'string'" [sortable]="true" width="100px" [resizable]="true">
+          <ng-template igxHeader let-value>
+            {{value.header}}
+            <app-sort-indicator [isSorted]="value.field == sortedColumn" [sortDir]="sortDirection"></app-sort-indicator>
+          </ng-template>
+          <ng-template igxCell let-value>
+            {{ ticketPriorityTitle(value) }}
+          </ng-template>
+        </igx-column>
+        <igx-column field="createdDate" header="Created On" [dataType]="'string'" width="100px" [resizable]="true">
+            <ng-template igxCell let-value>
+              {{ getDateString(value) }}
+            </ng-template>
+        </igx-column>
+        <igx-column field="status" header="Ticket Status" [dataType]="'string'" [sortable]="true" width="130px" [resizable]="true">
+          <ng-template igxHeader let-value>
+            {{value.header}}
+            <app-sort-indicator [isSorted]="value.field == sortedColumn" [sortDir]="sortDirection"></app-sort-indicator>
+          </ng-template>
+          <ng-template igxCell let-value>
+            {{ ticketStatusTitle(value) }}
+          </ng-template>
+          </igx-column>
+          <igx-column field="assignedTo" header="Rep Assigned" [dataType]="'string'" width="120px" [sortable]="true" [resizable]="true">
+            <ng-template igxHeader let-value>
+              {{value.header}}
+              <app-sort-indicator [isSorted]="value.field == sortedColumn" [sortDir]="sortDirection"></app-sort-indicator>
+            </ng-template>
+          </igx-column>
+          <igx-column header="Actions" width="100px" disableHiding="true">
+          <ng-template igxCell let-cell="cell">
+            <div class="actions_cell_class">
+              <app-view-ticket [model]="selectedTicket" (success)="refresh()">
+                <igx-icon fontSet="material" class="primary-color">edit</igx-icon>
+              </app-view-ticket>
+            </div>
+          </ng-template>
+      </igx-column>
+    </igx-grid>
+
+    <div *ngIf="dataSource.loading$ | async" style="position:absolute;margin-top:-300px;margin-left:45%;">
+      <div class="spinner-border text-primary" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+    
+  </div>
+
+  <ng-template #pagerTemplate>
+    <pagination [totalItems]="totalCount" [itemsPerPage]="perPage" [(ngModel)]="page" [previousText]="'&lt; Previous'" [nextText]="'Next &gt;'" (pageChanged)="pageChanged($event)"></pagination>
+  </ng-template>
+
+</div>

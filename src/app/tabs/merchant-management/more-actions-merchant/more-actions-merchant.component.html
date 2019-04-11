@@ -1,0 +1,12 @@
+<igx-icon #pop="bs-popover" fontSet="material" class="primary-color" [popover]="menuTemplate" placement="bottom" container="body" [outsideClick]="true" >more_horiz</igx-icon>
+
+<ng-template #menuTemplate>
+  <div>
+    <div><button class="btn btn-link btn-sm" (click)="pop.hide();merchDetails.show()">View Details</button></div>
+    <div><button class="btn btn-link btn-sm" (click)="pop.hide();merchStatements.show()">Statements</button></div>
+    <div><button class="btn btn-link btn-sm">Add a Note</button></div>
+  </div>
+</ng-template>
+
+<app-merchant-details #merchDetails [id]="id"></app-merchant-details>
+<app-merchant-statements #merchStatements [id]="id"></app-merchant-statements>

@@ -1,0 +1,74 @@
+<span (click)="openModal(template)">
+  <ng-content></ng-content>
+</span>
+
+<ng-template #template>
+    <div class="modal-content">
+      <div class="modal-header bg-light">
+        <div class="row">
+          <div class="col-4">
+            <igx-avatar [initials]="m.dbaName | initials" [roundShape]="true" size="medium"></igx-avatar>
+          </div>
+          <div class="col-8">
+            <h3>{{m.dbaName | uppercase}}</h3>
+            <div class="small">
+              <div>MID Number: <b>{{m.midNumber}}</b></div>
+              <div>Name: <b>{{m.merchantFirstName}} {{m.merchantLastName}}</b></div>
+              <div>Address: <b>{{m.address}}</b></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-body">
+        <tabset #detailTabs class="tabs-material">
+          <tab heading="Statements">
+              <div class="container">
+                <div class="row">
+                  <div class="col pl-0 pr-0 small">You can view up to 2 years of account statements.</div>
+                </div>
+                <div class="row">
+                    <div class="col pl-0 pr-0 small">We'll usually post your online statement 3-5 business days after your statement cycle ends.</div>
+                  </div>
+                <div class="row bg-light mt-2 mb-2">
+                  <div class="col-2 pt-2 pb-2">View</div>
+                  <div class="col-10">
+                    <select class="mt-2" style="width:100%" [(ngModel)]="selectedYear" (change)="changeYear()">
+                      <option value="" selected>Select...</option>
+                      <option *ngFor="let year of years|async" value="{{year}}">{{year}}</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col pl-0 pr-0">
+                      <table class="table table-striped table-sm">
+                          <thead>
+                            <tr>
+                              <th scope="col">Date</th>
+                              <th scope="col">Type</th>
+                              <th scope="col">Size</th>
+                              <th scope="col" class="text-center">Actions</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr *ngFor="let item of statements|async">
+                              <td>{{item.date | date:'mediumDate'}}</td>
+                              <td>{{item.type}}</td>
+                              <td>{{item.size}}</td>
+                              <td class="text-center"><a href="{{item.url}}"><igx-icon>insert_drive_file</igx-icon></a></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                  </div>
+                </div>
+              </div>
+          </tab>
+        </tabset>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" (click)="lgModal.hide()">Close</button>
+      </div>
+    </div>
+</ng-template>
+  
