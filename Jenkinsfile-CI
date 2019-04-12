@@ -16,18 +16,20 @@ pipeline {
         }
     }
     stage('Pushing to Artifactory') {
-        rtUpload (
-            serverId: "msgbams",
-            spec:
-                """ {
-                "files": [
-                    {
-                        "pattern": "dist/**/*",
-                        "target": "integrated-support-tool/ui"
-                    }
-                ]
-            }"""
-        )
+        steps {
+            rtUpload (
+                serverId: "mcgbams",
+                spec:
+                    """ {
+                    "files": [
+                        {
+                            "pattern": "dist/**/*",
+                            "target": "integrated-support-tool/ui"
+                        }
+                    ]
+                }"""
+            )
+        }
     }
     stage('Cleanup') {
         steps {
