@@ -4,6 +4,7 @@ import { trigger, transition, style, animate } from '@angular/animations';
 import { AllTicketsReportComponent } from './all-tickets-report/all-tickets-report.component';
 import {TimeToResolveReportComponent } from './time-to-resolve-report/time-to-resolve-report.component';
 import { OpenTicketsReportComponent } from './open-tickets-report/open-tickets-report.component';
+import { MerchantDataReportComponent } from './merchant-data-report/merchant-data-report.component';
 
 @Component({
   selector: 'app-reporting',
@@ -56,6 +57,11 @@ export class ReportingComponent implements OnInit {
   @ViewChild('openTicketsReport')
   public openTicketsReport: OpenTicketsReportComponent;
   // #endregion OpenTicketsReport
+
+  // #region MerchantDataReport
+  @ViewChild('merchantDataReport')
+  public merchantDataReport: MerchantDataReportComponent;
+  // #endregion MerchantDataReport
 
   constructor(private valueService: ValueProcessingService) {
     this.reportTypeData = valueService.reportTypeData;
@@ -190,6 +196,9 @@ export class ReportingComponent implements OnInit {
         break;
       case this.reportTypeData[2]:
         this.openTicketsReport.download();
+        break;
+      case this.reportTypeData[3]:
+        this.merchantDataReport.download();
         break;
     }
   }

@@ -1,5 +1,5 @@
 import { BehaviorSubject, Observable, of } from 'rxjs';
-import { catchError, finalize } from 'rxjs/operators';
+import { catchError, finalize, map } from 'rxjs/operators';
 import { MerchantModel } from 'src/app/models/merchant-model';
 import { MerchantDataService } from 'src/app/_services/merchant-data.service';
 
@@ -21,10 +21,14 @@ export class MerchantDataSource {
         this.loadingSubject.complete();
     }
 
-    loadMerchants(params: any) {
+    loadMerchants(params: any, loaded?: Function) {
         this.loadingSubject.next(true);
 
         this.merchantService.getMerchants(params).pipe(
+            map((response) => {
+                if (loaded) { loaded(response); }
+                return response;
+            }),
             catchError(() => of([])),
             finalize(() => this.loadingSubject.next(false))
         )

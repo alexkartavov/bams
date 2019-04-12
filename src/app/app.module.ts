@@ -51,6 +51,7 @@ import { FilterTicketsComponent } from './tabs/my-support/filter-tickets/filter-
 import { AllTicketsReportComponent } from './tabs/reporting/all-tickets-report/all-tickets-report.component';
 import { TimeToResolveReportComponent } from './tabs/reporting/time-to-resolve-report/time-to-resolve-report.component';
 import { OpenTicketsReportComponent } from './tabs/reporting/open-tickets-report/open-tickets-report.component';
+import { MerchantDataReportComponent } from './tabs/reporting/merchant-data-report/merchant-data-report.component';
 
 @NgModule({
    declarations: [
@@ -82,7 +83,8 @@ import { OpenTicketsReportComponent } from './tabs/reporting/open-tickets-report
       FilterTicketsComponent,
       AllTicketsReportComponent,
       TimeToResolveReportComponent,
-      OpenTicketsReportComponent
+      OpenTicketsReportComponent,
+      MerchantDataReportComponent
    ],
    imports: [
       BrowserModule,
