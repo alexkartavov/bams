@@ -15,10 +15,19 @@ pipeline {
             sh 'npm run ng build -- --prod'
         }
     }
-    stage('Archive') {
-        steps {
-            archiveArtifacts artifacts: 'dist/**/*'
-        }
+    stage('Pushing to Artifactory') {
+        rtUpload (
+            serverId: "msgbams",
+            spec:
+                """ {
+                "files": [
+                    {
+                        "pattern": "dist/**/*",
+                        "target": "integrated-support-tool/ui"
+                    }
+                ]
+            }"""
+        )
     }
     stage('Cleanup') {
         steps {
