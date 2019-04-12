@@ -15,7 +15,7 @@ pipeline {
             sh 'npm run ng build -- --prod'
         }
     }
-    stage('Pushing to Artifactory') {
+    stage('Artifactory Push') {
         steps {
             rtUpload (
                 serverId: "mcgbams",
