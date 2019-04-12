@@ -8,27 +8,24 @@ pipeline {
         steps {
             checkout scm
         }
-          
-       }
-       stage('Build') {
-           steps {
-               sh 'npm install'
-                sh 'npm run ng build -- --prod'
-           }
-         
-       }
-       stage('Archive') {
-           steps {
-               archiveArtifacts artifacts: 'dist/**.*'
-           }
-         
-       }
-       stage('Cleanup') {
-           steps {
-               echo 'prune and cleanup'
-                sh 'npm prune'
-                sh 'rm node_modules -rf'
-           }
-       }
+    }
+    stage('Build') {
+        steps {
+            sh 'npm install'
+            sh 'npm run ng build -- --prod'
+        }
+    }
+    stage('Archive') {
+        steps {
+            archiveArtifacts artifacts: 'dist/**/*'
+        }
+    }
+    stage('Cleanup') {
+        steps {
+            echo 'prune and cleanup'
+            sh 'npm prune'
+            sh 'rm node_modules -rf'
+        }
+    }
   }
 }
