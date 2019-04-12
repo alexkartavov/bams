@@ -17,13 +17,14 @@ pipeline {
     }
     stage('Artifactory Push') {
         steps {
+            zip zipFile: 'output.zip', archive: false, dir: 'dist'
             rtUpload (
                 serverId: "mcgbams",
                 spec:
                     """ {
                     "files": [
                         {
-                            "pattern": "dist/**/*",
+                            "pattern": "output.zip",
                             "target": "integrated-support-tool/ui"
                         }
                     ]
