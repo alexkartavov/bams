@@ -17,7 +17,12 @@ pipeline {
     }
     stage('Deploy') {
         steps {
-            echo 'Deploy'
+            when {
+                branch 'master'
+            }
+            steps {
+                echo 'Deploying to Azure App Service'
+            }
         }
     }
     stage('Cleanup') {
