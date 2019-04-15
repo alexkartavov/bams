@@ -15,21 +15,9 @@ pipeline {
             sh 'npm run ng build -- --prod'
         }
     }
-    stage('Artifactory Push') {
+    stage('Deploy') {
         steps {
-            zip zipFile: 'output.zip', archive: false, dir: 'dist'
-            rtUpload (
-                serverId: "mcgbams",
-                spec:
-                    """ {
-                    "files": [
-                        {
-                            "pattern": "output.zip",
-                            "target": "integrated-support-tool/ui"
-                        }
-                    ]
-                }"""
-            )
+            echo 'Deploy'
         }
     }
     stage('Cleanup') {
