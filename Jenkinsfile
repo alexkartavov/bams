@@ -27,7 +27,7 @@ pipeline {
                 azureCredentialsId: "jenkins-cep-sp", 
                 resourceGroup: "BAMSCEP-SupportTool-App",
                 slotName: 'dev',
-                filePath: "**/*.*",
+                filePath: "dist/**/*",
             ])
         }
     }
