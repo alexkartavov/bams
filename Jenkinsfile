@@ -9,16 +9,19 @@ pipeline {
             checkout scm
         }
     }
-    stage('Build') {
+    stage('Resolve Dependencies') {
         steps {
             sh 'npm install'
+        }
+    }
+    stage('Build') {
+        steps {
             sh 'npm run ng build -- --prod'
         }
     }
     stage("Deploy"){
         when { branch 'master' }
         steps {
-            echo 'deploy'
             azureWebAppPublish ([
                 appName: "anettool", 
                 azureCredentialsId: "bams-cep-jenkins-nonProd-ue-sp", 
