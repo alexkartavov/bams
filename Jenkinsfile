@@ -24,7 +24,7 @@ pipeline {
         steps {
             azureWebAppPublish ([
                 appName: "anettool", 
-                azureCredentialsId: "bams-cep-jenkins-nonProd-ue-sp", 
+                azureCredentialsId: "jenkins-cep-sp", 
                 resourceGroup: "BAMSCEP-SupportTool-App",
                 slotName: 'anettool-dev',
                 filePath: "**/*.*",
