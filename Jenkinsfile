@@ -18,7 +18,7 @@ pipeline {
     stage("Deploy"){
         when { branch 'master' }
         steps {
-            azureWebAppPublish appName: 'anettool', azureCredentialsId: 'bams-cep-jenkins-sp', resourceGroup: "BAMSCEP-SupportTool-App", slotName "anettool-dev"
+            echo 'deploy'
         }
     }
     stage('Cleanup') {
