@@ -19,7 +19,13 @@ pipeline {
         when { branch 'master' }
         steps {
             echo 'deploy'
-            azureWebAppPublish
+            azureWebAppPublish ([
+                appName: "xxx", 
+                azureCredentialsId: "xxx", 
+                publishType: "file", 
+                resourceGroup: "xxx", 
+                sourceDirectory: "docs/export"
+            ])
         }
     }
     stage('Cleanup') {
