@@ -26,7 +26,7 @@ pipeline {
                 appName: "anettool", 
                 azureCredentialsId: "jenkins-cep-sp", 
                 resourceGroup: "BAMSCEP-SupportTool-App",
-                slotName: 'anettool-dev',
+                slotName: 'dev',
                 filePath: "**/*.*",
             ])
         }
