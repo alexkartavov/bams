@@ -18,12 +18,11 @@ pipeline {
     stage("Deploy"){
         when { branch 'master' }
         steps {
-            echo 'Deploying to Azure App Service'
-            configFileProvider([configFile(fileId: '7c3b1d3c-50f3-4499-984d-885eb1c0ba5b', variable: 'AzureCredentialsId')]) {
-                echo " =========== ^^^^^^^^^^^^ Reading config from pipeline script "
-                sh "cat ${env.AzureCredentialsId}"
-                echo " =========== ~~~~~~~~~~~~ ============ "
-            }
+            azureWebAppPublish
+                appName: "anettool",
+                azureCredentialsId: 'bams-cep-jenkins-sp',
+                resourceGroup: "BAMSCEP-SupportTool-App",
+                slotName "anettool-dev"
         }
     }
     stage('Cleanup') {
