@@ -20,11 +20,10 @@ pipeline {
         steps {
             echo 'deploy'
             azureWebAppPublish ([
-                appName: "xxx", 
-                azureCredentialsId: "xxx", 
-                publishType: "file", 
-                resourceGroup: "xxx", 
-                sourceDirectory: "docs/export"
+                appName: "anettool", 
+                azureCredentialsId: "bams-cep-jenkins-nonProd-ue-sp", 
+                resourceGroup: "BAMSCEP-SupportTool-App",
+                slotname: 'anettool-dev'
             ])
         }
     }
