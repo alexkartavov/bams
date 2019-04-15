@@ -15,11 +15,8 @@ pipeline {
             sh 'npm run ng build -- --prod'
         }
     }
-    stage('Deploy') {
-        steps {
-            when {
-                branch 'master'
-            }
+    if(env.BRANCH_NAME == 'master') {
+        stage("Upload"){
             steps {
                 echo 'Deploying to Azure App Service'
             }
