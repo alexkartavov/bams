@@ -4,12 +4,12 @@ pipeline {
   tools {nodejs "node"}
  
   stages {
-    stage('Checkout') {
+    stage('Checkout Source') {
         steps {
             checkout scm
         }
     }
-    stage('Resolve Dependencies') {
+    stage('Resolve npm Dependencies') {
         steps {
             sh 'npm install'
         }
@@ -19,7 +19,7 @@ pipeline {
             sh 'npm run ng build -- --prod'
         }
     }
-    stage("Deploy"){
+    stage("Deploy to Azure App Service"){
         when { branch 'master' }
         steps {
             azureWebAppPublish ([
