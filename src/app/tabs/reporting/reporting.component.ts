@@ -1,10 +1,11 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { ValueProcessingService } from 'src/app/_services/value-processing.service';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { AllTicketsReportComponent } from './all-tickets-report/all-tickets-report.component';
 import {TimeToResolveReportComponent } from './time-to-resolve-report/time-to-resolve-report.component';
 import { OpenTicketsReportComponent } from './open-tickets-report/open-tickets-report.component';
 import { MerchantDataReportComponent } from './merchant-data-report/merchant-data-report.component';
+import { ProfileService } from 'src/app/_services/profile.service';
 
 @Component({
   selector: 'app-reporting',
@@ -22,7 +23,7 @@ import { MerchantDataReportComponent } from './merchant-data-report/merchant-dat
     ]),
   ]
 })
-export class ReportingComponent implements OnInit {
+export class ReportingComponent implements OnInit, AfterViewInit {
 
   reportType: string;
   reportTypeData: string[];
@@ -63,9 +64,10 @@ export class ReportingComponent implements OnInit {
   public merchantDataReport: MerchantDataReportComponent;
   // #endregion MerchantDataReport
 
-  constructor(private valueService: ValueProcessingService) {
+  constructor(private valueService: ValueProcessingService,
+              private profileService: ProfileService) {
     this.reportTypeData = valueService.reportTypeData;
-    this.reportType = this.reportTypeData[0];
+    this.reportType = profileService.get('reports.reportType') || this.reportTypeData[0];
 
     this.reportRangeData = this.reportRangeData.concat(valueService.reportRangeData);
 
@@ -73,10 +75,25 @@ export class ReportingComponent implements OnInit {
     this.reportRangeData.push((year - 1).toString());
     this.reportRangeData.push((year - 2).toString());
 
-    this.reportRange = this.reportRangeData[0];
+    this.reportRange = profileService.get('reports.reportRange') || this.reportRangeData[0];
   }
 
   ngOnInit() {
+    this.filterType = this.profileService.get('reports.filterType') || null;
+    this.filterStatus = this.profileService.get('reports.filterStatus') || null;
+    this.filterPriority = this.profileService.get('reports.filterPriority') || null;
+  }
+
+  ngAfterViewInit() {
+    const reportIndex = this.reportRangeData.indexOf(this.reportRange);
+    if (reportIndex >= 0) {
+      this.selectReportRange(reportIndex);
+    }
+    const fromDate = this.profileService.get('reports.fromDate') || null;
+    const toDate = this.profileService.get('reports.toDate') || null;
+    if (fromDate || toDate) {
+      this.selectCustomRange(fromDate, toDate);
+    }
   }
 
   cancel(e) {
@@ -88,14 +105,20 @@ export class ReportingComponent implements OnInit {
   selectReport(i) {
     if (i >= 0 && i < this.reportTypeData.length) {
       this.reportType = this.reportTypeData[i];
+      this.profileService.set('reports.reportType', this.reportType);
     }
   }
 
   selectReportRange(i) {
     if (i >= 0 && i < this.reportRangeData.length) {
       this.reportRange = this.reportRangeData[i];
-      this.fromDatePicker.nativeElement.value = '';
-      this.toDatePicker.nativeElement.value = '';
+      this.profileService.set('reports.reportRange', this.reportRange);
+      if (this.fromDatePicker) {
+        this.fromDatePicker.nativeElement.value = '';
+      }
+      if (this.toDatePicker) {
+        this.toDatePicker.nativeElement.value = '';
+      }
       const now = new Date();
       const thisYear = now.getFullYear().toString();
       const lastYear = (now.getFullYear() - 1).toString();
@@ -163,6 +186,13 @@ export class ReportingComponent implements OnInit {
   }
 
   selectCustomRange(fromDate, toDate) {
+    fromDate ?
+      this.profileService.set('reports.fromDate', fromDate) :
+      this.profileService.remove('reports.fromDate');
+    toDate ?
+      this.profileService.set('reports.toDate', toDate) :
+      this.profileService.remove('reports.toDate');
+
     if (!fromDate && ! toDate) {
       this.startDate = null;
       this.endDate = null;
@@ -206,30 +236,26 @@ export class ReportingComponent implements OnInit {
   // #region AllTicketsReport
   selectType(type) {
     this.filterType = type;
-    // this.profileService.set('tickets.filterType', this.filterType);
-    // this.paginate(0);
+    this.profileService.set('reports.filterType', this.filterType);
   }
 
   selectStatus(status) {
     this.filterStatus = status;
-    // this.profileService.set('tickets.filterStatus', this.filterStatus);
-    // this.paginate(0);
+    this.profileService.set('reports.filterStatus', this.filterStatus);
   }
 
   selectPriority(priority) {
     this.filterPriority = priority;
-    // this.profileService.set('tickets.filterPriority', this.filterPriority);
-    // this.paginate(0);
+    this.profileService.set('reports.filterPriority', this.filterPriority);
   }
 
   clearFilters() {
     this.filterPriority = '';
     this.filterStatus = '';
     this.filterType = '';
-    // this.profileService.remove('tickets.filterType');
-    // this.profileService.remove('tickets.filterStatus');
-    // this.profileService.remove('tickets.filterPriority');
-    // this.paginate(0);
+    this.profileService.remove('reports.filterType');
+    this.profileService.remove('reports.filterStatus');
+    this.profileService.remove('reports.filterPriority');
   }
   // #endregion AllTicketsReport
 
