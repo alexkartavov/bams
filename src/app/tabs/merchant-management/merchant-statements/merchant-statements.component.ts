@@ -64,7 +64,6 @@ export class MerchantStatementsComponent implements OnInit, AfterViewInit, OnDes
   }
 
   changeYear() {
-    debugger;
     this.requestStatements(this.id, this.selectedYear);
   }
 
