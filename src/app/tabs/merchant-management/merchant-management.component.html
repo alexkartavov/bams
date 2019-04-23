@@ -101,8 +101,8 @@
                 </div>
               </ng-template>
 
-              <app-merchant-details #merchDetails></app-merchant-details>
-              <app-merchant-statements #merchStatements></app-merchant-statements>
+              <app-merchant-details #merchDetails [id]="cell.row.rowData.id"></app-merchant-details>
+              <app-merchant-statements #merchStatements [id]="cell.row.rowData.id"></app-merchant-statements>
 
               <igx-icon fontSet="material" class="primary-color" title="View Notes">note</igx-icon>
             </div>

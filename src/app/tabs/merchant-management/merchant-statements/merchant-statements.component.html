@@ -34,8 +34,7 @@
                   <div class="col-2 pt-2 pb-2">View</div>
                   <div class="col-10">
                     <select class="mt-2" style="width:100%" [(ngModel)]="selectedYear" (change)="changeYear()">
-                      <option value="" selected>Select...</option>
-                      <option *ngFor="let year of years|async" value="{{year}}">{{year}}</option>
+                      <option *ngFor="let y of statementYears" [value]="y">{{y}}</option>
                     </select>
                   </div>
                 </div>
