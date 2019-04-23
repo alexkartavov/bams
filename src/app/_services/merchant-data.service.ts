@@ -5,7 +5,7 @@ import { map } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { MerchantModel } from '../models/merchant-model';
 import { MerchantDetailsModel } from '../models/merchant-details-model';
-import { idLocale } from 'ngx-bootstrap';
+import { merchStatements } from 'src/app/_services/test-data/data.statements';
 
 @Injectable({
   providedIn: 'root'
@@ -82,28 +82,17 @@ export class MerchantDataService implements OnDestroy {
 
   getStatements(params: any) {
 
-    const groupBy = (array, funcProp) => {
-      return array.reduce(function (acc, val) {
-            (acc[funcProp(val)] = acc[funcProp(val)] || []).push(val);
-            return acc;
-        }, {});
-    };
-
-    const propsToArray = (data) => {
-        const a = [];
-        for (const i in data) {
-          if (!data.hasOwnProperty(i)) {
-            continue;
-          }
-          a.push(i);
-        }
-        return a;
-    };
-
     return this.http
-      .post(this.getStatementsUrl, params, this.httpOptions)
+      .get(this.getStatementsUrl.replace('{merchantId}', params.merchantId).replace('{dateFrom}', params.dateFrom)
+        .replace('{dateTo}', params.dateTo), this.httpDetailsOptions)
       .pipe(
         map((data: any) => {
+          // TODO: remove debugging data once BT API is up
+          if (data.length === undefined) {
+            return merchStatements;
+          }
+          // END TODO
+
           return data;
         })
     );

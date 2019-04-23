@@ -5,11 +5,6 @@
 /* tslint:disable */
 export const environment = {
   production: false,
- 
-  // faqGetUrl: 'https://cep-support-dev-api-management.azure-api.net/core/api/v1/support/list/supportFAQ',
-  // faqPostUrl: 'https://cep-support-dev-api-management.azure-api.net/core/api/v1/support/supportFAQ',
-  faqGetUrl: 'api/supportFAQ',
-  faqPostUrl: 'api/supportFAQ',
 
   merchants: {
     listPostUrl: 'https://anet-dev-api-management.azure-api.net/core/api/v1/support/list/merchants',
@@ -23,7 +18,8 @@ export const environment = {
   merchantDetails: {
     detailsGetUrl: 'https://cep-support-dev-api-management.azure-api.net/core/api/v1/cep-support/merchants/{merchantId}',
     // merchantStatementsGetUrl: 'https://cep-support-dev-api-management.azure-api.net/core/api/v1/support/list/statements',
-    statementsGetUrl: 'api/statements',
+    // statementsGetUrl: 'api/statements',
+    statementsGetUrl: 'https://cep-support-dev-api-management.azure-api.net/core/api/v1/cep-support/merchants/{merchantId}/statementDates?statementType=Location&dateFrom={dateFrom}&dateTo={dateTo}',
 
     ocpApimSubscriptionKey: '7b46d6296b674122b4737b0308312b93'
   },

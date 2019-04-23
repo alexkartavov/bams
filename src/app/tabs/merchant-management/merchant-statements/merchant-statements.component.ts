@@ -18,27 +18,33 @@ export class MerchantStatementsComponent implements OnInit, AfterViewInit, OnDes
   @ViewChild('template', { read: TemplateRef }) public tmpl: TemplateRef<any>;
   lgModal: BsModalRef;
   dataSource: StatementDataSource;
-  public statements: Observable<any[]>;
-  public selectedYear: number;
-  public years: Observable<any[]>;
+  public statements = new Observable<any[]>();
+  public selectedYear: string;
+  public statementYears: number[];
 
   constructor(private merchDataService: MerchantDataService, private modalService: BsModalService) {
     this.dataSource = new StatementDataSource(merchDataService);
+    this.statements = this.dataSource.connect();
+
+    const now = new Date();
+    this.statementYears = [
+      now.getFullYear() - 2,
+      now.getFullYear() - 1,
+      now.getFullYear()
+    ];
   }
 
   ngOnInit() {
-    this.statements = this.dataSource.connect();
+    const now = new Date();
+    this.selectedYear = now.getFullYear().toString();
+    this.requestStatements(this.id, this.selectedYear);
   }
 
   ngAfterViewInit(): void {
-    this.dataSource.loadStatements({
-      mid: this.id
-    });
-    this.years = this.dataSource.getYears();
   }
 
   ngOnDestroy(): void {
-
+    this.dataSource.disconnect();
   }
 
   public openModal(template) {
@@ -58,9 +64,16 @@ export class MerchantStatementsComponent implements OnInit, AfterViewInit, OnDes
   }
 
   changeYear() {
+    this.requestStatements(this.id, this.selectedYear);
+  }
+
+  requestStatements(merchantId: number, year: string) {
+    const from = year + '-' + '01-01';
+    const to = year + '-' + '12-31';
     this.dataSource.loadStatements({
-      mid: this.id,
-      year: this.selectedYear
+      merchantId: merchantId,
+      dateFrom: from,
+      dateTo: to
     });
   }
 
