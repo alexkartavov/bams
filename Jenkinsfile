@@ -19,6 +19,11 @@ pipeline {
             sh 'npm run ng build -- --prod'
         }
     }
+    stage('Unit Tests') {
+        steps {
+            sh 'npm run ng test --no-watch --browsers ChromeHeadless'
+        }
+    }
     stage("Deploy to Azure App Service"){
         when { branch 'master' }
         steps {
