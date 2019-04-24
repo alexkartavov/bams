@@ -21,7 +21,7 @@ pipeline {
     }
     stage('Unit Tests') {
         steps {
-            sh 'npm run ng test -- --no-watch --browsers ChromeHeadless'
+            sh 'npm run ng test -- --no-watch'
         }
     }
     stage("Deploy to Azure App Service"){

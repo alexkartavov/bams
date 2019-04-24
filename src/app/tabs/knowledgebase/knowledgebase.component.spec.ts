@@ -11,7 +11,7 @@ import { InitialsPipe } from 'src/app/_services/initials.pipe';
 import { TimePassedPipe } from 'src/app/_services/time-passed.pipe';
 
 import { TabsModule } from 'ngx-bootstrap/tabs';
-import { BsDropdownModule } from 'ngx-bootstrap';
+import { BsDropdownModule, BsDatepickerModule } from 'ngx-bootstrap';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { PopoverModule } from 'ngx-bootstrap/popover';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
@@ -48,6 +48,7 @@ import { AllTicketsReportComponent } from '../reporting/all-tickets-report/all-t
 import { TimeToResolveReportComponent } from '../reporting/time-to-resolve-report/time-to-resolve-report.component';
 import { OpenTicketsReportComponent } from '../reporting/open-tickets-report/open-tickets-report.component';
 import { MerchantDataReportComponent } from '../reporting/merchant-data-report/merchant-data-report.component';
+import { AnimationBuilder } from '@angular/animations';
 
 describe('KnowledgebaseComponent', () => {
   let component: KnowledgebaseComponent;
@@ -60,6 +61,7 @@ describe('KnowledgebaseComponent', () => {
         ReactiveFormsModule,
         RouterModule.forRoot(appRoutes),
         BsDropdownModule.forRoot(),
+        BsDatepickerModule.forRoot(),
         TabsModule.forRoot(),
         ModalModule.forRoot(),
         PopoverModule.forRoot(),
@@ -99,6 +101,9 @@ describe('KnowledgebaseComponent', () => {
         TimeToResolveReportComponent,
         OpenTicketsReportComponent,
         MerchantDataReportComponent
+      ],
+      providers: [
+        AnimationBuilder
       ]
     })
     .compileComponents();

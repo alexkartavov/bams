@@ -44,6 +44,11 @@ import { AddFaqComponent } from 'src/app/tabs/knowledgebase/add-faq/add-faq.comp
 import { SortIndicatorComponent } from 'src/app/sort-indicator/sort-indicator.component';
 import { ConfirmComponent } from 'src/app/confirm/confirm.component';
 import { FilterTicketsComponent } from './filter-tickets/filter-tickets.component';
+import { AllTicketsReportComponent } from '../reporting/all-tickets-report/all-tickets-report.component';
+import { TimeToResolveReportComponent } from '../reporting/time-to-resolve-report/time-to-resolve-report.component';
+import { OpenTicketsReportComponent } from '../reporting/open-tickets-report/open-tickets-report.component';
+import { MerchantDataReportComponent } from '../reporting/merchant-data-report/merchant-data-report.component';
+import { AnimationBuilder } from '@angular/animations';
 
 describe('MySupportComponent', () => {
   let component: MySupportComponent;
@@ -65,8 +70,7 @@ describe('MySupportComponent', () => {
         IgxTabsModule, IgxGridModule, IgxIconModule,
         IgxDialogModule, IgxNavbarModule, IgxColumnHidingModule,
         IgxAvatarModule, IgxListModule, IgxTooltipModule,
-        IgxCheckboxModule,
-        FilterTicketsComponent
+        IgxCheckboxModule
       ],
       declarations: [
         InitialsPipe,
@@ -91,7 +95,15 @@ describe('MySupportComponent', () => {
         ColumnHidingComponent,
         AddFaqComponent,
         SortIndicatorComponent,
-        ConfirmComponent
+        ConfirmComponent,
+        FilterTicketsComponent,
+        AllTicketsReportComponent,
+        TimeToResolveReportComponent,
+        OpenTicketsReportComponent,
+        MerchantDataReportComponent
+      ],
+      providers: [
+        AnimationBuilder
       ]
     })
     .compileComponents();

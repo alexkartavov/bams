@@ -7,6 +7,7 @@ import { BsDatepickerModule, PaginationModule } from 'ngx-bootstrap';
 import { TimeToResolveReportComponent } from './time-to-resolve-report.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IgxGridModule } from 'igniteui-angular';
+import { AnimationBuilder } from '@angular/animations';
 
 describe('TimeToResolveReportComponent', () => {
   let component: TimeToResolveReportComponent;
@@ -21,6 +22,9 @@ describe('TimeToResolveReportComponent', () => {
         BsDatepickerModule.forRoot(),
         PaginationModule.forRoot(),
         IgxGridModule
+      ],
+      providers: [
+        AnimationBuilder
       ]
     })
     .compileComponents();

@@ -4,7 +4,6 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { trigger, transition, style, animate } from '@angular/animations';
 
 import { appRoutes } from 'src/app/routes';
 
@@ -49,6 +48,7 @@ import { TimeToResolveReportComponent } from './time-to-resolve-report/time-to-r
 import { OpenTicketsReportComponent } from './open-tickets-report/open-tickets-report.component';
 import { MerchantDataReportComponent } from './merchant-data-report/merchant-data-report.component';
 import { FilterTicketsComponent } from '../my-support/filter-tickets/filter-tickets.component';
+import { AnimationBuilder } from '@angular/animations';
 
 describe('ReportingComponent', () => {
   let component: ReportingComponent;
@@ -57,7 +57,6 @@ describe('ReportingComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        trigger, transition, style, animate,
         FormsModule,
         ReactiveFormsModule,
         RouterModule.forRoot(appRoutes),
@@ -102,6 +101,9 @@ describe('ReportingComponent', () => {
         TimeToResolveReportComponent,
         OpenTicketsReportComponent,
         MerchantDataReportComponent
+      ],
+      providers: [
+        AnimationBuilder
       ]
     })
     .compileComponents();

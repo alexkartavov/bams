@@ -11,7 +11,7 @@ import { InitialsPipe } from 'src/app/_services/initials.pipe';
 import { TimePassedPipe } from 'src/app/_services/time-passed.pipe';
 
 import { TabsModule } from 'ngx-bootstrap/tabs';
-import { BsDropdownModule } from 'ngx-bootstrap';
+import { BsDropdownModule, BsDatepickerModule } from 'ngx-bootstrap';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { PopoverModule } from 'ngx-bootstrap/popover';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
@@ -45,6 +45,11 @@ import { SortIndicatorComponent } from 'src/app/sort-indicator/sort-indicator.co
 import { ConfirmComponent } from 'src/app/confirm/confirm.component';
 
 import { NavComponent } from './nav.component';
+import { FilterTicketsComponent } from '../tabs/my-support/filter-tickets/filter-tickets.component';
+import { AllTicketsReportComponent } from '../tabs/reporting/all-tickets-report/all-tickets-report.component';
+import { TimeToResolveReportComponent } from '../tabs/reporting/time-to-resolve-report/time-to-resolve-report.component';
+import { OpenTicketsReportComponent } from '../tabs/reporting/open-tickets-report/open-tickets-report.component';
+import { MerchantDataReportComponent } from '../tabs/reporting/merchant-data-report/merchant-data-report.component';
 
 describe('NavComponent', () => {
   let component: NavComponent;
@@ -57,6 +62,7 @@ describe('NavComponent', () => {
         ReactiveFormsModule,
         RouterModule.forRoot(appRoutes),
         BsDropdownModule.forRoot(),
+        BsDatepickerModule.forRoot(),
         TabsModule.forRoot(),
         ModalModule.forRoot(),
         PopoverModule.forRoot(),
@@ -91,7 +97,12 @@ describe('NavComponent', () => {
         AddFaqComponent,
         SortIndicatorComponent,
         ConfirmComponent,
-        NavComponent
+        NavComponent,
+        FilterTicketsComponent,
+        AllTicketsReportComponent,
+        TimeToResolveReportComponent,
+        OpenTicketsReportComponent,
+        MerchantDataReportComponent
       ]
     })
     .compileComponents();

@@ -5,7 +5,9 @@ import { DebugElement } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AllTicketsReportComponent } from './all-tickets-report.component';
-import { BsDatepickerModule } from 'ngx-bootstrap';
+import { BsDatepickerModule, PaginationModule } from 'ngx-bootstrap';
+import { IgxGridModule } from 'igniteui-angular';
+import { AnimationBuilder } from '@angular/animations';
 
 describe('AllTicketsReportComponent', () => {
   let component: AllTicketsReportComponent;
@@ -17,7 +19,12 @@ describe('AllTicketsReportComponent', () => {
       imports: [
         FormsModule,
         ReactiveFormsModule,
-        BsDatepickerModule.forRoot()
+        BsDatepickerModule.forRoot(),
+        PaginationModule.forRoot(),
+        IgxGridModule
+      ],
+      providers: [
+        AnimationBuilder
       ]
     })
     .compileComponents();
