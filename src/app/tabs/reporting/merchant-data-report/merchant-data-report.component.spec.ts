@@ -4,6 +4,8 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
 import { MerchantDataReportComponent } from './merchant-data-report.component';
+import { BsDatepickerModule } from 'ngx-bootstrap';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 describe('MerchantDataReportComponent', () => {
   let component: MerchantDataReportComponent;
@@ -11,7 +13,12 @@ describe('MerchantDataReportComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MerchantDataReportComponent ]
+      declarations: [ MerchantDataReportComponent ],
+      imports: [
+        FormsModule,
+        ReactiveFormsModule,
+        BsDatepickerModule.forRoot()
+      ]
     })
     .compileComponents();
   }));

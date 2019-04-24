@@ -2,8 +2,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
+import { BsDatepickerModule, PaginationModule } from 'ngx-bootstrap';
 
 import { TimeToResolveReportComponent } from './time-to-resolve-report.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { IgxGridModule } from 'igniteui-angular';
 
 describe('TimeToResolveReportComponent', () => {
   let component: TimeToResolveReportComponent;
@@ -11,7 +14,14 @@ describe('TimeToResolveReportComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TimeToResolveReportComponent ]
+      declarations: [ TimeToResolveReportComponent ],
+      imports: [
+        FormsModule,
+        ReactiveFormsModule,
+        BsDatepickerModule.forRoot(),
+        PaginationModule.forRoot(),
+        IgxGridModule
+      ]
     })
     .compileComponents();
   }));

@@ -4,6 +4,7 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { trigger, transition, style, animate } from '@angular/animations';
 
 import { appRoutes } from 'src/app/routes';
 
@@ -11,7 +12,7 @@ import { InitialsPipe } from 'src/app/_services/initials.pipe';
 import { TimePassedPipe } from 'src/app/_services/time-passed.pipe';
 
 import { TabsModule } from 'ngx-bootstrap/tabs';
-import { BsDropdownModule } from 'ngx-bootstrap';
+import { BsDropdownModule, BsDatepickerModule } from 'ngx-bootstrap';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { PopoverModule } from 'ngx-bootstrap/popover';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
@@ -43,6 +44,11 @@ import { ColumnHidingComponent } from 'src/app/column-hiding/column-hiding.compo
 import { AddFaqComponent } from 'src/app/tabs/knowledgebase/add-faq/add-faq.component';
 import { SortIndicatorComponent } from 'src/app/sort-indicator/sort-indicator.component';
 import { ConfirmComponent } from 'src/app/confirm/confirm.component';
+import { AllTicketsReportComponent } from './all-tickets-report/all-tickets-report.component';
+import { TimeToResolveReportComponent } from './time-to-resolve-report/time-to-resolve-report.component';
+import { OpenTicketsReportComponent } from './open-tickets-report/open-tickets-report.component';
+import { MerchantDataReportComponent } from './merchant-data-report/merchant-data-report.component';
+import { FilterTicketsComponent } from '../my-support/filter-tickets/filter-tickets.component';
 
 describe('ReportingComponent', () => {
   let component: ReportingComponent;
@@ -51,10 +57,12 @@ describe('ReportingComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
+        trigger, transition, style, animate,
         FormsModule,
         ReactiveFormsModule,
         RouterModule.forRoot(appRoutes),
         BsDropdownModule.forRoot(),
+        BsDatepickerModule.forRoot(),
         TabsModule.forRoot(),
         ModalModule.forRoot(),
         PopoverModule.forRoot(),
@@ -88,7 +96,12 @@ describe('ReportingComponent', () => {
         ColumnHidingComponent,
         AddFaqComponent,
         SortIndicatorComponent,
-        ConfirmComponent
+        ConfirmComponent,
+        FilterTicketsComponent,
+        AllTicketsReportComponent,
+        TimeToResolveReportComponent,
+        OpenTicketsReportComponent,
+        MerchantDataReportComponent
       ]
     })
     .compileComponents();

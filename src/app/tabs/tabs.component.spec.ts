@@ -11,7 +11,7 @@ import { InitialsPipe } from 'src/app/_services/initials.pipe';
 import { TimePassedPipe } from 'src/app/_services/time-passed.pipe';
 
 import { TabsModule } from 'ngx-bootstrap/tabs';
-import { BsDropdownModule } from 'ngx-bootstrap';
+import { BsDropdownModule, BsDatepickerModule } from 'ngx-bootstrap';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { PopoverModule } from 'ngx-bootstrap/popover';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
@@ -55,6 +55,7 @@ describe('TabsComponent', () => {
         ReactiveFormsModule,
         RouterModule.forRoot(appRoutes),
         BsDropdownModule.forRoot(),
+        BsDatepickerModule.forRoot(),
         TabsModule.forRoot(),
         ModalModule.forRoot(),
         PopoverModule.forRoot(),

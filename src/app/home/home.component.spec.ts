@@ -12,7 +12,7 @@ import { InitialsPipe } from '../_services/initials.pipe';
 import { TimePassedPipe } from '../_services/time-passed.pipe';
 
 import { TabsModule } from 'ngx-bootstrap/tabs';
-import { BsDropdownModule } from 'ngx-bootstrap';
+import { BsDropdownModule, BsDatepickerModule } from 'ngx-bootstrap';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { PopoverModule } from 'ngx-bootstrap/popover';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
@@ -44,6 +44,11 @@ import { ColumnHidingComponent } from '../column-hiding/column-hiding.component'
 import { AddFaqComponent } from '../tabs/knowledgebase/add-faq/add-faq.component';
 import { SortIndicatorComponent } from '../sort-indicator/sort-indicator.component';
 import { ConfirmComponent } from '../confirm/confirm.component';
+import { FilterTicketsComponent } from '../tabs/my-support/filter-tickets/filter-tickets.component';
+import { AllTicketsReportComponent } from '../tabs/reporting/all-tickets-report/all-tickets-report.component';
+import { TimeToResolveReportComponent } from '../tabs/reporting/time-to-resolve-report/time-to-resolve-report.component';
+import { OpenTicketsReportComponent } from '../tabs/reporting/open-tickets-report/open-tickets-report.component';
+import { MerchantDataReportComponent } from '../tabs/reporting/merchant-data-report/merchant-data-report.component';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -74,7 +79,12 @@ describe('HomeComponent', () => {
         ColumnHidingComponent,
         AddFaqComponent,
         SortIndicatorComponent,
-        ConfirmComponent
+        ConfirmComponent,
+        FilterTicketsComponent,
+        AllTicketsReportComponent,
+        TimeToResolveReportComponent,
+        OpenTicketsReportComponent,
+        MerchantDataReportComponent
       ],
       imports: [
         FormsModule,
@@ -82,6 +92,7 @@ describe('HomeComponent', () => {
         BrowserAnimationsModule,
         RouterModule.forRoot(appRoutes),
         BsDropdownModule.forRoot(),
+        BsDatepickerModule.forRoot(),
         TabsModule.forRoot(),
         ModalModule.forRoot(),
         PopoverModule.forRoot(),

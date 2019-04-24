@@ -11,7 +11,7 @@ import { InitialsPipe } from 'src/app/_services/initials.pipe';
 import { TimePassedPipe } from 'src/app/_services/time-passed.pipe';
 
 import { TabsModule } from 'ngx-bootstrap/tabs';
-import { BsDropdownModule } from 'ngx-bootstrap';
+import { BsDropdownModule, BsDatepickerModule } from 'ngx-bootstrap';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { PopoverModule } from 'ngx-bootstrap/popover';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
@@ -43,6 +43,7 @@ import { ColumnHidingComponent } from 'src/app/column-hiding/column-hiding.compo
 import { AddFaqComponent } from 'src/app/tabs/knowledgebase/add-faq/add-faq.component';
 import { SortIndicatorComponent } from 'src/app/sort-indicator/sort-indicator.component';
 import { ConfirmComponent } from 'src/app/confirm/confirm.component';
+import { FilterTicketsComponent } from './filter-tickets/filter-tickets.component';
 
 describe('MySupportComponent', () => {
   let component: MySupportComponent;
@@ -55,6 +56,7 @@ describe('MySupportComponent', () => {
         ReactiveFormsModule,
         RouterModule.forRoot(appRoutes),
         BsDropdownModule.forRoot(),
+        BsDatepickerModule.forRoot(),
         TabsModule.forRoot(),
         ModalModule.forRoot(),
         PopoverModule.forRoot(),
@@ -63,7 +65,8 @@ describe('MySupportComponent', () => {
         IgxTabsModule, IgxGridModule, IgxIconModule,
         IgxDialogModule, IgxNavbarModule, IgxColumnHidingModule,
         IgxAvatarModule, IgxListModule, IgxTooltipModule,
-        IgxCheckboxModule
+        IgxCheckboxModule,
+        FilterTicketsComponent
       ],
       declarations: [
         InitialsPipe,
