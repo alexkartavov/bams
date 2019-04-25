@@ -16,7 +16,7 @@ pipeline {
     }
     stage('Run unit tests') {
         steps {
-            sh 'npm run ng test -- --no-watch --browsers 'ChromeHeadless''
+            sh "npm run ng test -- --no-watch --browsers 'ChromeHeadless'"
         }
     }
     stage('Build') {
