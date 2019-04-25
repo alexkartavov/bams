@@ -6,13 +6,12 @@ pipeline {
   stages {
     stage('Checkout source') {
         steps {
-            slackSend message: "Integrated Support Tool build/deploy ${env.BUILD_NUMBER} started."
+            slackSend message: "Integrated Support Tool build/deploy #${env.BUILD_NUMBER} started."
             checkout scm
         }
     }
     stage('Resolve npm dependencies') {
         steps {
-            error('testing failure.')
             sh 'npm install'
         }
     }
@@ -50,7 +49,7 @@ pipeline {
   }
   post {
         failure {
-            slackSend color: 'danger', message: "Integrated Support Tool build/deploy failed: (<${env.BUILD_URL}|Open>)"
+            slackSend color: 'danger', message: "Integrated Support Tool build/deploy #${env.BUILD_NUMBER} failed: (<${env.BUILD_URL}|Open>)"
         }
     }
 }
