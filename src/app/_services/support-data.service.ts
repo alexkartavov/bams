@@ -22,7 +22,6 @@ export class SupportDataService implements OnDestroy {
   createCommentUrl = environment.tickets.createCommentUrl;
   httpOptions: any;
   httpFileOptions: any;
-  totalCountSubject = new BehaviorSubject<number>(0);
 
   constructor(
       private http: HttpClient,
@@ -52,20 +51,17 @@ export class SupportDataService implements OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.totalCountSubject.complete();
   }
 
-  getTickets(params: any):  Observable<SupportTicketModel[]> {
+  getTickets(params: any, totalCountFeedback?):  Observable<SupportTicketModel[]> {
     return this.http.post(this.postUrl, params, this.httpOptions)
       .pipe(map<any, SupportTicketModel[]>(data => {
-        this.totalCountSubject.next(data.totalCount);
+        if (totalCountFeedback) {
+          totalCountFeedback(data.totalCount);
+        }
         return data.items;
       })
     );
-  }
-
-  getTotalCount(): Observable<number> {
-    return this.totalCountSubject.asObservable();
   }
 
   createTicket(ticket: SupportTicketModel, successCallback, errorCallback) {

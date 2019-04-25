@@ -7,6 +7,7 @@ import { CommentModel } from 'src/app/models/comment-model';
 export class SupportDataSource {
 
     public ticketsSubject = new BehaviorSubject<SupportTicketModel[]>([]);
+    public totalCountSubject = new BehaviorSubject<number>(0);
     private commentsSubject = new BehaviorSubject<CommentModel[]>([]);
     private loadingSubject = new BehaviorSubject<boolean>(false);
 
@@ -24,6 +25,7 @@ export class SupportDataSource {
 
     disconnect(): void {
         this.ticketsSubject.complete();
+        this.totalCountSubject.complete();
         this.commentsSubject.complete();
         this.loadingSubject.complete();
     }
@@ -31,7 +33,7 @@ export class SupportDataSource {
     loadTickets(params: any, loaded?: Function) {
         this.loadingSubject.next(true);
 
-        this.supportService.getTickets(params).pipe(
+        this.supportService.getTickets(params, totalCount => this.totalCountSubject.next(totalCount)).pipe(
             map((response) => {
                 if (loaded) { loaded(response); }
                 return response;
@@ -43,7 +45,7 @@ export class SupportDataSource {
     }
 
     getTotalCount(): Observable<number> {
-        return this.supportService.getTotalCount();
+        return this.totalCountSubject.asObservable();
     }
 
     loadComments(ticketId: number) {

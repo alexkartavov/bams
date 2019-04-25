@@ -47,6 +47,9 @@ export class ReportingComponent implements OnInit, AfterViewInit {
 
   public startDate?: number = null;
   public endDate?: number = null;
+
+  public fromDate?: number = null;
+  public toDate?: number = null;
   // #endregion AllTicketsReport
 
   // #region TimeToResolveReport
@@ -76,24 +79,24 @@ export class ReportingComponent implements OnInit, AfterViewInit {
     this.reportRangeData.push((year - 2).toString());
 
     this.reportRange = profileService.get('reports.reportRange') || this.reportRangeData[0];
-  }
-
-  ngOnInit() {
     this.filterType = this.profileService.get('reports.filterType') || null;
     this.filterStatus = this.profileService.get('reports.filterStatus') || null;
     this.filterPriority = this.profileService.get('reports.filterPriority') || null;
+    this.fromDate = this.profileService.get('reports.fromDate') || null;
+    this.toDate = this.profileService.get('reports.toDate') || null;
   }
 
-  ngAfterViewInit() {
+  ngOnInit() {
     const reportIndex = this.reportRangeData.indexOf(this.reportRange);
     if (reportIndex >= 0) {
       this.selectReportRange(reportIndex);
     }
-    const fromDate = this.profileService.get('reports.fromDate') || null;
-    const toDate = this.profileService.get('reports.toDate') || null;
-    if (fromDate || toDate) {
-      this.selectCustomRange(fromDate, toDate);
+    if (this.fromDate || this.toDate) {
+      this.selectCustomRange(this.fromDate, this.toDate);
     }
+  }
+
+  ngAfterViewInit() {
   }
 
   cancel(e) {
