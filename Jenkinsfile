@@ -12,6 +12,7 @@ pipeline {
     }
     stage('Resolve npm dependencies') {
         steps {
+            error('testing failure.')
             sh 'npm install'
         }
     }
