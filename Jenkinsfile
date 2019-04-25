@@ -6,6 +6,7 @@ pipeline {
   stages {
     stage('Checkout source') {
         steps {
+            slackSend message: 'Starting Integrated Support Tool build/deploy'
             checkout scm
         }
     }
@@ -35,6 +36,7 @@ pipeline {
                 sourceDirectory: 'dist/ng-supporttool',
                 filePath: "**/*",
             ])
+            slackSend color: 'good', message: 'Integrated Support Tool successfully deployed.'
         }
     }
     stage('Cleanup') {
@@ -45,4 +47,9 @@ pipeline {
         }
     }
   }
+  post {
+        failure {
+            slackSend color: 'danger', message: 'Integrated Support Tool build/deploy failed.'
+        }
+    }
 }
