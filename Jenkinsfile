@@ -4,24 +4,24 @@ pipeline {
   tools {nodejs "node"}
  
   stages {
-    stage('Checkout Source') {
+    stage('Checkout source') {
         steps {
             checkout scm
         }
     }
-    stage('Resolve npm Dependencies') {
+    stage('Resolve npm dependencies') {
         steps {
             sh 'npm install'
+        }
+    }
+    stage('Run unit tests') {
+        steps {
+            sh 'npm run ng test -- --no-watch'
         }
     }
     stage('Build') {
         steps {
             sh 'npm run ng build -- --prod'
-        }
-    }
-    stage('Unit Tests') {
-        steps {
-            sh 'npm run ng test -- --no-watch'
         }
     }
     stage("Deploy to Azure App Service"){
