@@ -21,6 +21,7 @@ import { SortIndicatorComponent } from '../../sort-indicator/sort-indicator.comp
 import { ConfirmComponent } from '../../confirm/confirm.component';
 
 import { UserAccessManagementComponent } from './user-access-management.component';
+import { AnimationBuilder } from '@angular/animations';
 
 describe('UserAccessManagementComponent', () => {
   let component: UserAccessManagementComponent;
@@ -47,6 +48,9 @@ describe('UserAccessManagementComponent', () => {
         IgxTabsModule, IgxGridModule, IgxIconModule,
         IgxDialogModule, IgxNavbarModule, IgxColumnHidingModule,
         IgxAvatarModule, IgxListModule, IgxTooltipModule
+      ],
+      providers: [
+        AnimationBuilder
       ]
     })
     .compileComponents();

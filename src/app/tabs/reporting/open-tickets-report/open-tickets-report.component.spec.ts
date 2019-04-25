@@ -2,8 +2,12 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
+import { BsDatepickerModule, PaginationModule } from 'ngx-bootstrap';
 
 import { OpenTicketsReportComponent } from './open-tickets-report.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { IgxGridModule } from 'igniteui-angular';
+import { AnimationBuilder } from '@angular/animations';
 
 describe('OpenTicketsComponent', () => {
   let component: OpenTicketsReportComponent;
@@ -11,7 +15,17 @@ describe('OpenTicketsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ OpenTicketsReportComponent ]
+      declarations: [ OpenTicketsReportComponent ],
+      imports: [
+        FormsModule,
+        ReactiveFormsModule,
+        BsDatepickerModule.forRoot(),
+        PaginationModule.forRoot(),
+        IgxGridModule
+      ],
+      providers: [
+        AnimationBuilder
+      ]
     })
     .compileComponents();
   }));

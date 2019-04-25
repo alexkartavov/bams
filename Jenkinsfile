@@ -4,14 +4,20 @@ pipeline {
   tools {nodejs "node"}
  
   stages {
-    stage('Checkout Source') {
+    stage('Checkout source') {
         steps {
+            slackSend message: "Integrated Support Tool build/deploy #${env.BUILD_NUMBER} started."
             checkout scm
         }
     }
-    stage('Resolve npm Dependencies') {
+    stage('Resolve npm dependencies') {
         steps {
             sh 'npm install'
+        }
+    }
+    stage('Run unit tests') {
+        steps {
+            sh "npm run ng test -- --no-watch --browsers 'ChromeHeadless'"
         }
     }
     stage('Build') {
@@ -30,6 +36,7 @@ pipeline {
                 sourceDirectory: 'dist/ng-supporttool',
                 filePath: "**/*",
             ])
+            slackSend color: 'good', message: "Integrated Support Tool #${env.BUILD_NUMBER} successfully deployed.\nhttps://anettool-dev.azurewebsites.net"
         }
     }
     stage('Cleanup') {
@@ -40,4 +47,9 @@ pipeline {
         }
     }
   }
+  post {
+        failure {
+            slackSend color: 'danger', message: "Integrated Support Tool build/deploy #${env.BUILD_NUMBER} failed: (<${env.BUILD_URL}|Open>)"
+        }
+    }
 }

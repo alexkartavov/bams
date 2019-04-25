@@ -4,6 +4,10 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
 import { MerchantDataReportComponent } from './merchant-data-report.component';
+import { BsDatepickerModule, PaginationModule } from 'ngx-bootstrap';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { IgxGridModule } from 'igniteui-angular';
+import { AnimationBuilder } from '@angular/animations';
 
 describe('MerchantDataReportComponent', () => {
   let component: MerchantDataReportComponent;
@@ -11,7 +15,17 @@ describe('MerchantDataReportComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MerchantDataReportComponent ]
+      declarations: [ MerchantDataReportComponent ],
+      imports: [
+        FormsModule,
+        ReactiveFormsModule,
+        BsDatepickerModule.forRoot(),
+        PaginationModule.forRoot(),
+        IgxGridModule
+      ],
+      providers: [
+        AnimationBuilder
+      ]
     })
     .compileComponents();
   }));
