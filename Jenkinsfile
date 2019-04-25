@@ -6,7 +6,7 @@ pipeline {
   stages {
     stage('Checkout source') {
         steps {
-            slackSend message: 'Integrated Support Tool build/deploy started.'
+            slackSend message: 'Integrated Support Tool build/deploy ${env.BUILD_NUMBER} started.'
             checkout scm
         }
     }
@@ -37,7 +37,7 @@ pipeline {
                 sourceDirectory: 'dist/ng-supporttool',
                 filePath: "**/*",
             ])
-            slackSend color: 'good', message: 'Integrated Support Tool successfully deployed. (https://anettool-dev.azurewebsites.net) '
+            slackSend color: 'good', message: 'Integrated Support Tool ${env.BUILD_NUMBER} successfully deployed. (https://anettool-dev.azurewebsites.net) '
         }
     }
     stage('Cleanup') {
@@ -50,7 +50,7 @@ pipeline {
   }
   post {
         failure {
-            slackSend color: 'danger', message: 'Integrated Support Tool build/deploy failed.'
+            slackSend color: 'danger', message: 'Integrated Support Tool build/deploy failed: (<${env.BUILD_URL}|Open>)'
         }
     }
 }
