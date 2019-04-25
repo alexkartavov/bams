@@ -37,7 +37,7 @@ pipeline {
                 sourceDirectory: 'dist/ng-supporttool',
                 filePath: "**/*",
             ])
-            slackSend color: 'good', message: 'Integrated Support Tool ${env.BUILD_NUMBER} successfully deployed. (https://anettool-dev.azurewebsites.net) '
+            slackSend color: 'good', message: 'Integrated Support Tool ${env.BUILD_NUMBER} successfully deployed.\nhttps://anettool-dev.azurewebsites.net'
         }
     }
     stage('Cleanup') {
