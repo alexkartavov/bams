@@ -13,7 +13,7 @@
         </ul>
       </div>
 
-      <div *ngIf="reportType != reportTypeData[3]" class="btn-group mt-1 mr-2" dropdown #datesDropdown="bs-dropdown" [autoClose]="false">
+      <div *ngIf="reportType != reportTypeData[3]" class="btn-group mt-1 mr-2" dropdown #datesDropdown="bs-dropdown" [insideClick]="true" (isOpenChange)="dropDownOpenChange($event)">
         <button id="select-reportrange" title="Select a Range" dropdownToggle type="button" class="btn btn-outline-primary dropdown-toggle"
                 aria-controls="select-reportrange-dropdown">{{reportRange}}<span class="caret"></span>
         </button>
@@ -28,31 +28,37 @@
           <div class="text-center mt-2 mb-1">
             <div class="row no-gutters align-items-center pl-1 ml-3 mr-3" style="border: 1px black solid; border-radius: 4px">
               <div class="col">
-                <input #fromDatePicker type="text"
+                <input id="fromDatePicker" type="text"
+                  #fromDatePicker="bsDatepicker"
                   placeholder="From"
                   class="form-control"
                   bsDatepicker
                   [bsConfig]="{containerClass: 'theme-dark-blue'}"
+                  [bsValue]="bsFromDate"
+                  (bsValueChange)="bsFromDate = $event;doNotCloseDropDown();"
                   style="border: 0px transparent none;">
               </div>
-              <div class="col-auto theme-blue-color ml-1 mr-1">
+              <div class="col-auto theme-blue-color ml-1 mr-1" (click)="fromDatePicker.toggle()">
                 <igx-icon fontSet="fa" name="fa-calendar"></igx-icon>
               </div>
             </div>
             <div class="row no-gutters align-items-center pl-1 ml-3 mr-3 mt-2" style="border: 1px black solid; border-radius: 4px">
               <div class="col">
-                <input #toDatePicker type="text"
+                <input id="toDatePicker" type="text"
+                  #toDatePicker="bsDatepicker"
                   placeholder="To"
                   class="form-control"
                   bsDatepicker
                   [bsConfig]="{containerClass: 'theme-dark-blue'}"
+                  [bsValue]="bsToDate"
+                  (bsValueChange)="bsToDate = $event;doNotCloseDropDown();"
                   style="border: 0px transparent none;">
               </div>
-              <div class="col-auto theme-blue-color ml-1 mr-1">
+              <div class="col-auto theme-blue-color ml-1 mr-1" (click)="toDatePicker.toggle()">
                 <igx-icon fontSet="fa" name="fa-calendar"></igx-icon>
               </div>
-              </div>
-            <button class="btn btn-primary mt-2" style="width:75%;" (click)="selectCustomRange(fromDatePicker.value, toDatePicker.value);datesDropdown.hide()">OK</button>
+            </div>
+            <button class="btn btn-primary mt-2" style="width:75%;" (click)="selectCustomRange(bsFromDate, bsToDate);datesDropdown.hide()">OK</button>
           </div>
         </ul>
       </div>

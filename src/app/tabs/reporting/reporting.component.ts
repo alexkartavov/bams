@@ -6,6 +6,7 @@ import {TimeToResolveReportComponent } from './time-to-resolve-report/time-to-re
 import { OpenTicketsReportComponent } from './open-tickets-report/open-tickets-report.component';
 import { MerchantDataReportComponent } from './merchant-data-report/merchant-data-report.component';
 import { ProfileService } from 'src/app/_services/profile.service';
+import { BsDropdownDirective } from 'ngx-bootstrap';
 
 @Component({
   selector: 'app-reporting',
@@ -31,6 +32,9 @@ export class ReportingComponent implements OnInit, AfterViewInit {
   reportRange: string;
   reportRangeData: string[] = [];
 
+  @ViewChild('datesDropdown')
+  public datesDropdown: BsDropdownDirective;
+
   @ViewChild('fromDatePicker')
   public fromDatePicker: ElementRef;
 
@@ -50,6 +54,9 @@ export class ReportingComponent implements OnInit, AfterViewInit {
 
   public fromDate?: number = null;
   public toDate?: number = null;
+
+  bsFromDate: Date;
+  bsToDate: Date;
   // #endregion AllTicketsReport
 
   // #region TimeToResolveReport
@@ -67,6 +74,8 @@ export class ReportingComponent implements OnInit, AfterViewInit {
   public merchantDataReport: MerchantDataReportComponent;
   // #endregion MerchantDataReport
 
+  doNotClose = false;
+
   constructor(private valueService: ValueProcessingService,
               private profileService: ProfileService) {
     this.reportTypeData = valueService.reportTypeData;
@@ -82,8 +91,17 @@ export class ReportingComponent implements OnInit, AfterViewInit {
     this.filterType = this.profileService.get('reports.filterType') || null;
     this.filterStatus = this.profileService.get('reports.filterStatus') || null;
     this.filterPriority = this.profileService.get('reports.filterPriority') || null;
-    this.fromDate = this.profileService.get('reports.fromDate') || null;
-    this.toDate = this.profileService.get('reports.toDate') || null;
+    if (this.reportRangeData.indexOf(this.reportRange) < 0) { // custom range
+      this.fromDate = this.profileService.get('reports.fromDate') || null;
+      this.toDate = this.profileService.get('reports.toDate') || null;
+
+      if (this.fromDate) {
+        this.bsFromDate = new Date(this.fromDate);
+      }
+      if (this.toDate) {
+        this.bsToDate = new Date(this.toDate);
+      }
+    }
   }
 
   ngOnInit() {
@@ -117,10 +135,10 @@ export class ReportingComponent implements OnInit, AfterViewInit {
       this.reportRange = this.reportRangeData[i];
       this.profileService.set('reports.reportRange', this.reportRange);
       if (this.fromDatePicker) {
-        this.fromDatePicker.nativeElement.value = '';
+        (<HTMLInputElement>document.getElementById('fromDatePicker')).value = '';
       }
       if (this.toDatePicker) {
-        this.toDatePicker.nativeElement.value = '';
+        (<HTMLInputElement>document.getElementById('toDatePicker')).value = '';
       }
       const now = new Date();
       const thisYear = now.getFullYear().toString();
@@ -189,6 +207,12 @@ export class ReportingComponent implements OnInit, AfterViewInit {
   }
 
   selectCustomRange(fromDate, toDate) {
+    if (fromDate instanceof Date) {
+      fromDate = (fromDate.getMonth() + 1).toString() + '/' + fromDate.getDate() + '/' + fromDate.getFullYear();
+    }
+    if (toDate instanceof Date) {
+      toDate = (toDate.getMonth() + 1).toString() + '/' + toDate.getDate() + '/' + toDate.getFullYear();
+    }
     fromDate ?
       this.profileService.set('reports.fromDate', fromDate) :
       this.profileService.remove('reports.fromDate');
@@ -196,27 +220,31 @@ export class ReportingComponent implements OnInit, AfterViewInit {
       this.profileService.set('reports.toDate', toDate) :
       this.profileService.remove('reports.toDate');
 
-    if (!fromDate && ! toDate) {
+    if (!fromDate && !toDate) {
       this.startDate = null;
       this.endDate = null;
       this.reportRange = this.reportRangeData[0];
+      this.profileService.set('reports.reportRange', this.reportRange);
       return;
     }
     if (!fromDate) {
       this.startDate = null;
       this.endDate = new Date(toDate).getTime();
       this.reportRange = toDate + ' and earlier';
+      this.profileService.set('reports.reportRange', this.reportRange);
       return;
     }
     if (!toDate) {
       this.endDate = null;
       this.startDate = new Date(fromDate).getTime();
       this.reportRange = fromDate + ' and later';
+      this.profileService.set('reports.reportRange', this.reportRange);
       return;
     }
     this.startDate = new Date(fromDate).getTime();
     this.endDate = new Date(toDate).getTime();
     this.reportRange = fromDate + ' - ' + toDate;
+    this.profileService.set('reports.reportRange', this.reportRange);
   }
 
   downloadReport() {
@@ -262,4 +290,14 @@ export class ReportingComponent implements OnInit, AfterViewInit {
   }
   // #endregion AllTicketsReport
 
+  dropDownOpenChange(e) {
+    if (!e && this.doNotClose) {
+      this.datesDropdown.isOpen = true;
+    }
+  }
+
+  doNotCloseDropDown() {
+    this.doNotClose = true;
+    window.setTimeout(() => this.doNotClose = false, 100);
+  }
 }
