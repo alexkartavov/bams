@@ -23,8 +23,6 @@ export class MerchantStatementsComponent implements OnInit, AfterViewInit, OnDes
   public statementYears: number[];
 
   constructor(private merchDataService: MerchantDataService, private modalService: BsModalService) {
-    this.dataSource = new StatementDataSource(merchDataService);
-    this.statements = this.dataSource.connect();
 
     const now = new Date();
     this.statementYears = [
@@ -35,9 +33,10 @@ export class MerchantStatementsComponent implements OnInit, AfterViewInit, OnDes
   }
 
   ngOnInit() {
+    this.dataSource = new StatementDataSource(this.merchDataService);
+    this.statements = this.dataSource.connect();
     const now = new Date();
     this.selectedYear = now.getFullYear().toString();
-    this.requestStatements(this.id, this.selectedYear);
   }
 
   ngAfterViewInit(): void {
@@ -48,6 +47,8 @@ export class MerchantStatementsComponent implements OnInit, AfterViewInit, OnDes
   }
 
   public openModal(template) {
+    this.requestStatements(this.id, this.selectedYear);
+
     const initialState = {
       id: this.id
     };
