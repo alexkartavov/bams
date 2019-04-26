@@ -34,17 +34,13 @@ pipeline {
             slackSend color: 'good', message: "Integrated Support Tool #${env.BUILD_NUMBER} successfully deployed.\nhttps://anettool-dev.azurewebsites.net"
         }
     }
-    stage('Cleanup') {
-        steps {
-            echo 'prune and cleanup'
-            sh 'npm prune'
-            sh 'rm node_modules -rf'
-        }
-    }
   }
   post {
         failure {
             slackSend color: 'danger', message: "Integrated Support Tool build/deploy #${env.BUILD_NUMBER} failed: (<${env.BUILD_URL}|Open>)"
+        }
+        always {
+            cleanWs()
         }
     }
 }
