@@ -4,14 +4,9 @@ pipeline {
   tools {nodejs "node"}
  
   stages {
-    stage('Checkout source') {
-        steps {
-            slackSend message: "Integrated Support Tool build/deploy #${env.BUILD_NUMBER} started."
-            checkout scm
-        }
-    }
     stage('Resolve npm dependencies') {
         steps {
+            slackSend message: "Integrated Support Tool build/deploy #${env.BUILD_NUMBER} started."
             sh 'npm install'
         }
     }
