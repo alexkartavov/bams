@@ -26,7 +26,7 @@ pipeline {
             azureWebAppPublish ([
                 appName: "anettool", 
                 azureCredentialsId: "jenkins-cep-sp", 
-                resourceGroup: "BAMSCEP-SupportTool-App",
+                resourceGroup: "bams-cep-integratedSupportTool-ue-rg",
                 slotName: 'dev',
                 sourceDirectory: 'dist/ng-supporttool',
                 filePath: "**/*",
