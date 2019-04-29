@@ -26,7 +26,7 @@ export class SupportDataService implements OnDestroy {
   constructor(
       private http: HttpClient,
       private auth: AuthService,
-      valueService: ValueProcessingService,
+      private valueService: ValueProcessingService,
       private exportService: ExportService) {
     this.httpOptions = {
       headers: new HttpHeaders({
@@ -91,7 +91,11 @@ export class SupportDataService implements OnDestroy {
     let url = this.updateStatusUrl;
     url = url.replace('{ticket_id}', ticketId.toString());
     url = url.replace('{status}', status);
-    this.http.post(url, {}, this.httpOptions)
+    const request: any = {};
+    if (status === this.valueService.statusClosed) {
+      request.resolvedDate = Date.now();
+    }
+    this.http.post(url, request, this.httpOptions)
     .pipe(
       retry(3),
       // catchError(this.handleError)

@@ -114,7 +114,7 @@ export class TimeToResolveReportComponent implements OnInit, OnDestroy, OnChange
     if (!toDate) {
       toDate = new Date().getTime();
     }
-    return Math.floor((toDate - fromDate) / 86400000);
+    return Math.round((toDate - fromDate) / 86400000);
   }
 
   exportRule(column): string | Function {
