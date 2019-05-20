@@ -6,7 +6,6 @@ pipeline {
   stages {
     stage('Resolve npm dependencies') {
         steps {
-            slackSend message: "Integrated Support Tool build/deploy #${env.BUILD_NUMBER} started."
             sh 'npm install'
         }
     }
