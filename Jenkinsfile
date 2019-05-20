@@ -20,18 +20,43 @@ pipeline {
             sh 'npm run ng build -- --prod'
         }
     }
-    stage("Deploy to Azure App Service"){
-        when { branch 'master' }
+    stage("Deploy to Azure App Service (Dev)"){
+        when { branch 'develop' }
         steps {
             azureWebAppPublish ([
-                appName: "anettool", 
+                appName: "bams-cep-ist-dev-ue-app", 
                 azureCredentialsId: "jenkins-cep-sp", 
-                resourceGroup: "bams-cep-integratedSupportTool-ue-rg",
-                slotName: 'dev',
+                resourceGroup: "bams-cep-ist-dev-ue-rg",
                 sourceDirectory: 'dist/ng-supporttool',
                 filePath: "**/*",
             ])
-            slackSend color: 'good', message: "Integrated Support Tool #${env.BUILD_NUMBER} successfully deployed.\nhttps://anettool-dev.azurewebsites.net"
+            slackSend color: 'good', message: "Integrated Support Tool deployed (dev => ${env.BUILD_NUMBER})\nhttps://bams-cep-ist-dev-ue-app.azurewebsites.net/"
+        }
+    }
+    stage("Deploy to Azure App Service (QA)"){
+        when { branch 'test' }
+        steps {
+            azureWebAppPublish ([
+                appName: "bams-cep-ist-qa-ue-app", 
+                azureCredentialsId: "jenkins-cep-sp", 
+                resourceGroup: "bams-cep-ist-qa-ue-rg",
+                sourceDirectory: 'dist/ng-supporttool',
+                filePath: "**/*",
+            ])
+            slackSend color: 'good', message: "Integrated Support Tool deployed (qa => ${env.BUILD_NUMBER})\nhttps://bams-cep-ist-qa-ue-app.azurewebsites.net/"
+        }
+    }
+    stage("Deploy to Azure App Service (UAT)"){
+        when { branch 'master' }
+        steps {
+            azureWebAppPublish ([
+                appName: "bams-cep-ist-uat-ue-app", 
+                azureCredentialsId: "jenkins-cep-sp", 
+                resourceGroup: "bams-cep-ist-uat-ue-rg",
+                sourceDirectory: 'dist/ng-supporttool',
+                filePath: "**/*",
+            ])
+            slackSend color: 'good', message: "Integrated Support Tool deployed (uat => ${env.BUILD_NUMBER})\nhttps://bams-cep-ist-uat-ue-app.azurewebsites.net/"
         }
     }
   }
