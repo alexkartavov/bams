@@ -28,6 +28,9 @@ export const environment = {
     createUrl: 'https://cep-support-dev-api-management.azure-api.net/core/api/v1/cep-support/user',
     userUrl: 'https://cep-support-dev-api-management.azure-api.net/core/api/v1/cep-support/user/{user_id}',
 
+    profileGetUrl: 'http://bams-cep-supporttool-dev-ue-aks.eastus.cloudapp.azure.com/core/api/v1/cep-support/ANET/profile/get-user-profile/{user_id}',
+    profileSetUrl: 'http://bams-cep-supporttool-dev-ue-aks.eastus.cloudapp.azure.com/core/api/v1/cep-support/ANET/profile/save-user-profile/{user_id}',
+
     // listPostUrl: 'api/user',
 
     ocpApimSubscriptionKey: '7b46d6296b674122b4737b0308312b93'

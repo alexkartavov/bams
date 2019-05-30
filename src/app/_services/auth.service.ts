@@ -6,32 +6,32 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
 
-constructor() { }
+  constructor() { }
 
-login(user: any) {
-  localStorage.setItem('token', user.username);
-  return Observable.create(observer => {
-    observer.next(user);
-  });
-}
+  login(user: any) {
+    localStorage.setItem('token', user.username);
+    return Observable.create(observer => {
+      observer.next(user);
+    });
+  }
 
-logout() {
-  localStorage.removeItem('token');
-}
+  logout() {
+    localStorage.removeItem('token');
+  }
 
-loggedIn(): boolean {
-  const token = localStorage.getItem('token');
-  return token !== undefined && token != null;
-}
+  loggedIn(): boolean {
+    const token = localStorage.getItem('token');
+    return token !== undefined && token != null;
+  }
 
-getUserName() {
-  // const token = localStorage.getItem('token');
-  // return token;
-  return 'selva yugandhar';
-}
+  getUserName() {
+    // const token = localStorage.getItem('token');
+    // return token;
+    return 'selva yugandhar';
+  }
 
-getUserId() {
-  return 3;
-}
+  getUserId() {
+    return 3;
+  }
 
 }

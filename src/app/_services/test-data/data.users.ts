@@ -8,7 +8,8 @@ export const usersData: Array<UserAccessModel> = [
     lastName: "yugandhar",
     email: "sonny.elhamahmy@bankofamericamerchant.com",
     role: "SUPPORT_USER",
-    password: ''
+    password: '',
+    userProfile: ''
   },
   {
     id: 4,
@@ -16,7 +17,8 @@ export const usersData: Array<UserAccessModel> = [
     lastName: "sitar",
     email: "keerthana.s@cloudnowtech.com",
     role: "SUPPORT_USER",
-    password: ''
+    password: '',
+    userProfile: ''
   },
   {
     id: 5,
@@ -24,7 +26,8 @@ export const usersData: Array<UserAccessModel> = [
     lastName: "Green",
     email: "cgreen4@midtowncg.com",
     role: "SUPPORT_USER",
-    password: ''
+    password: '',
+    userProfile: ''
   },
   {
     id: 6,
@@ -32,7 +35,8 @@ export const usersData: Array<UserAccessModel> = [
     lastName: "Green",
     email: "cgreen2@midtowncg.com",
     role: "SUPPORT_USER",
-    password: ''
+    password: '',
+    userProfile: ''
   },
   {
     id: 7,
@@ -40,7 +44,8 @@ export const usersData: Array<UserAccessModel> = [
     lastName: "Green",
     email: "cgreen3@midtowncg.com",
     role: "SUPPORT_USER",
-    password: ''
+    password: '',
+    userProfile: ''
   },
   {
     id: 8,
@@ -48,7 +53,8 @@ export const usersData: Array<UserAccessModel> = [
     lastName: "Green",
     email: "colby.green2@bankofamericamerchant.com",
     role: "SUPPORT_USER",
-    password: ''
+    password: '',
+    userProfile: ''
   },
   {
     id: 17,
@@ -56,7 +62,8 @@ export const usersData: Array<UserAccessModel> = [
     lastName: "Malament",
     email: "david.malament@gmail.com",
     role: "SUPPORT_ADMIN",
-    password: ''
+    password: '',
+    userProfile: ''
   },
   {
     id: 19,
@@ -64,7 +71,8 @@ export const usersData: Array<UserAccessModel> = [
     lastName: "Green",
     email: "colby.green@bankofamericamerchant.com",
     role: "SUPPORT_USER",
-    password: ''
+    password: '',
+    userProfile: ''
   },
   {
     id: 20,
@@ -72,7 +80,8 @@ export const usersData: Array<UserAccessModel> = [
     lastName: "Green",
     email: "colby@colbygreen.me",
     role: "SUPPORT_USER",
-    password: ''
+    password: '',
+    userProfile: ''
   },
   {
     id: 21,
@@ -80,7 +89,8 @@ export const usersData: Array<UserAccessModel> = [
     lastName: "User",
     email: "test@user.com",
     role: "SUPPORT_ADMIN",
-    password: ''
+    password: '',
+    userProfile: ''
   },
   {
     id: 22,
@@ -88,7 +98,8 @@ export const usersData: Array<UserAccessModel> = [
     lastName: "Green",
     email: "cgreenatl2@gmail.com",
     role: "SUPPORT_ADMIN",
-    password: ''
+    password: '',
+    userProfile: ''
   },
   {
     id: 23,
@@ -96,7 +107,8 @@ export const usersData: Array<UserAccessModel> = [
     lastName: "Account",
     email: "tgodfrey@midtowncg.com",
     role: "SUPPORT_ADMIN",
-    password: ''
+    password: '',
+    userProfile: ''
   },
   {
     id: 24,
@@ -104,7 +116,8 @@ export const usersData: Array<UserAccessModel> = [
     lastName: "Green",
     email: "cgreen@midtowncg.com",
     role: "SUPPORT_USER",
-    password: ''
+    password: '',
+    userProfile: ''
   },
   {
     id: 25,
@@ -112,7 +125,8 @@ export const usersData: Array<UserAccessModel> = [
     lastName: "Ellis",
     email: "contactaubreybellis@gmail.com",
     role: "SUPPORT_ADMIN",
-    password: ''
+    password: '',
+    userProfile: ''
   },
   {
     id: 26,
@@ -120,7 +134,8 @@ export const usersData: Array<UserAccessModel> = [
     lastName: "Lukulu",
     email: "maxwell.lukulu@bankofamericamerchant.com",
     role: "SUPPORT_USER",
-    password: ''
+    password: '',
+    userProfile: ''
   },
   {
     id: 27,
@@ -128,7 +143,8 @@ export const usersData: Array<UserAccessModel> = [
     lastName: "Jitta",
     email: "ramakrishna.jitta@bankofamericamerchant.com",
     role: "SUPPORT_USER",
-    password: ''
+    password: '',
+    userProfile: ''
   },
   {
     id: 28,
@@ -136,7 +152,8 @@ export const usersData: Array<UserAccessModel> = [
     lastName: "Lukulu",
     email: "maxlukulu@gmail.com",
     role: "SUPPORT_USER",
-    password: ''
+    password: '',
+    userProfile: ''
   },
   {
     id: 29,
@@ -144,7 +161,8 @@ export const usersData: Array<UserAccessModel> = [
     lastName: "Test",
     email: "bamstest21@gmail.com",
     role: "SUPPORT_USER",
-    password: ''
+    password: '',
+    userProfile: ''
   },
   {
     id: 30,
@@ -152,7 +170,8 @@ export const usersData: Array<UserAccessModel> = [
     lastName: "Bams",
     email: "testbams21@gmail.com",
     role: "SUPPORT_USER",
-    password: ''
+    password: '',
+    userProfile: ''
   },
   {
     id: 31,
@@ -160,7 +179,8 @@ export const usersData: Array<UserAccessModel> = [
     lastName: "Testor",
     email: "bams.testor@gmail.com",
     role: "SUPPORT_USER",
-    password: ''
+    password: '',
+    userProfile: ''
   },
   {
     id: 32,
@@ -168,7 +188,8 @@ export const usersData: Array<UserAccessModel> = [
     lastName: "Green",
     email: "cgreenatl@gmail.com",
     role: "SUPPORT_ADMIN",
-    password: ''
+    password: '',
+    userProfile: ''
   },
   {
     id: 33,
@@ -176,7 +197,8 @@ export const usersData: Array<UserAccessModel> = [
     lastName: "Saravanan",
     email: "Shakilabanu.Saravanan@bankofamericamerchant.com",
     role: "SUPPORT_USER",
-    password: ''
+    password: '',
+    userProfile: ''
   },
   {
     id: 34,
@@ -184,7 +206,8 @@ export const usersData: Array<UserAccessModel> = [
     lastName: "Bowers",
     email: "tbowers@midtowncg.com",
     role: "SUPPORT_ADMIN",
-    password: ''
+    password: '',
+    userProfile: ''
   },
   {
     id: 35,
@@ -192,7 +215,8 @@ export const usersData: Array<UserAccessModel> = [
     lastName: "Malament",
     email: "david.malament@bankofamericamerchant.com",
     role: "SUPPORT_USER",
-    password: ''
+    password: '',
+    userProfile: ''
   },
   {
     id: 36,
@@ -200,7 +224,8 @@ export const usersData: Array<UserAccessModel> = [
     lastName: "last",
     email: "testEmail",
     role: "SUPPORT_USER",
-    password: ''
+    password: '',
+    userProfile: ''
   },
   {
     id: 37,
@@ -208,7 +233,8 @@ export const usersData: Array<UserAccessModel> = [
     lastName: "last",
     email: "testEmail",
     role: "SUPPORT_USER",
-    password: ''
+    password: '',
+    userProfile: ''
   },
   {
     id: 38,
@@ -216,7 +242,8 @@ export const usersData: Array<UserAccessModel> = [
     lastName: "last",
     email: "testEmail",
     role: "SUPPORT_USER",
-    password: ''
+    password: '',
+    userProfile: ''
   },
   {
     id: 39,
@@ -224,7 +251,8 @@ export const usersData: Array<UserAccessModel> = [
     lastName: "last",
     email: "testEmail",
     role: "SUPPORT_USER",
-    password: ''
+    password: '',
+    userProfile: ''
   },
   {
     id: 40,
@@ -232,7 +260,8 @@ export const usersData: Array<UserAccessModel> = [
     lastName: "last",
     email: "testEmail",
     role: "SUPPORT_USER",
-    password: ''
+    password: '',
+    userProfile: ''
   },
   {
     id: 41,
@@ -240,7 +269,8 @@ export const usersData: Array<UserAccessModel> = [
     lastName: "Smith",
     email: "john@aol.com",
     role: "SUPPORT_USER",
-    password: ''
+    password: '',
+    userProfile: ''
   },
   {
     id: 42,
@@ -248,7 +278,8 @@ export const usersData: Array<UserAccessModel> = [
     lastName: "Bowers",
     email: "TKBLINK@GMAIL.COM",
     role: "SUPPORT_ADMIN",
-    password: ''
+    password: '',
+    userProfile: ''
   },
   {
     id: 43,
@@ -256,7 +287,8 @@ export const usersData: Array<UserAccessModel> = [
     lastName: "Lukulu",
     email: "MLukulu@midtowncg.com",
     role: "SUPPORT_USER",
-    password: ''
+    password: '',
+    userProfile: ''
   },
   {
     id: 44,
@@ -264,6 +296,7 @@ export const usersData: Array<UserAccessModel> = [
     lastName: "Lukulu",
     email: "maxlukulu@gmail.com",
     role: "SUPPORT_ADMIN",
-    password: ''
+    password: '',
+    userProfile: ''
   }
 ];

@@ -5,4 +5,5 @@ export class UserAccessModel {
     lastName = '';
     password = '';
     role = '';
+    userProfile = '';
 }
