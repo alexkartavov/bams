@@ -51,10 +51,10 @@
                           </thead>
                           <tbody>
                             <tr *ngFor="let item of statements|async">
-                              <td>{{item.date | date:'mediumDate'}}</td>
-                              <td>{{item.type}}</td>
-                              <td>{{item.size}}</td>
-                              <td class="text-center"><a href="{{item.url}}"><igx-icon>insert_drive_file</igx-icon></a></td>
+                              <td>{{item.date}}</td>
+                              <td>{{item.statementType}}</td>
+                              <td>{{item.length}}</td>
+                              <td class="text-center"><a href="{{statementUrl(item.key)}}" title="Open statement" (click)="$event.preventDefault();downloadStatement(statementUrl(item.key))"><igx-icon>insert_drive_file</igx-icon></a></td>
                             </tr>
                           </tbody>
                         </table>

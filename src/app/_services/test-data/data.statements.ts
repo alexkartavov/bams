@@ -3,27 +3,21 @@ import { MerchantStatementModel } from '../../models/merchant-statement-model';
 /* tslint:disable */
 export const merchStatements: Array<MerchantStatementModel> = [
     {
-        id: 1,
-        mid: 89710987,
-        date: new Date("12/1/2018"),
-        type: "Statement",
-        size: "4 pages",
-        url: "/statements?id=1"
+        date: '2018-12-31',
+        key: 'key1',
+        length: '0',
+        statementType: 'LOCATION'
     },
     {
-        id: 2,
-        mid: 89710987,
-        date: new Date("1/1/2019"),
-        type: "Statement",
-        size: "4 pages",
-        url: "/statements?id=2"
+        date: '2019-01-31',
+        key: 'key2',
+        length: '0',
+        statementType: 'LOCATION'
     },
     {
-        id: 3,
-        mid: 89710987,
-        date: new Date("2/1/2019"),
-        type: "Statement",
-        size: "2 pages",
-        url: "/statements?id=2"
+        date: '2019-02-28',
+        key: 'key3',
+        length: '0',
+        statementType: 'LOCATION'
     }
 ];
