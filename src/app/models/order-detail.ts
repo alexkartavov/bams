@@ -3,5 +3,5 @@ export class OrderDetailModel {
     productName: string;
     price: number;
     purchaseType: string;
-    quantity: string;
+    quantity: number;
 }

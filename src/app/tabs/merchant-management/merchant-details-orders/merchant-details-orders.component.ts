@@ -6,6 +6,7 @@ import { MerchantDetailsModel } from 'src/app/models/merchant-details-model';
 import { MerchantModel } from 'src/app/models/merchant-model';
 import { OrderSummaryModel } from 'src/app/models/order-summary';
 import { OrderDetailModel } from 'src/app/models/order-detail';
+import { merchantOrderSummary, merchantOrderDetails } from 'src/app/_services/test-data/data.merchant.transactions';
 
 @Component({
   selector: 'app-merchant-details-orders',
@@ -45,12 +46,39 @@ export class MerchantDetailsOrdersComponent implements OnInit {
       //   this.openModal(this.tmpl);
       // });
       this.m = new MerchantDetailsModel();
-      this.orderSummary = new OrderSummaryModel();
-      this.orderDetails = [
-        new OrderDetailModel()
-      ];
+      this.orderSummary = merchantOrderSummary;
+      this.orderDetails = merchantOrderDetails;
       this.openModal(this.tmpl);
     }
   }
 
+  taxRate(): number {
+    return 7;
+  }
+
+  totalQty(details: OrderDetailModel[]): number {
+    if (!details || details.length === 0) {
+      return 0;
+    }
+    let total = 0;
+    details.forEach(e => total += e.quantity);
+    return total;
+  }
+
+  totalPrice(details: OrderDetailModel[]): number {
+    if (!details || details.length === 0) {
+      return 0;
+    }
+    let total = 0;
+    details.forEach(e => total += e.quantity * e.price);
+    return total;
+  }
+
+  grandTotal(details: OrderDetailModel[]): number {
+    if (!details || details.length === 0) {
+      return 0;
+    }
+    const total = this.totalPrice(details);
+    return total * (1 + this.taxRate() / 100);
+  }
 }

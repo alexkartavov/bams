@@ -9,7 +9,7 @@
           <div class="row">
             <div class="col mt-3">
               <h3><b>{{merchant.legalBusinessName | uppercase}}</b></h3>
-              <div class="small">
+              <div>
                 <div><b>DBA Name:</b> {{merchant.dbaName}}</div>
                 <div><b>Tax Filing Name:</b> {{merchant.taxFilingName}}</div>
                 <div><b>Tax ID No:</b> {{merchant.taxIdNumber}}</div>
@@ -33,11 +33,11 @@
             </div>
           </div>
           <div class="row">
-            <div class="col">
-              <div class="modal-body">
+            <div class="col pl-0 pr-0">
+              <div class="modal-body pl-0 pr-0">
                 <tabset #detailTabs class="tabs-material">
                   <tab heading="Order Summary">
-                      <div class="container">
+                      <div class="container pl-0 pr-0">
                         <div class="row">
                           <div class="col-4"><b>Order ID:</b></div>
                           <div class="col-8">{{orderSummary.orderId}}</div>
@@ -78,12 +78,23 @@
                           <td>{{item.productName}}</td>
                           <td>{{item.quantity}}</td>
                           <td>{{item.purchaseType}}</td>
-                          <td>{{item.price}}</td>
-                          <td></td>
-                          <td></td>
-                          <td></td>
+                          <td>{{item.price | currency}}</td>
+                          <td>{{item.price * item.quantity | currency}}</td>
+                          <td>{{taxRate()}}%</td>
+                          <td>{{item.price * item.quantity * (1 + taxRate()/100) | currency}}</td>
                         </tr>
                       </tbody>
+                      <tfoot>
+                        <tr>
+                          <th>TOTAL:</th>
+                          <th></th>
+                          <th>{{totalQty(orderDetails)}}</th>
+                          <th></th>
+                          <th>{{totalPrice(orderDetails) | currency}}</th>
+                          <th></th>
+                          <th>{{grandTotal(orderDetails) | currency}}</th>
+                        </tr>
+                      </tfoot>
                     </table>
                   </tab>
                 </tabset>
