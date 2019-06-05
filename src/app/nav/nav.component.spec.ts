@@ -50,6 +50,7 @@ import { AllTicketsReportComponent } from '../tabs/reporting/all-tickets-report/
 import { TimeToResolveReportComponent } from '../tabs/reporting/time-to-resolve-report/time-to-resolve-report.component';
 import { OpenTicketsReportComponent } from '../tabs/reporting/open-tickets-report/open-tickets-report.component';
 import { MerchantDataReportComponent } from '../tabs/reporting/merchant-data-report/merchant-data-report.component';
+import { MerchantDetailsOrdersComponent } from '../tabs/merchant-management/merchant-details-orders/merchant-details-orders.component';
 
 describe('NavComponent', () => {
   let component: NavComponent;
@@ -102,7 +103,8 @@ describe('NavComponent', () => {
         AllTicketsReportComponent,
         TimeToResolveReportComponent,
         OpenTicketsReportComponent,
-        MerchantDataReportComponent
+        MerchantDataReportComponent,
+        MerchantDetailsOrdersComponent
       ]
     })
     .compileComponents();

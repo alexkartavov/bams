@@ -4,6 +4,8 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
 import { MerchantDetailsOrdersComponent } from './merchant-details-orders.component';
+import { TabsModule, ModalModule } from 'ngx-bootstrap';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('MerchantDetailsOrdersComponent', () => {
   let component: MerchantDetailsOrdersComponent;
@@ -11,7 +13,14 @@ describe('MerchantDetailsOrdersComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MerchantDetailsOrdersComponent ]
+      declarations: [
+        MerchantDetailsOrdersComponent
+      ],
+      imports: [
+        TabsModule.forRoot(),
+        ModalModule.forRoot(),
+        HttpClientTestingModule
+      ]
     })
     .compileComponents();
   }));
