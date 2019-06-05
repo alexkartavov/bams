@@ -1,0 +1,105 @@
+<span (click)="show(merchant)">
+  <ng-content></ng-content>
+</span>
+
+<ng-template #template>
+    <div class="modal-content">
+      <div class="row">
+        <div class="col-4 bg-light">
+          <div class="row">
+            <div class="col mt-3">
+              <h3><b>{{merchant.legalBusinessName | uppercase}}</b></h3>
+              <div class="small">
+                <div><b>DBA Name:</b> {{merchant.dbaName}}</div>
+                <div><b>Tax Filing Name:</b> {{merchant.taxFilingName}}</div>
+                <div><b>Tax ID No:</b> {{merchant.taxIdNumber}}</div>
+                <div><b>Checking Account on File:</b> {{m.abaNumber}}</div>
+                <div><b>Funding Days:</b> </div>
+                <div><b>Account Status:</b> {{merchant.accountStatus}}</div>
+                <div><b>Fees ():</b> </div>
+                <div><b>Statement Delivery:</b> </div>
+                <div><b>Current Merchant Statement:</b>&nbsp;<a href="#">Download</a></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col mr-3">
+          <div class="row">
+            <div class="col modal-header text-large pr-3">
+              <h3>Transaction Details</h3>
+              <button type="button" class="close pull-right" aria-label="Close" (click)="lgModal.hide()">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <div class="modal-body">
+                <tabset #detailTabs class="tabs-material">
+                  <tab heading="Order Summary">
+                      <div class="container">
+                        <div class="row">
+                          <div class="col-4"><b>Order ID:</b></div>
+                          <div class="col-8">{{orderSummary.orderId}}</div>
+                        </div>
+                        <div class="row">
+                          <div class="col-4"><b>Current Status:</b></div>
+                          <div class="col-8">{{orderSummary.currentStatus}}</div>
+                        </div>
+                        <div class="row">
+                          <div class="col-4"><b>Merchant Identifier:</b></div>
+                          <div class="col-8">{{orderSummary.merchantIdentifier}}</div>
+                        </div>
+                        <div class="row">
+                          <div class="col-4"><b>Transaction Type:</b></div>
+                          <div class="col-8"></div>
+                        </div>
+                        <div class="row">
+                          <div class="col-4"><b>Credit Card No:</b></div>
+                          <div class="col-8"></div>
+                        </div>
+                      </div>
+                  </tab>
+                  <tab heading="Order Details">
+                    <table class="table table-striped table-sm">
+                      <thead>
+                        <tr>
+                          <th scope="col">Product Name</th>
+                          <th scope="col">Qty</th>
+                          <th scope="col">Purchase Type</th>
+                          <th scope="col">Price</th>
+                          <th scope="col">Sub Totatl</th>
+                          <th scope="col">Tax Rate</th>
+                          <th scope="col">Total (w/Tax)</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let item of orderDetails">
+                          <td>{{item.productName}}</td>
+                          <td>{{item.quantity}}</td>
+                          <td>{{item.purchaseType}}</td>
+                          <td>{{item.price}}</td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </tab>
+                  <!-- <tab heading="Tax Information">
+                      <div>Tax Information</div>
+                  </tab>
+                  <tab heading="Product Information">
+                      <div>Product Information</div>
+                  </tab> -->
+                </tabset>
+              </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" (click)="lgModal.hide()">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
