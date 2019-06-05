@@ -50,6 +50,7 @@ import { OpenTicketsReportComponent } from '../reporting/open-tickets-report/ope
 import { MerchantDataReportComponent } from '../reporting/merchant-data-report/merchant-data-report.component';
 import { AnimationBuilder } from '@angular/animations';
 import { MerchantDetailsOrdersComponent } from './merchant-details-orders/merchant-details-orders.component';
+import { MerchantNotesComponent } from './merchant-notes/merchant-notes.component';
 
 describe('MerchantManagementComponent', () => {
   let component: MerchantManagementComponent;
@@ -102,7 +103,8 @@ describe('MerchantManagementComponent', () => {
         TimeToResolveReportComponent,
         OpenTicketsReportComponent,
         MerchantDataReportComponent,
-        MerchantDetailsOrdersComponent
+        MerchantDetailsOrdersComponent,
+        MerchantNotesComponent
       ],
       providers: [
         AnimationBuilder

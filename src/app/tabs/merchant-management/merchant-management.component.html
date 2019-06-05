@@ -98,15 +98,18 @@
                   <div><button class="btn btn-link btn-sm" (click)="pop.hide();merchDetails.show(cell.row.rowData)">View Details</button></div>
                   <div><button class="btn btn-link btn-sm" (click)="pop.hide();merchDetailsOrders.show(cell.row.rowData)">View Transactions</button></div>
                   <div><button class="btn btn-link btn-sm" (click)="pop.hide();merchStatements.show(cell.row.rowData.midNumber)">Statements</button></div>
-                  <div><button class="btn btn-link btn-sm">Add a Note</button></div>
+                  <div><button class="btn btn-link btn-sm" (click)="pop.hide();merchNotes.show('Add a Note', cell.row.rowData)">Add a Note</button></div>
                 </div>
               </ng-template>
 
               <app-merchant-details #merchDetails [id]="cell.row.rowData.id"></app-merchant-details>
               <app-merchant-details-orders #merchDetailsOrders [id]="cell.row.rowData.id"></app-merchant-details-orders>
               <app-merchant-statements #merchStatements [id]="cell.row.rowData.id"></app-merchant-statements>
+              <app-merchant-notes #merchNotes [id]="cell.row.rowData.id" ></app-merchant-notes>
 
-              <igx-icon fontSet="material" class="primary-color" title="View Notes">note</igx-icon>
+              <app-merchant-notes [merchant]="cell.row.rowData" [header]="'Notes'">
+                <igx-icon fontSet="material" class="primary-color" title="View Notes">note</igx-icon>
+              </app-merchant-notes>
             </div>
           </ng-template>
       </igx-column>

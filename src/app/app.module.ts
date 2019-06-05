@@ -53,6 +53,7 @@ import { TimeToResolveReportComponent } from './tabs/reporting/time-to-resolve-r
 import { OpenTicketsReportComponent } from './tabs/reporting/open-tickets-report/open-tickets-report.component';
 import { MerchantDataReportComponent } from './tabs/reporting/merchant-data-report/merchant-data-report.component';
 import { MerchantDetailsOrdersComponent } from './tabs/merchant-management/merchant-details-orders/merchant-details-orders.component';
+import { MerchantNotesComponent } from './tabs/merchant-management/merchant-notes/merchant-notes.component';
 
 @NgModule({
    declarations: [
@@ -86,7 +87,8 @@ import { MerchantDetailsOrdersComponent } from './tabs/merchant-management/merch
       TimeToResolveReportComponent,
       OpenTicketsReportComponent,
       MerchantDataReportComponent,
-      MerchantDetailsOrdersComponent
+      MerchantDetailsOrdersComponent,
+      MerchantNotesComponent
    ],
    imports: [
       BrowserModule,

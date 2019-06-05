@@ -50,6 +50,7 @@ import { OpenTicketsReportComponent } from './tabs/reporting/open-tickets-report
 import { MerchantDataReportComponent } from './tabs/reporting/merchant-data-report/merchant-data-report.component';
 import { FilterTicketsComponent } from './tabs/my-support/filter-tickets/filter-tickets.component';
 import { MerchantDetailsOrdersComponent } from './tabs/merchant-management/merchant-details-orders/merchant-details-orders.component';
+import { MerchantNotesComponent } from './tabs/merchant-management/merchant-notes/merchant-notes.component';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -85,7 +86,8 @@ describe('AppComponent', () => {
         OpenTicketsReportComponent,
         MerchantDataReportComponent,
         FilterTicketsComponent,
-        MerchantDetailsOrdersComponent
+        MerchantDetailsOrdersComponent,
+        MerchantNotesComponent
       ],
       imports: [
         HttpClientModule,
