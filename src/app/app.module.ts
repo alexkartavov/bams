@@ -54,6 +54,7 @@ import { OpenTicketsReportComponent } from './tabs/reporting/open-tickets-report
 import { MerchantDataReportComponent } from './tabs/reporting/merchant-data-report/merchant-data-report.component';
 import { MerchantDetailsOrdersComponent } from './tabs/merchant-management/merchant-details-orders/merchant-details-orders.component';
 import { MerchantNotesComponent } from './tabs/merchant-management/merchant-notes/merchant-notes.component';
+import { ForgotPasswordComponent } from './home/forgot-password/forgot-password.component';
 
 @NgModule({
    declarations: [
@@ -88,7 +89,8 @@ import { MerchantNotesComponent } from './tabs/merchant-management/merchant-note
       OpenTicketsReportComponent,
       MerchantDataReportComponent,
       MerchantDetailsOrdersComponent,
-      MerchantNotesComponent
+      MerchantNotesComponent,
+      ForgotPasswordComponent
    ],
    imports: [
       BrowserModule,
