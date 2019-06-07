@@ -401,4 +401,23 @@ export class MerchantManagementComponent implements OnInit, OnDestroy, AfterView
       'max-height': (window.innerHeight - 300).toString() + 'px'
     };
   }
+
+  platformColorStyle(platform) {
+    let color = 'green';
+    switch (platform) {
+      case 'BANA':
+        color = 'cyan';
+        break;
+      case 'ANET':
+        color = 'orange';
+        break;
+    }
+    return {
+      'background-color': color
+    };
+  }
+
+  platformName(platform) {
+    return 'BAMS';
+  }
 }

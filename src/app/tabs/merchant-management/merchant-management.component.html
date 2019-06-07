@@ -88,6 +88,11 @@
             <span title="{{value.header}}">{{value.header}}</span>
           </ng-template>
         </igx-column>
+        <igx-column header="Platform" disableHiding="true">
+            <ng-template igxCell let-cell="cell">
+              <span [ngStyle]="platformColorStyle(cell.row.rowData.platform)">{{platformName(cell.row.rowData.platform)}}</span>
+            </ng-template>
+        </igx-column>
         <igx-column header="Actions" width="100px" disableHiding="true">
           <ng-template igxCell let-cell="cell">
             <div class="actions_cell_class">
