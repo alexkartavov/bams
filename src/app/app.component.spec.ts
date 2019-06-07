@@ -51,6 +51,7 @@ import { MerchantDataReportComponent } from './tabs/reporting/merchant-data-repo
 import { FilterTicketsComponent } from './tabs/my-support/filter-tickets/filter-tickets.component';
 import { MerchantDetailsOrdersComponent } from './tabs/merchant-management/merchant-details-orders/merchant-details-orders.component';
 import { MerchantNotesComponent } from './tabs/merchant-management/merchant-notes/merchant-notes.component';
+import { ForgotPasswordComponent } from './home/forgot-password/forgot-password.component';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -87,7 +88,8 @@ describe('AppComponent', () => {
         MerchantDataReportComponent,
         FilterTicketsComponent,
         MerchantDetailsOrdersComponent,
-        MerchantNotesComponent
+        MerchantNotesComponent,
+        ForgotPasswordComponent
       ],
       imports: [
         HttpClientModule,

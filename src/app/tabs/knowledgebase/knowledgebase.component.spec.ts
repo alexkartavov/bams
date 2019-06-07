@@ -51,6 +51,7 @@ import { MerchantDataReportComponent } from '../reporting/merchant-data-report/m
 import { AnimationBuilder } from '@angular/animations';
 import { MerchantDetailsOrdersComponent } from '../merchant-management/merchant-details-orders/merchant-details-orders.component';
 import { MerchantNotesComponent } from '../merchant-management/merchant-notes/merchant-notes.component';
+import { ForgotPasswordComponent } from 'src/app/home/forgot-password/forgot-password.component';
 
 describe('KnowledgebaseComponent', () => {
   let component: KnowledgebaseComponent;
@@ -104,7 +105,8 @@ describe('KnowledgebaseComponent', () => {
         OpenTicketsReportComponent,
         MerchantDataReportComponent,
         MerchantDetailsOrdersComponent,
-        MerchantNotesComponent
+        MerchantNotesComponent,
+        ForgotPasswordComponent
       ],
       providers: [
         AnimationBuilder

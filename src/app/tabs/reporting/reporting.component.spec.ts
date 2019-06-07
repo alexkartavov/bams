@@ -51,6 +51,7 @@ import { FilterTicketsComponent } from '../my-support/filter-tickets/filter-tick
 import { AnimationBuilder } from '@angular/animations';
 import { MerchantDetailsOrdersComponent } from '../merchant-management/merchant-details-orders/merchant-details-orders.component';
 import { MerchantNotesComponent } from '../merchant-management/merchant-notes/merchant-notes.component';
+import { ForgotPasswordComponent } from 'src/app/home/forgot-password/forgot-password.component';
 
 describe('ReportingComponent', () => {
   let component: ReportingComponent;
@@ -104,7 +105,8 @@ describe('ReportingComponent', () => {
         OpenTicketsReportComponent,
         MerchantDataReportComponent,
         MerchantDetailsOrdersComponent,
-        MerchantNotesComponent
+        MerchantNotesComponent,
+        ForgotPasswordComponent
       ],
       providers: [
         AnimationBuilder
