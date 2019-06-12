@@ -5,6 +5,7 @@ import { TabsNavService } from '../_services/tabs.nav.service';
 import { Router, NavigationExtras } from '@angular/router';
 import { SupportUserDataService } from '../_services/support-user-data.service';
 import { ProfileService } from '../_services/profile.service';
+import { Role } from '../models/role';
 
 @Component({
   selector: 'app-home',
@@ -46,6 +47,10 @@ export class HomeComponent implements OnInit {
         this.alertify.error(error);
       }
     );
+  }
+
+  isAdmin(): boolean {
+    return this.authService.getUserRole() === Role.Admin;
   }
 
   createAccount() {

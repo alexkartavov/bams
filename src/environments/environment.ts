@@ -7,8 +7,8 @@ export const environment = {
   production: false,
 
   merchants: {
-    listPostUrl: 'https://anet-dev-api-management.azure-api.net/core/api/v1/support/list/merchants',
-    getUrl: 'https://anet-dev-api-management.azure-api.net/core/api/v1/support/merchant/{mid}',
+    listPostUrl: 'http://bams-cep-anet-dev-ue-aks.eastus.cloudapp.azure.com/core/api/v1/support/list/merchants',
+    getUrl: 'http://bams-cep-anet-dev-ue-aks.eastus.cloudapp.azure.com/core/api/v1/support/merchant/{mid}',
 
     // listPostUrl: 'api/application',
 

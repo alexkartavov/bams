@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Role } from '../models/role';
 
 @Injectable({
   providedIn: 'root'
@@ -32,6 +33,16 @@ export class AuthService {
 
   getUserId() {
     return 3;
+  }
+
+  getUserRole() {
+    if (!this.loggedIn()) {
+      return null;
+    }
+    if (localStorage.getItem('token') === 'admin@email.com') {
+      return Role.Admin;
+    }
+    return Role.User;
   }
 
 }

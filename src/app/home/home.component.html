@@ -72,12 +72,21 @@
               </div>
             </div>
           </form>
+
+          <div class="row mt-5">
+            <div class="col">For admin access use:</div>
+            <div class="col">admin@email.com / password</div>
+          </div>
+          <div class="row">
+            <div class="col">For support user access use:</div>
+            <div class="col">user@email.com / password</div>
+          </div>
         </div>
-        </div>
+      </div>
   </div>
 
-  <div *ngIf="loggedIn()" class="row mb-5">
-    <div class="col-3 text-center">
+  <div *ngIf="loggedIn()" class="row mb-5 text-center">
+    <div class="col text-center">
       <!-- <igx-icon class="primary-color" style="font-size:44px;margin-left:-28px;">person</igx-icon><br/> -->
       <img src="../../assets/home_merchantmgmt.png" /><br/>
       <a class="btn btn-light mb-3" role="button" style="min-width: 190px;" [routerLink]="[tabsNav.routeFromIndex(0)]">{{tabsNav.headingFromIndex(0)}}</a>
@@ -87,7 +96,7 @@
         <li class="text-muted"><igx-icon class="boldred">check</igx-icon> Resend Merchant Log in Email</li>
       </ul>
     </div>
-    <div class="col-3 text-center">
+    <div *ngIf="isAdmin()" class="col text-center">
       <!-- <igx-icon class="primary-color" style="font-size:44px;margin-left:-28px;">person</igx-icon><br/> -->
       <img src="../../assets/home_useraccessmgmt.png" /><br/>
       <a class="btn btn-light mb-3" role="button" style="min-width: 190px;" [routerLink]="[tabsNav.routeFromIndex(1)]">{{tabsNav.headingFromIndex(1)}}</a>
@@ -96,7 +105,7 @@
           <li class="text-muted"><igx-icon class="boldred">check</igx-icon> Support Tool User Access</li>
         </ul>
       </div>
-    <div class="col-3 text-center">
+    <div class="col text-center">
       <!-- <igx-icon class="primary-color" style="font-size:44px;margin-left:-28px;">person</igx-icon><br/> -->
       <img src="../../assets/home_knowledgebase.png" /><br/>
       <a class="btn btn-light mb-3" role="button" style="min-width: 190px;" [routerLink]="[tabsNav.routeFromIndex(2)]">{{tabsNav.headingFromIndex(2)}}</a>
@@ -106,7 +115,7 @@
           <li class="text-muted"><igx-icon class="boldred">check</igx-icon> View Previous FAQs</li>
         </ul>
       </div>
-    <div class="col-3 text-center">
+    <div class="col text-center">
       <!-- <igx-icon class="primary-color" style="font-size:44px;margin-left:-28px;">person</igx-icon><br/> -->
       <img src="../../assets/home_reporting.png" /><br/>
       <a class="btn btn-light mb-3" role="button" style="min-width: 190px;" [routerLink]="[tabsNav.routeFromIndex(3)]">{{tabsNav.headingFromIndex(3)}}</a>

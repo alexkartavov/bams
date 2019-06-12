@@ -29,7 +29,7 @@
     "core-js": "^2.6.5",
     "font-awesome": "^4.7.0",
     "igniteui-angular": "^7.2.3",
-    "ngx-bootstrap": "^3.2.0",
+    "ngx-bootstrap": "^4.3.0",
     "rxjs": "~6.4.0",
     "tslib": "^1.9.0",
     "web-animations-js": "^2.3.1",
