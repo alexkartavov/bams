@@ -33,11 +33,11 @@ export class MerchantDataService implements OnDestroy {
     };
     this.httpDetailsOptions = {
       headers: new HttpHeaders({
-        'Ocp-Apim-Subscription-Key': environment.merchantDetails.ocpApimSubscriptionKey,
-        'Ocp-Api-Trace': 'true',
-        'Cache-Control': 'no-cache',
+        // 'Ocp-Apim-Subscription-Key': environment.merchantDetails.ocpApimSubscriptionKey,
+        // 'Ocp-Api-Trace': 'true',
+        // 'Cache-Control': 'no-cache',
         'Content-Type': 'application/json',
-        'token': ''
+        // 'token': ''
       })
     };
   }

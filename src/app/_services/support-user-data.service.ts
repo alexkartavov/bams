@@ -23,11 +23,11 @@ export class SupportUserDataService implements OnDestroy {
   constructor(private http: HttpClient, private valueService: ValueProcessingService) {
     this.httpOptions = {
       headers: new HttpHeaders({
-        'Ocp-Apim-Subscription-Key': environment.users.ocpApimSubscriptionKey,
-        'Ocp-Api-Trace': 'true',
-        'Cache-Control': 'no-cache',
+        // 'Ocp-Apim-Subscription-Key': environment.users.ocpApimSubscriptionKey,
+        // 'Ocp-Api-Trace': 'true',
+        // 'Cache-Control': 'no-cache',
         'Content-Type': 'application/json',
-        'token': ''
+        // 'token': ''
       })
     };
 

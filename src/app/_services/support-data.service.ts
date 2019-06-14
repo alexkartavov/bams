@@ -30,21 +30,21 @@ export class SupportDataService implements OnDestroy {
       private exportService: ExportService) {
     this.httpOptions = {
       headers: new HttpHeaders({
-        'Ocp-Apim-Subscription-Key': environment.tickets.ocpApimSubscriptionKey,
-        'Ocp-Api-Trace': 'true',
-        'Cache-Control': 'no-cache',
+        // 'Ocp-Apim-Subscription-Key': environment.tickets.ocpApimSubscriptionKey,
+        // 'Ocp-Api-Trace': 'true',
+        // 'Cache-Control': 'no-cache',
         'Content-Type': 'application/json',
-        'token': ''
+        // 'token': ''
       })
     };
 
     this.httpFileOptions = {
       headers: new HttpHeaders({
-        'Ocp-Apim-Subscription-Key': environment.tickets.ocpApimSubscriptionKey,
-        'Ocp-Api-Trace': 'true',
-        'Cache-Control': 'no-cache',
+        // 'Ocp-Apim-Subscription-Key': environment.tickets.ocpApimSubscriptionKey,
+        // 'Ocp-Api-Trace': 'true',
+        // 'Cache-Control': 'no-cache',
         // 'Content-Type': 'application/json',
-        'token': ''
+        // 'token': ''
       }),
       responseType: 'blob' as 'json'
     };
