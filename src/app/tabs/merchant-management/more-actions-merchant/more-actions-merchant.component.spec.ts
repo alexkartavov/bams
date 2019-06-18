@@ -12,6 +12,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { MerchantDetailsComponent } from 'src/app/tabs/merchant-management/merchant-details/merchant-details.component';
 import { MerchantStatementsComponent } from 'src/app/tabs/merchant-management/merchant-statements/merchant-statements.component';
 import { MoreActionsMerchantComponent } from './more-actions-merchant.component';
+import { MerchantDetailsOrdersComponent } from '../merchant-details-orders/merchant-details-orders.component';
 
 describe('MoreActionsMerchantComponent', () => {
   let component: MoreActionsMerchantComponent;
@@ -31,7 +32,8 @@ describe('MoreActionsMerchantComponent', () => {
         InitialsPipe,
         MerchantDetailsComponent,
         MerchantStatementsComponent,
-        MoreActionsMerchantComponent
+        MoreActionsMerchantComponent,
+        MerchantDetailsOrdersComponent
       ]
     })
     .compileComponents();

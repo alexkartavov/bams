@@ -8,6 +8,8 @@ import { UsersDataSource } from './users-datasource';
 import { ValueProcessingService } from 'src/app/_services/value-processing.service';
 import { ExportService } from 'src/app/_services/export.service';
 import { ProfileService } from 'src/app/_services/profile.service';
+import { AuthService } from 'src/app/_services/auth.service';
+import { Role } from 'src/app/models/role';
 
 @Component({
   selector: 'app-user-access-management',
@@ -49,14 +51,18 @@ export class UserAccessManagementComponent implements OnInit, OnDestroy, AfterVi
     private valueService: ValueProcessingService,
     private exportService: ExportService,
     private profileService: ProfileService,
-    private cd: ChangeDetectorRef) {
+    private cd: ChangeDetectorRef,
+    private auth: AuthService) {
       this.dataSource = new UsersDataSource(userDataService);
   }
 
   ngOnInit() {
-    this.dataSource.getTotalCount().subscribe(count => {
-      this.totalCount = count;
-    });
+    const totalCountDS = this.dataSource.getTotalCount();
+    if (totalCountDS !== null) {
+      totalCountDS.subscribe(count => {
+        this.totalCount = count;
+      });
+    }
     this.paginate(0);
   }
 
@@ -242,4 +248,8 @@ export class UserAccessManagementComponent implements OnInit, OnDestroy, AfterVi
   }
   // #endregion Grid profile save/restore
   ////////////////////////////////////
+
+  isAdmin(): boolean {
+    return this.auth.getUserRole() === Role.Admin;
+  }
 }

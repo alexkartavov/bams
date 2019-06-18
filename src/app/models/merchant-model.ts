@@ -14,4 +14,5 @@ export class MerchantModel {
     taxIdNumber: string;
     accountStatus: string;
     monthlyStatement: string;
+    platform: string;
 }

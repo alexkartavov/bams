@@ -49,6 +49,9 @@ import { TimeToResolveReportComponent } from '../reporting/time-to-resolve-repor
 import { OpenTicketsReportComponent } from '../reporting/open-tickets-report/open-tickets-report.component';
 import { MerchantDataReportComponent } from '../reporting/merchant-data-report/merchant-data-report.component';
 import { AnimationBuilder } from '@angular/animations';
+import { MerchantDetailsOrdersComponent } from './merchant-details-orders/merchant-details-orders.component';
+import { MerchantNotesComponent } from './merchant-notes/merchant-notes.component';
+import { ForgotPasswordComponent } from 'src/app/home/forgot-password/forgot-password.component';
 
 describe('MerchantManagementComponent', () => {
   let component: MerchantManagementComponent;
@@ -100,7 +103,10 @@ describe('MerchantManagementComponent', () => {
         AllTicketsReportComponent,
         TimeToResolveReportComponent,
         OpenTicketsReportComponent,
-        MerchantDataReportComponent
+        MerchantDataReportComponent,
+        MerchantDetailsOrdersComponent,
+        MerchantNotesComponent,
+        ForgotPasswordComponent
       ],
       providers: [
         AnimationBuilder

@@ -1,8 +1,6 @@
 export class MerchantStatementModel {
-    id: number;
-    mid: number;
-    date: Date;
-    type: string;
-    size: string;
-    url: string;
+    date: string;
+    key: string;
+    length: string;
+    statementType: string;
 }

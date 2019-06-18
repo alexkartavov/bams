@@ -49,6 +49,9 @@ import { TimeToResolveReportComponent } from './reporting/time-to-resolve-report
 import { OpenTicketsReportComponent } from './reporting/open-tickets-report/open-tickets-report.component';
 import { MerchantDataReportComponent } from './reporting/merchant-data-report/merchant-data-report.component';
 import { AnimationBuilder } from '@angular/animations';
+import { MerchantDetailsOrdersComponent } from './merchant-management/merchant-details-orders/merchant-details-orders.component';
+import { MerchantNotesComponent } from './merchant-management/merchant-notes/merchant-notes.component';
+import { ForgotPasswordComponent } from '../home/forgot-password/forgot-password.component';
 
 describe('TabsComponent', () => {
   let component: TabsComponent;
@@ -100,7 +103,10 @@ describe('TabsComponent', () => {
         AllTicketsReportComponent,
         TimeToResolveReportComponent,
         OpenTicketsReportComponent,
-        MerchantDataReportComponent
+        MerchantDataReportComponent,
+        MerchantDetailsOrdersComponent,
+        MerchantNotesComponent,
+        ForgotPasswordComponent
       ],
       providers: [
         AnimationBuilder

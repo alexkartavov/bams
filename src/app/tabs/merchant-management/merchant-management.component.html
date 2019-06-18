@@ -83,10 +83,15 @@
             <app-sort-indicator [isSorted]="value.field == sortedColumn" [sortDir]="sortDirection"></app-sort-indicator>
           </ng-template>
         </igx-column>
-        <igx-column [field]="columnObj(10).field" [header]="columnObj(10).header" width="130px" [dataType]="'string'" [resizable]="true">
+        <igx-column [field]="columnObj(10).field" [header]="columnObj(10).header" width="110px" [dataType]="'string'" [resizable]="true">
           <ng-template igxHeader let-value>
             <span title="{{value.header}}">{{value.header}}</span>
           </ng-template>
+        </igx-column>
+        <igx-column [header]="columnObj(11).header" width="80px">
+            <ng-template igxCell let-cell="cell">
+              <span [ngStyle]="platformColorStyle(cell.row.rowData.platform)">{{platformName(cell.row.rowData.platform)}}</span>
+            </ng-template>
         </igx-column>
         <igx-column header="Actions" width="100px" disableHiding="true">
           <ng-template igxCell let-cell="cell">
@@ -96,15 +101,20 @@
               <ng-template #menuTemplate>
                 <div>
                   <div><button class="btn btn-link btn-sm" (click)="pop.hide();merchDetails.show(cell.row.rowData)">View Details</button></div>
+                  <div><button class="btn btn-link btn-sm" (click)="pop.hide();merchDetailsOrders.show(cell.row.rowData)">View Transactions</button></div>
                   <div><button class="btn btn-link btn-sm" (click)="pop.hide();merchStatements.show(cell.row.rowData.midNumber)">Statements</button></div>
-                  <div><button class="btn btn-link btn-sm">Add a Note</button></div>
+                  <div><button class="btn btn-link btn-sm" (click)="pop.hide();merchNotes.show('Add a Note', cell.row.rowData)">Add a Note</button></div>
                 </div>
               </ng-template>
 
               <app-merchant-details #merchDetails [id]="cell.row.rowData.id"></app-merchant-details>
+              <app-merchant-details-orders #merchDetailsOrders [id]="cell.row.rowData.id"></app-merchant-details-orders>
               <app-merchant-statements #merchStatements [id]="cell.row.rowData.id"></app-merchant-statements>
+              <app-merchant-notes #merchNotes [id]="cell.row.rowData.id" ></app-merchant-notes>
 
-              <igx-icon fontSet="material" class="primary-color" title="View Notes">note</igx-icon>
+              <app-merchant-notes [merchant]="cell.row.rowData" [header]="'Notes'">
+                <igx-icon fontSet="material" class="primary-color" title="View Notes">note</igx-icon>
+              </app-merchant-notes>
             </div>
           </ng-template>
       </igx-column>

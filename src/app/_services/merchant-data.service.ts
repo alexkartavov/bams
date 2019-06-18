@@ -5,7 +5,6 @@ import { map } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { MerchantModel } from '../models/merchant-model';
 import { MerchantDetailsModel } from '../models/merchant-details-model';
-import { merchStatements } from 'src/app/_services/test-data/data.statements';
 
 @Injectable({
   providedIn: 'root'
@@ -25,11 +24,11 @@ export class MerchantDataService implements OnDestroy {
 
     this.httpOptions = {
       headers: new HttpHeaders({
-        'Ocp-Apim-Subscription-Key': environment.merchants.ocpApimSubscriptionKey,
-        'Ocp-Api-Trace': 'true',
-        'Cache-Control': 'no-cache',
+        // 'Ocp-Apim-Subscription-Key': environment.merchants.ocpApimSubscriptionKey,
+        // 'Ocp-Api-Trace': 'true',
+        // 'Cache-Control': 'no-cache',
         'Content-Type': 'application/json',
-        'token': ''
+        // 'token': ''
       })
     };
     this.httpDetailsOptions = {
@@ -75,7 +74,7 @@ export class MerchantDataService implements OnDestroy {
   }
 
   getMerchantDelails(id: number): Observable<MerchantDetailsModel> {
-    return this.http.get(this.getDetailsUrl.replace('{merchantId}', id.toString()), this.httpDetailsOptions)
+    return this.http.get(this.getDetailsUrl.replace('{merchantId}', id.toString()), this.httpOptions)
       .pipe(map<any, MerchantDetailsModel>(data => data)
     );
   }
@@ -87,13 +86,24 @@ export class MerchantDataService implements OnDestroy {
         .replace('{dateTo}', params.dateTo), this.httpDetailsOptions)
       .pipe(
         map((data: any) => {
-          // TODO: remove debugging data once BT API is up
-          if (data.length === undefined) {
-            return merchStatements;
-          }
-          // END TODO
+          const statements = [];
 
-          return data;
+          if (!data || !data.result || !data.result.statementRespMap || data.responseCode !== 'success') {
+            return statements;
+          }
+
+          for (const year in data.result.statementRespMap) {
+            if (!data.result.statementRespMap.hasOwnProperty(year)) {
+              continue;
+            }
+            const yearStat = data.result.statementRespMap[year];
+            if (yearStat && yearStat.length) {
+              yearStat.forEach(element => {
+                statements.push(element);
+              });
+            }
+          }
+          return statements;
         })
     );
   }

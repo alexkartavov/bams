@@ -3,10 +3,12 @@
 <ng-template #menuTemplate>
   <div>
     <div><button class="btn btn-link btn-sm" (click)="pop.hide();merchDetails.show()">View Details</button></div>
+    <div><button class="btn btn-link btn-sm" (click)="pop.hide();merchDetailsOrders.show()">View Transactions</button></div>
     <div><button class="btn btn-link btn-sm" (click)="pop.hide();merchStatements.show()">Statements</button></div>
     <div><button class="btn btn-link btn-sm">Add a Note</button></div>
   </div>
 </ng-template>
 
 <app-merchant-details #merchDetails [id]="id"></app-merchant-details>
+<app-merchant-details-orders #merchDetailsOrders [id]="id"></app-merchant-details-orders>
 <app-merchant-statements #merchStatements [id]="id"></app-merchant-statements>

@@ -3,8 +3,8 @@
     <tab heading="{{tabsNav.headingFromIndex(0)}}" (select)="onSelect($event)">
       <app-merchant-management></app-merchant-management>
     </tab>
-    <tab heading="{{tabsNav.headingFromIndex(1)}}" (select)="onSelect($event)">
-      <app-user-access-management></app-user-access-management>
+    <tab heading="{{tabsNav.headingFromIndex(1)}}" (select)="onSelect($event)" [disabled]="!isAdmin()">
+      <app-user-access-management *ngIf="isAdmin()"></app-user-access-management>
     </tab>
     <tab heading="{{tabsNav.headingFromIndex(2)}}" (select)="onSelect($event)">
       <app-knowledgebase></app-knowledgebase>

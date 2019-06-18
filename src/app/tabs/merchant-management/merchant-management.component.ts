@@ -80,6 +80,11 @@ export class MerchantManagementComponent implements OnInit, OnDestroy, AfterView
       hidden: false
     },
     {
+      header: 'Platform',
+      field: 'platform',
+      hidden: false
+    },
+    {
       header: 'Actions',
       field: '',
       hidden: false
@@ -400,5 +405,27 @@ export class MerchantManagementComponent implements OnInit, OnDestroy, AfterView
       'overflow-y': 'auto',
       'max-height': (window.innerHeight - 300).toString() + 'px'
     };
+  }
+
+  platformColorStyle(platform) {
+    let color = 'green';
+    switch (platform) {
+      case 'BANA':
+        color = 'darkcyan';
+        break;
+      case 'ANET':
+        color = 'orange';
+        break;
+    }
+    return {
+      'color': 'white',
+      'padding-left': '2px',
+      'padding-right': '2px',
+      'background-color': color
+    };
+  }
+
+  platformName(platform) {
+    return platform;
   }
 }

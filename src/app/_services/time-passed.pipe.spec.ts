@@ -3,7 +3,7 @@
 import { TestBed, async } from '@angular/core/testing';
 import { TimePassedPipe } from './time-passed.pipe';
 
-describe('Pipe: TimePassede', () => {
+describe('Pipe: TimePassed', () => {
 
   const pipe = new TimePassedPipe();
 
@@ -37,15 +37,17 @@ describe('Pipe: TimePassede', () => {
     let mo = d.getMonth();
     let yr = d.getFullYear();
 
-    mo = (mo + num) % 12;
-    if (0 > mo) {
-        yr += (d.getMonth() + num - mo - 12) / 12;
-        mo += 12;
-    } else {
-        yr += ((d.getMonth() + num - mo) / 12);
+    mo += num;
+    if (mo < 0) {
+        yr += Math.floor(mo / 12);
+        mo = mo % 12 + 12;
+    } else if (mo >= 12) {
+        yr += Math.floor(mo / 12);
+        mo %= 12;
     }
     value.setMonth(mo);
     value.setFullYear(yr);
+
     return value;
   };
 
@@ -63,7 +65,7 @@ describe('Pipe: TimePassede', () => {
 
   it('Months', () => {
     let d = new Date();
-    d.setDate(0);
+    d.setDate(1);
     d = addMonths(d, -1);
     expect(pipe.transform(d)).toEqual('A month ago');
     d = addMonths(d, -1);

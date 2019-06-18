@@ -49,6 +49,9 @@ import { TimeToResolveReportComponent } from './tabs/reporting/time-to-resolve-r
 import { OpenTicketsReportComponent } from './tabs/reporting/open-tickets-report/open-tickets-report.component';
 import { MerchantDataReportComponent } from './tabs/reporting/merchant-data-report/merchant-data-report.component';
 import { FilterTicketsComponent } from './tabs/my-support/filter-tickets/filter-tickets.component';
+import { MerchantDetailsOrdersComponent } from './tabs/merchant-management/merchant-details-orders/merchant-details-orders.component';
+import { MerchantNotesComponent } from './tabs/merchant-management/merchant-notes/merchant-notes.component';
+import { ForgotPasswordComponent } from './home/forgot-password/forgot-password.component';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -83,7 +86,10 @@ describe('AppComponent', () => {
         TimeToResolveReportComponent,
         OpenTicketsReportComponent,
         MerchantDataReportComponent,
-        FilterTicketsComponent
+        FilterTicketsComponent,
+        MerchantDetailsOrdersComponent,
+        MerchantNotesComponent,
+        ForgotPasswordComponent
       ],
       imports: [
         HttpClientModule,
