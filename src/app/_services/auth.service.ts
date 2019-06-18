@@ -22,7 +22,7 @@ export class AuthService {
     }
 
   login(model: any) {
-    // if (!environment.production) {
+    if (environment.authUrl) {
       const httpOptions = {
         headers: new HttpHeaders({
           'Content-Type':  'application/json'
@@ -47,20 +47,23 @@ export class AuthService {
           }
         })
       );
-    // } else {
-    //   localStorage.setItem('user', model);
-    //   return Observable.create(observer => {
-    //     observer.next(model);
-    //   });
-
-      // return this.httpClient.post(this.authUrl, model).pipe(
-      //   map((response: any) => {
-      //     const user = response;
-      //     localStorage.setItem('token', user.token);
-      //     this.decodeToken(user.token);
-      //   })
-      // );
-    // }
+    } else {
+      // Test routine
+      this.user = <UserAccessModel> {
+        id: 3,
+        email: model.username,
+        firstName: 'selva',
+        lastName: 'yugandhar',
+        role: model.username === 'admin@email.com' ? Role.Admin : Role.User
+      };
+      localStorage.setItem('user', JSON.stringify({
+        user: this.user,
+        token: ''
+      }));
+      return Observable.create(observer => {
+        observer.next(model);
+      });
+    }
   }
 
   logout() {

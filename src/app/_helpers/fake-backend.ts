@@ -149,6 +149,22 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 });
             }
 
+            // get user by id - admin or user (user can only access their own record)
+            if (request.url.match(/\/support\/merchant\/\d+$/) && request.method === 'GET') {
+                if (!isLoggedIn) {
+                    return unauthorised();
+                }
+
+                // get id from request url
+                const urlParts = request.url.split('/');
+                const id = parseInt(urlParts[urlParts.length - 1], 10);
+
+                const m = merchData.find(x => x.midNumber === id);
+                return ok({
+                    items: [m]
+                });
+            }
+
             // get FAQs
             if (request.url.endsWith('/list/supportFAQ') && request.method === 'POST') {
                 let faqs = faqData;

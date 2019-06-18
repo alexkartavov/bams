@@ -58,7 +58,7 @@ import { ForgotPasswordComponent } from './home/forgot-password/forgot-password.
 
 import { JwtInterceptor} from './_helpers/jwt.interceptor';
 import { ErrorInterceptor } from './_helpers/error.interceptor';
-import { fakeBackendProvider } from './_helpers/fake-backend';
+// import { fakeBackendProvider } from './_helpers/fake-backend';
 
 @NgModule({
    declarations: [
@@ -130,7 +130,7 @@ import { fakeBackendProvider } from './_helpers/fake-backend';
       { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
 
       // provider used to create fake backend
-      fakeBackendProvider
+      // fakeBackendProvider
    ],
    bootstrap: [
       AppComponent
