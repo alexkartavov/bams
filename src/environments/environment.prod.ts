@@ -6,9 +6,12 @@
 export const environment = {
   production: false,
 
+  authUrl: '',
+  // authUrl: 'http://bams-cep-anet-dev-ue-aks.eastus.cloudapp.azure.com/core/api/v1/user/authenticate',
+
   merchants: {
-    listPostUrl: 'http://bams-cep-anet-dev-ue-aks.eastus.cloudapp.azure.com/core/api/v1/support/list/merchants',
-    getUrl: 'http://bams-cep-anet-dev-ue-aks.eastus.cloudapp.azure.com/core/api/v1/support/merchant/{mid}',
+    listPostUrl: 'https://bams-cep-anet-dev-ue-aks.eastus.cloudapp.azure.com/core/api/v1/support/list/merchants',
+    getUrl: 'https://bams-cep-anet-dev-ue-aks.eastus.cloudapp.azure.com/core/api/v1/support/merchant/{mid}',
 
     // listPostUrl: 'api/application',
 
@@ -18,11 +21,14 @@ export const environment = {
   merchantDetails: {
     detailsGetUrl: 'http://bams-cep-supporttool-dev-ue-aks.eastus.cloudapp.azure.com/core/api/v1/cep-support/merchants/{merchantId}',
     // merchantStatementsGetUrl: 'http://bams-cep-supporttool-dev-ue-aks.eastus.cloudapp.azure.com/core/api/v1/support/list/statements',
-    // statementsGetUrl: 'api/statements',
-    statementsGetUrl: 'http://bams-cep-supporttool-dev-ue-aks.eastus.cloudapp.azure.com/core/api/v1/cep-support/merchants/{merchantId}/statementDates?statementType=Location&dateFrom={dateFrom}&dateTo={dateTo}',
-    statementGetUrl: 'http://bams-cep-supporttool-dev-ue-aks.eastus.cloudapp.azure.com/core/api/v1/cep-support/merchants/{merchantId}/statement-documents/{key}',
 
-    // ocpApimSubscriptionKey: '7b46d6296b674122b4737b0308312b93'
+    // statementsGetUrl: 'api/statements',
+    // statementsGetUrl: 'http://bams-cep-supporttool-dev-ue-aks.eastus.cloudapp.azure.com/core/api/v1/cep-support/merchants/{merchantId}/statementDates?statementType=Location&dateFrom={dateFrom}&dateTo={dateTo}',
+    // statementGetUrl: 'http://bams-cep-supporttool-dev-ue-aks.eastus.cloudapp.azure.com/core/api/v1/cep-support/merchants/{merchantId}/statement-documents/{key}',
+    statementsGetUrl: 'https://cep-support-dev-api-management.azure-api.net/core/api/v1/cep-support/merchants/{merchantId}/statementDates?statementType=Location&dateFrom={dateFrom}&dateTo={dateTo}',
+    statementGetUrl: 'https://cep-support-dev-api-management.azure-api.net/core/api/v1/cep-support/merchants/{merchantId}/statement-documents/{key}',
+
+    ocpApimSubscriptionKey: '7b46d6296b674122b4737b0308312b93'
   },
 
   users: {
