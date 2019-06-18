@@ -17,7 +17,8 @@ export const merchData: Array<MerchantModel> = [
         "taxFilingName": "John Business Supplies, Inc.",
         "taxIdNumber": "989898989",
         "accountStatus": "Open",
-        "monthlyStatement": "View"
+        "monthlyStatement": "View",
+        "platform": "BAMS"
     },
     {
         "id": 2,
@@ -34,7 +35,8 @@ export const merchData: Array<MerchantModel> = [
         "taxFilingName": "John Business Supplies, Inc.",
         "taxIdNumber": "989898989",
         "accountStatus": "Open",
-        "monthlyStatement": "View"
+        "monthlyStatement": "View",
+        "platform": "BANA"
     },
     {
         "id": 3,
@@ -51,7 +53,8 @@ export const merchData: Array<MerchantModel> = [
         "taxFilingName": "John Business Supplies, Inc.",
         "taxIdNumber": "989898989",
         "accountStatus": "Open",
-        "monthlyStatement": "View"
+        "monthlyStatement": "View",
+        "platform": "ANET"
     },
     {
         "id": 4,
@@ -68,6 +71,7 @@ export const merchData: Array<MerchantModel> = [
         "taxFilingName": "John Business Supplies, Inc.",
         "taxIdNumber": "189898989",
         "accountStatus": "Open",
-        "monthlyStatement": "View"
+        "monthlyStatement": "View",
+        "platform": "BANA"
     }
 ];

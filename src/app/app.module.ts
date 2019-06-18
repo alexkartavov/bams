@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { BsDropdownModule, BsDatepickerModule } from 'ngx-bootstrap';
@@ -55,6 +55,10 @@ import { MerchantDataReportComponent } from './tabs/reporting/merchant-data-repo
 import { MerchantDetailsOrdersComponent } from './tabs/merchant-management/merchant-details-orders/merchant-details-orders.component';
 import { MerchantNotesComponent } from './tabs/merchant-management/merchant-notes/merchant-notes.component';
 import { ForgotPasswordComponent } from './home/forgot-password/forgot-password.component';
+
+import { JwtInterceptor} from './_helpers/jwt.interceptor';
+import { ErrorInterceptor } from './_helpers/error.interceptor';
+import { fakeBackendProvider } from './_helpers/fake-backend';
 
 @NgModule({
    declarations: [
@@ -120,7 +124,13 @@ import { ForgotPasswordComponent } from './home/forgot-password/forgot-password.
    ],
    providers: [
       AlertifyService,
-      SupportDataService
+      SupportDataService,
+
+      { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+      { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+
+      // provider used to create fake backend
+      fakeBackendProvider
    ],
    bootstrap: [
       AppComponent

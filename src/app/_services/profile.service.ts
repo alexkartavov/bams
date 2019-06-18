@@ -92,6 +92,7 @@ export class ProfileService {
     if (!profile) {
       return;
     }
+
     const profileStr = JSON.stringify(profile);
     localStorage.setItem(this.profileId, profileStr);
     if (updateServer) {

@@ -6,6 +6,8 @@
 export const environment = {
   production: false,
 
+  authUrl: 'http://bams-cep-anet-dev-ue-aks.eastus.cloudapp.azure.com/core/api/v1/user/authenticate',
+
   merchants: {
     listPostUrl: 'http://bams-cep-anet-dev-ue-aks.eastus.cloudapp.azure.com/core/api/v1/support/list/merchants',
     getUrl: 'http://bams-cep-anet-dev-ue-aks.eastus.cloudapp.azure.com/core/api/v1/support/merchant/{mid}',

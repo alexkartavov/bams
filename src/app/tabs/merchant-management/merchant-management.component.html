@@ -83,12 +83,12 @@
             <app-sort-indicator [isSorted]="value.field == sortedColumn" [sortDir]="sortDirection"></app-sort-indicator>
           </ng-template>
         </igx-column>
-        <igx-column [field]="columnObj(10).field" [header]="columnObj(10).header" width="130px" [dataType]="'string'" [resizable]="true">
+        <igx-column [field]="columnObj(10).field" [header]="columnObj(10).header" width="110px" [dataType]="'string'" [resizable]="true">
           <ng-template igxHeader let-value>
             <span title="{{value.header}}">{{value.header}}</span>
           </ng-template>
         </igx-column>
-        <igx-column header="Platform" disableHiding="true">
+        <igx-column [header]="columnObj(11).header" width="80px">
             <ng-template igxCell let-cell="cell">
               <span [ngStyle]="platformColorStyle(cell.row.rowData.platform)">{{platformName(cell.row.rowData.platform)}}</span>
             </ng-template>

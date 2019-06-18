@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Role } from '../models/role';
 
 @Injectable({
   providedIn: 'root'
@@ -30,7 +31,7 @@ export class ValueProcessingService {
   priorityValues = ['WARM_CALL_TRANSFER', 'LOW', 'MEDIUM', 'HIGH'];
 
   public userRoleData: any[] = ['Support Administrator', 'Support User'];
-  userRoleValues = ['SUPPORT_ADMIN', 'SUPPORT_USER'];
+  userRoleValues = [Role.Admin, Role.User];
 
   public kbTopicsData: any[] = [{
       topic: 'General'

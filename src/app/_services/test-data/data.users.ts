@@ -3,6 +3,24 @@ import { UserAccessModel } from '../../models/user-access-model';
 /* tslint:disable */
 export const usersData: Array<UserAccessModel> = [
   {
+    id: 1,
+    firstName: "Admin",
+    lastName: "Administrator",
+    email: "admin@non-prod.core.bankofamericamerchant.com",
+    role: "SUPPORT_ADMIN",
+    password: "adminP4ssW)RD123",
+    userProfile: ""
+  },
+  {
+    id: 2,
+    firstName: "User",
+    lastName: "Support",
+    email: "user@non-prod.core.bankofamericamerchant.com",
+    role: "SUPPORT_USER",
+    password: "userP4ssW)RD123",
+    userProfile: ""
+  },
+  {
     id: 3,
     firstName: "selva",
     lastName: "yugandhar",
