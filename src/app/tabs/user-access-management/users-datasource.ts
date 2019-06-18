@@ -24,11 +24,14 @@ export class UsersDataSource {
     loadUsers(params: any) {
         this.loadingSubject.next(true);
 
-        this.userDataService.getUsers(params).pipe(
-            catchError(() => of([])),
-            finalize(() => this.loadingSubject.next(false))
-        )
-        .subscribe(users => this.usersSubject.next(users));
+        const usersDS = this.userDataService.getUsers(params);
+        if (usersDS !== null) {
+            usersDS.pipe(
+                catchError(() => of([])),
+                finalize(() => this.loadingSubject.next(false))
+            )
+            .subscribe(users => this.usersSubject.next(users));
+        }
     }
 
     getTotalCount(): Observable<number> {

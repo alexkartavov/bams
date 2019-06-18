@@ -57,9 +57,12 @@ export class UserAccessManagementComponent implements OnInit, OnDestroy, AfterVi
   }
 
   ngOnInit() {
-    this.dataSource.getTotalCount().subscribe(count => {
-      this.totalCount = count;
-    });
+    const totalCountDS = this.dataSource.getTotalCount();
+    if (totalCountDS !== null) {
+      totalCountDS.subscribe(count => {
+        this.totalCount = count;
+      });
+    }
     this.paginate(0);
   }
 
