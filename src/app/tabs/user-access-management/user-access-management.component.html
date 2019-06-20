@@ -19,52 +19,54 @@
     <app-column-hiding #columnHidingUI [columns]="usersGrid.columns" (updated)="columnVisibility($event);colHiding.hide()"></app-column-hiding>
   </ng-template>
 
-  <igx-grid #usersGrid [primaryKey]="'id'" [paginationTemplate]="pagerTemplate" [data]="dataSource.connect() | async" [paging]="true" [perPage]="perPage" height="500px" width="100%" 
-    [displayDensity]="'cosy'" [rowSelectable]="false" (onSelection)="handleRowSelection($event)" [emptyGridMessage]="' '" (onSortingDone)="sortingDone()" (onColumnResized)="columnResized($event)">
-      <igx-column field="id" header="ID" width="100px" [resizable]="true">
-        <ng-template igxHeader let-value>
-          <span title="{{value.header}}">{{value.header}}</span>
-        </ng-template>
+  <div class="grid-container">
+    <igx-grid #usersGrid [primaryKey]="'id'" [paginationTemplate]="pagerTemplate" [data]="dataSource.connect() | async" [paging]="true" [perPage]="perPage" height="500px" width="100%" 
+      [displayDensity]="'cosy'" [rowSelectable]="false" (onSelection)="handleRowSelection($event)" [emptyGridMessage]="' '" (onSortingDone)="sortingDone()" (onColumnResized)="columnResized($event)">
+        <igx-column field="id" header="ID" width="100px" [resizable]="true">
+          <ng-template igxHeader let-value>
+            <span title="{{value.header}}">{{value.header}}</span>
+          </ng-template>
+        </igx-column>
+        <igx-column field="firstName" header="First Name" [dataType]="'string'" [sortable]="true" [resizable]="true">
+          <ng-template igxHeader let-value>
+            <span title="{{value.header}}">{{value.header}}</span>
+            <app-sort-indicator [isSorted]="value.field == sortedColumn" [sortDir]="sortDirection"></app-sort-indicator>
+          </ng-template>
+        </igx-column>
+        <igx-column field="lastName" header="Last Name" [dataType]="'string'" [sortable]="true" [resizable]="true">
+          <ng-template igxHeader let-value>
+            <span title="{{value.header}}">{{value.header}}</span>
+            <app-sort-indicator [isSorted]="value.field == sortedColumn" [sortDir]="sortDirection"></app-sort-indicator>
+          </ng-template>
+        </igx-column>
+        <igx-column field="email" header="Email Address" [dataType]="'string'" [sortable]="true" [resizable]="true">
+          <ng-template igxHeader let-value>
+            <span title="{{value.header}}">{{value.header}}</span>
+            <app-sort-indicator [isSorted]="value.field == sortedColumn" [sortDir]="sortDirection"></app-sort-indicator>
+          </ng-template>
+        </igx-column>
+        <igx-column field="role" header="Role" [dataType]="'string'" [resizable]="true">
+          <ng-template igxHeader let-value>
+            <span title="{{value.header}}">{{value.header}}</span>
+          </ng-template>
+          <ng-template igxCell let-value>
+            {{ userRoleTitle(value) }}
+          </ng-template>
+        </igx-column>
+        <igx-column header="Actions" width="100px" disableHiding="true">
+          <ng-template igxCell let-cell="cell">
+            <div class="actions_cell_class">
+              <app-update-user-access [okBtnText]="'Update'" [header]="'Edit User Access'" [user]="cell.row.rowData" (userUpdated)="refresh($event)">
+                <igx-icon fontSet="material" class="primary-color">edit</igx-icon>
+              </app-update-user-access>
+              <app-confirm [header]="'Confirm delete'" [message]="'Delete user ' + cell.row.rowData.firstName + ' ' + cell.row.rowData.lastName + '?'" [okBtnText]="'Delete'" [cancelBtnText]="'Cancel'" (confirm)="deleteUser(cell.row.rowData.id)">
+                <igx-icon fontSet="material" class="primary-color">delete</igx-icon>
+              </app-confirm>
+            </div>
+          </ng-template>
       </igx-column>
-      <igx-column field="firstName" header="First Name" [dataType]="'string'" [sortable]="true" [resizable]="true">
-        <ng-template igxHeader let-value>
-          <span title="{{value.header}}">{{value.header}}</span>
-          <app-sort-indicator [isSorted]="value.field == sortedColumn" [sortDir]="sortDirection"></app-sort-indicator>
-        </ng-template>
-      </igx-column>
-      <igx-column field="lastName" header="Last Name" [dataType]="'string'" [sortable]="true" [resizable]="true">
-        <ng-template igxHeader let-value>
-          <span title="{{value.header}}">{{value.header}}</span>
-          <app-sort-indicator [isSorted]="value.field == sortedColumn" [sortDir]="sortDirection"></app-sort-indicator>
-        </ng-template>
-      </igx-column>
-      <igx-column field="email" header="Email Address" [dataType]="'string'" [sortable]="true" [resizable]="true">
-        <ng-template igxHeader let-value>
-          <span title="{{value.header}}">{{value.header}}</span>
-          <app-sort-indicator [isSorted]="value.field == sortedColumn" [sortDir]="sortDirection"></app-sort-indicator>
-        </ng-template>
-      </igx-column>
-      <igx-column field="role" header="Role" [dataType]="'string'" [resizable]="true">
-        <ng-template igxHeader let-value>
-          <span title="{{value.header}}">{{value.header}}</span>
-        </ng-template>
-        <ng-template igxCell let-value>
-          {{ userRoleTitle(value) }}
-        </ng-template>
-      </igx-column>
-      <igx-column header="Actions" width="100px" disableHiding="true">
-        <ng-template igxCell let-cell="cell">
-          <div class="actions_cell_class">
-            <app-update-user-access [okBtnText]="'Update'" [header]="'Edit User Access'" [user]="cell.row.rowData" (userUpdated)="refresh($event)">
-              <igx-icon fontSet="material" class="primary-color">edit</igx-icon>
-            </app-update-user-access>
-            <app-confirm [header]="'Confirm delete'" [message]="'Delete user ' + cell.row.rowData.firstName + ' ' + cell.row.rowData.lastName + '?'" [okBtnText]="'Delete'" [cancelBtnText]="'Cancel'" (confirm)="deleteUser(cell.row.rowData.id)">
-              <igx-icon fontSet="material" class="primary-color">delete</igx-icon>
-            </app-confirm>
-          </div>
-        </ng-template>
-    </igx-column>
-  </igx-grid>
+    </igx-grid>
+  </div>
 
   <div *ngIf="dataSource.loading$ | async" style="position:absolute;margin-top:-300px;margin-left:45%;">
     <div class="spinner-border text-primary" role="status">

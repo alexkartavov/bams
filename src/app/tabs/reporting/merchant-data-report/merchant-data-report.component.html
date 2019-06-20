@@ -1,31 +1,33 @@
-<igx-grid #merchGrid [primaryKey]="'midNumber'" [paging]="true" [paginationTemplate]="pagerTemplate" [data]="dataSource.connect() | async" [perPage]="perPage" height="500px" width="100%" 
-  [displayDensity]="'cosy'" [emptyGridMessage]="' '">
-  <igx-column field="midNumber" header="MID Number" width="100px">
-  </igx-column>
-  <igx-column field="dbaName" header="DBA Name" [dataType]="'string'">
-  </igx-column>
-  <igx-column field="legalBusinessName" header="Legal Business Name" [dataType]="'string'">
-  </igx-column>
-  <igx-column header="Merchant Name" width="150px" [dataType]="'string'">
-    <ng-template igxCell let-cell="cell">
-      {{cell.row.rowData.merchantFirstName}} {{cell.row.rowData.merchantLastName}}
-    </ng-template>
-  </igx-column>
-  <igx-column field="phoneNumber" header="Phone Number" width="150px" [dataType]="'string'">
-  </igx-column>
-  <igx-column field="emailAddress" header="Email Address" [dataType]="'string'">
-  </igx-column>
-  <igx-column field="address" header="Address" [dataType]="'string'">
-  </igx-column>
-  <igx-column field="mcc1" header="MCC" width="100px" [dataType]="'number'">
-  </igx-column>
-  <igx-column field="taxFilingName" header="Tax Filing Name" [dataType]="'string'">
-  </igx-column>
-  <igx-column field="taxIdNumber" header="Tax ID Number" [dataType]="'string'">
-  </igx-column>
-  <igx-column field="accountStatus" header="Account Status" width="130px" [dataType]="'string'">
-  </igx-column>
-</igx-grid>
+<div class="grid-container">
+  <igx-grid #merchGrid [primaryKey]="'midNumber'" [paging]="true" [paginationTemplate]="pagerTemplate" [data]="dataSource.connect() | async" [perPage]="perPage" height="500px" width="100%" 
+    [displayDensity]="'cosy'" [emptyGridMessage]="' '">
+    <igx-column field="midNumber" header="MID Number" width="100px">
+    </igx-column>
+    <igx-column field="dbaName" header="DBA Name" [dataType]="'string'">
+    </igx-column>
+    <igx-column field="legalBusinessName" header="Legal Business Name" [dataType]="'string'">
+    </igx-column>
+    <igx-column header="Merchant Name" width="150px" [dataType]="'string'">
+      <ng-template igxCell let-cell="cell">
+        {{cell.row.rowData.merchantFirstName}} {{cell.row.rowData.merchantLastName}}
+      </ng-template>
+    </igx-column>
+    <igx-column field="phoneNumber" header="Phone Number" width="150px" [dataType]="'string'">
+    </igx-column>
+    <igx-column field="emailAddress" header="Email Address" [dataType]="'string'">
+    </igx-column>
+    <igx-column field="address" header="Address" [dataType]="'string'">
+    </igx-column>
+    <igx-column field="mcc1" header="MCC" width="100px" [dataType]="'number'">
+    </igx-column>
+    <igx-column field="taxFilingName" header="Tax Filing Name" [dataType]="'string'">
+    </igx-column>
+    <igx-column field="taxIdNumber" header="Tax ID Number" [dataType]="'string'">
+    </igx-column>
+    <igx-column field="accountStatus" header="Account Status" width="130px" [dataType]="'string'">
+    </igx-column>
+  </igx-grid>
+</div>
 
 <div *ngIf="dataSource.loading$ | async" style="position:absolute;margin-top:-300px;margin-left:45%;">
   <div class="spinner-border text-primary" role="status">

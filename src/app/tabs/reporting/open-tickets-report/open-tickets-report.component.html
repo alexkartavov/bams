@@ -1,35 +1,37 @@
-<igx-grid #ticketsGrid [data]="dataSource.connect() | async" [primaryKey]="'id'" height="500px" width="100%"
-    [paging]="true" [paginationTemplate]="pagerTemplate" [perPage]="perPage" [emptyGridMessage]="' '"
-    [displayDensity]="'cosy'" [rowSelectable]="false" (onSelection)="handleRowSelection($event)">
-  <igx-column field="id" header="Ticket Number" [dataType]="'number'" width="100px"></igx-column>
-  <igx-column field="type" header="Ticket Type" [dataType]="'string'" width="130px">
-    <ng-template igxCell let-value>
-      {{ ticketTypeTitle(value) }}
-    </ng-template>
-  </igx-column>
-  <igx-column field="priority" header="Priority" [dataType]="'string'" width="100px">
-    <ng-template igxCell let-value>
-      {{ ticketPriorityTitle(value) }}
-    </ng-template>
-  </igx-column>
-  <igx-column field="status" header="Ticket Status" [dataType]="'string'" width="100px">
-    <ng-template igxCell let-value>
-      {{ ticketStatusTitle(value) }}
-    </ng-template>
-  </igx-column>
-  <igx-column field="createdDate" header="Created On" [dataType]="'string'" width="100px">
-    <ng-template igxCell let-value>
-      {{ getDateString(value) }}
-    </ng-template>
-  </igx-column>
-  <igx-column header="Days Open" [dataType]="'number'" width="100px">
-    <ng-template igxCell let-cell="cell">
-      {{ getDaysSince(cell.row.rowData.createdDate) }}
-    </ng-template>
-  </igx-column>
-  <igx-column field="desc" header="Updates Needed" [dataType]="'string'"></igx-column>
-  <igx-column field="assignedTo" header="Rep Assigned" [dataType]="'string'" width="120px"></igx-column>
-</igx-grid>
+<div class="grid-container">
+  <igx-grid #ticketsGrid [data]="dataSource.connect() | async" [primaryKey]="'id'" height="500px" width="100%"
+      [paging]="true" [paginationTemplate]="pagerTemplate" [perPage]="perPage" [emptyGridMessage]="' '"
+      [displayDensity]="'cosy'" [rowSelectable]="false" (onSelection)="handleRowSelection($event)">
+    <igx-column field="id" header="Ticket Number" [dataType]="'number'" width="100px"></igx-column>
+    <igx-column field="type" header="Ticket Type" [dataType]="'string'" width="130px">
+      <ng-template igxCell let-value>
+        {{ ticketTypeTitle(value) }}
+      </ng-template>
+    </igx-column>
+    <igx-column field="priority" header="Priority" [dataType]="'string'" width="100px">
+      <ng-template igxCell let-value>
+        {{ ticketPriorityTitle(value) }}
+      </ng-template>
+    </igx-column>
+    <igx-column field="status" header="Ticket Status" [dataType]="'string'" width="100px">
+      <ng-template igxCell let-value>
+        {{ ticketStatusTitle(value) }}
+      </ng-template>
+    </igx-column>
+    <igx-column field="createdDate" header="Created On" [dataType]="'string'" width="100px">
+      <ng-template igxCell let-value>
+        {{ getDateString(value) }}
+      </ng-template>
+    </igx-column>
+    <igx-column header="Days Open" [dataType]="'number'" width="100px">
+      <ng-template igxCell let-cell="cell">
+        {{ getDaysSince(cell.row.rowData.createdDate) }}
+      </ng-template>
+    </igx-column>
+    <igx-column field="desc" header="Updates Needed" [dataType]="'string'"></igx-column>
+    <igx-column field="assignedTo" header="Rep Assigned" [dataType]="'string'" width="120px"></igx-column>
+  </igx-grid>
+</div>
 
 <div *ngIf="dataSource.loading$ | async" style="position:absolute;margin-top:-300px;margin-left:45%;">
   <div class="spinner-border text-primary" role="status">

@@ -78,7 +78,17 @@
     content: "Attach Image" !important;
 }
 
-ul.nav-tabs > li.nav-item,
-ul.pagination > li.page-item {
-    display: inline-block;
+@media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: none) {  
+    /* IE10+ specific styles go here */
+      
+    ul.nav-tabs > li.nav-item,
+    ul.pagination > li.page-item {
+        display: inline-block;
+    }
+    
+    .grid-container {
+        border-width: 1px;
+        border-color: rgba(0, 0, 0, 0.125);
+        border-style: solid;
+    }
 }

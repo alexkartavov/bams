@@ -25,7 +25,7 @@
     <app-column-hiding #columnHidingUI [columns]="ticketsGrid.columns" (updated)="columnVisibility($event);colHiding.hide()"></app-column-hiding>
   </ng-template>
 
-  <div class="mt-2">
+  <div class="mt-2 grid-container">
     <igx-grid #ticketsGrid [data]="dataSource.connect() | async" [primaryKey]="'id'" height="500px" width="100%" 
       [paging]="true" [paginationTemplate]="pagerTemplate" [perPage]="perPage" [emptyGridMessage]="' '"
       [displayDensity]="'cosy'" [rowSelectable]="false" (onSelection)="handleRowSelection($event)" (onSortingDone)="sortingDone()" (onColumnResized)="columnResized($event)">
