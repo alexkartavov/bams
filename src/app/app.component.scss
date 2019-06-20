@@ -77,3 +77,8 @@
     border-radius: 0px !important;
     content: "Attach Image" !important;
 }
+
+ul.nav-tabs > li.nav-item,
+ul.pagination > li.page-item {
+    display: inline-block;
+}
