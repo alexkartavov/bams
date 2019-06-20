@@ -10,7 +10,7 @@ export class PagerComponent implements OnInit {
   @Input() totalCount: number;
   @Input() pageSize = 10;
   @Output() pageChanged: EventEmitter <any> = new EventEmitter();
-  @ViewChild('pagination', {static: false}) public pagination: PaginationComponent;
+  @ViewChild('pagination') public pagination: PaginationComponent;
   @Input() set page(value: number) {
     this.pagination.page = value;
   }

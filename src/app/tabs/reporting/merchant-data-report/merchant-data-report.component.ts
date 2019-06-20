@@ -11,14 +11,14 @@ import { ExportService } from 'src/app/_services/export.service';
 })
 export class MerchantDataReportComponent implements OnInit, OnDestroy, OnChanges {
 
-  @ViewChild('merchGrid', { static: false }) public merchGrid: IgxGridComponent;
+  @ViewChild('merchGrid') public merchGrid: IgxGridComponent;
   dataSource: MerchantDataSource;
 
   public page = 1;
   public lastPage = false;
   public firstPage = true;
   public totalCount = 0;
-  @ViewChild('pagerTemplate', { read: TemplateRef, static: false })
+  @ViewChild('pagerTemplate', { read: TemplateRef })
   public pager: TemplateRef<any>;
 
   private _perPage = 10;

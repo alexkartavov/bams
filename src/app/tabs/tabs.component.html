@@ -1,18 +1,18 @@
 <div class="main-nav">
   <tabset #staticTabs>
-    <tab heading="{{tabsNav.headingFromIndex(0)}}" (selectTab)="onSelect($event)">
+    <tab heading="{{tabsNav.headingFromIndex(0)}}" (select)="onSelect($event)">
       <app-merchant-management></app-merchant-management>
     </tab>
-    <tab heading="{{tabsNav.headingFromIndex(1)}}" (selectTab)="onSelect($event)" [disabled]="!isAdmin()">
+    <tab heading="{{tabsNav.headingFromIndex(1)}}" (select)="onSelect($event)" [disabled]="!isAdmin()">
       <app-user-access-management *ngIf="isAdmin()"></app-user-access-management>
     </tab>
-    <tab heading="{{tabsNav.headingFromIndex(2)}}" (selectTab)="onSelect($event)">
+    <tab heading="{{tabsNav.headingFromIndex(2)}}" (select)="onSelect($event)">
       <app-knowledgebase></app-knowledgebase>
     </tab>
-    <tab heading="{{tabsNav.headingFromIndex(3)}}" (selectTab)="onSelect($event)">
+    <tab heading="{{tabsNav.headingFromIndex(3)}}" (select)="onSelect($event)">
       <app-reporting></app-reporting>
     </tab>
-    <tab heading="{{tabsNav.headingFromIndex(4)}}" (selectTab)="onSelect($event)">
+    <tab heading="{{tabsNav.headingFromIndex(4)}}" (select)="onSelect($event)">
       <app-my-support></app-my-support>
     </tab>
   </tabset>

@@ -17,7 +17,7 @@ export class MerchantNotesComponent implements OnInit {
   modalRef: BsModalRef;
   note = '';
   notes: Array<MerchantNoteModel>;
-  @ViewChild('template', { read: TemplateRef, static: false }) public tmpl: TemplateRef<any>;
+  @ViewChild('template', { read: TemplateRef }) public tmpl: TemplateRef<any>;
 
   constructor(
     private modalService: BsModalService,

@@ -18,14 +18,14 @@ import { Role } from 'src/app/models/role';
 })
 export class UserAccessManagementComponent implements OnInit, OnDestroy, AfterViewInit {
 
-  @ViewChild('usersGrid', { static: false }) public usersGrid: IgxGridComponent;
+  @ViewChild('usersGrid') public usersGrid: IgxGridComponent;
   public dataSource: UsersDataSource;
 
   public page = 1;
   public lastPage = false;
   public firstPage = true;
   public totalCount = 0;
-  @ViewChild('pagerTemplate', { read: TemplateRef, static: false })
+  @ViewChild('pagerTemplate', { read: TemplateRef })
   public pager: TemplateRef<any>;
 
   selectedUserEmail: string;

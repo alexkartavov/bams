@@ -17,7 +17,7 @@ export class MerchantStatementsComponent implements OnInit, AfterViewInit, OnDes
   @Input() id: number;
   @Input() btnTitle = 'View Complete Merchant Details';
   m = new MerchantModel();
-  @ViewChild('template', { read: TemplateRef, static: false }) public tmpl: TemplateRef<any>;
+  @ViewChild('template', { read: TemplateRef }) public tmpl: TemplateRef<any>;
   lgModal: BsModalRef;
   dataSource: StatementDataSource;
   public statements = new Observable<any[]>();

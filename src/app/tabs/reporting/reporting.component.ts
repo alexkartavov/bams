@@ -32,17 +32,17 @@ export class ReportingComponent implements OnInit, AfterViewInit {
   reportRange: string;
   reportRangeData: string[] = [];
 
-  @ViewChild('datesDropdown', { static: false })
+  @ViewChild('datesDropdown')
   public datesDropdown: BsDropdownDirective;
 
-  @ViewChild('fromDatePicker', { static: false })
+  @ViewChild('fromDatePicker')
   public fromDatePicker: ElementRef;
 
-  @ViewChild('toDatePicker', { static: false })
+  @ViewChild('toDatePicker')
   public toDatePicker: ElementRef;
 
   // #region AllTicketsReport
-  @ViewChild('allTicketsReport', { static: false })
+  @ViewChild('allTicketsReport')
   public allTicketsReport: AllTicketsReportComponent;
 
   public filterType: string;
@@ -60,17 +60,17 @@ export class ReportingComponent implements OnInit, AfterViewInit {
   // #endregion AllTicketsReport
 
   // #region TimeToResolveReport
-  @ViewChild('timeToResolveReport', { static: false })
+  @ViewChild('timeToResolveReport')
   public timeToResolveReport: TimeToResolveReportComponent;
   // #endregion TimeToResolveReport
 
   // #region OpenTicketsReport
-  @ViewChild('openTicketsReport', { static: false })
+  @ViewChild('openTicketsReport')
   public openTicketsReport: OpenTicketsReportComponent;
   // #endregion OpenTicketsReport
 
   // #region MerchantDataReport
-  @ViewChild('merchantDataReport', { static: false })
+  @ViewChild('merchantDataReport')
   public merchantDataReport: MerchantDataReportComponent;
   // #endregion MerchantDataReport
 

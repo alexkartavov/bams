@@ -11,7 +11,7 @@ import { Role } from '../models/role';
   styleUrls: ['./tabs.component.scss']
 })
 export class TabsComponent implements OnInit {
-  @ViewChild('staticTabs', { static: true }) staticTabs: TabsetComponent;
+  @ViewChild('staticTabs') staticTabs: TabsetComponent;
 
   constructor(private router: Router, public tabsNav: TabsNavService, private auth: AuthService) { }
 

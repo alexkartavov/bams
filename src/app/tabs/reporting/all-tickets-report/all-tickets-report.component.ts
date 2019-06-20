@@ -12,7 +12,7 @@ import { ExportService } from 'src/app/_services/export.service';
 })
 export class AllTicketsReportComponent implements OnInit, OnDestroy, OnChanges {
 
-  @ViewChild('ticketsGrid', { static: false }) public ticketsGrid: IgxGridComponent;
+  @ViewChild('ticketsGrid') public ticketsGrid: IgxGridComponent;
   dataSource: SupportDataSource;
 
   @Input()
@@ -30,7 +30,7 @@ export class AllTicketsReportComponent implements OnInit, OnDestroy, OnChanges {
   public lastPage = false;
   public firstPage = true;
   public totalCount = 0;
-  @ViewChild('pagerTemplate', { read: TemplateRef, static: false })
+  @ViewChild('pagerTemplate', { read: TemplateRef })
   public pager: TemplateRef<any>;
 
   private _perPage = 10;
