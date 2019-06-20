@@ -16,6 +16,10 @@ $theme-blue: #2780E3;
 $dark-text: #000A23;
 $light-text: #c1b3a2;
 
+.btn-primary {
+    border-style: solid;
+}
+
 .nav-link.active {
     color: $dark-text !important;
     font-size: small;
