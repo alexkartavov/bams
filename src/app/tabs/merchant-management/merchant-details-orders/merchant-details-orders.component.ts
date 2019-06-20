@@ -20,7 +20,7 @@ export class MerchantDetailsOrdersComponent implements OnInit {
   orderSummary: OrderSummaryModel;
   orderDetails: OrderDetailModel[];
   @Input() merchant: MerchantModel;
-  @ViewChild('template', { read: TemplateRef }) public tmpl: TemplateRef<any>;
+  @ViewChild('template', { read: TemplateRef, static: false }) public tmpl: TemplateRef<any>;
   lgModal: BsModalRef;
 
   constructor(

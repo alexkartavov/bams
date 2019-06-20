@@ -18,14 +18,14 @@ export class MySupportComponent implements OnInit, OnDestroy, AfterViewInit {
 
   public dataSource: SupportDataSource;
   public supportTicket: SupportTicketModel;
-  @ViewChild('ticketsGrid') public ticketsGrid: IgxGridComponent;
+  @ViewChild('ticketsGrid', { static: false }) public ticketsGrid: IgxGridComponent;
   public selectedTicket: SupportTicketModel;
 
   public page = 0;
   public lastPage = false;
   public firstPage = true;
   public totalCount = 0;
-  @ViewChild('pagerTemplate', { read: TemplateRef })
+  @ViewChild('pagerTemplate', { read: TemplateRef, static: false })
   public pager: TemplateRef<any>;
 
   private _perPage = 10;

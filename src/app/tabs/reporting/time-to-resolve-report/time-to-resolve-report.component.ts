@@ -12,7 +12,7 @@ import { ExportService } from 'src/app/_services/export.service';
 })
 export class TimeToResolveReportComponent implements OnInit, OnDestroy, OnChanges {
 
-  @ViewChild('ticketsGrid') public ticketsGrid: IgxGridComponent;
+  @ViewChild('ticketsGrid', { static: false }) public ticketsGrid: IgxGridComponent;
   dataSource: SupportDataSource;
 
   @Input()
@@ -24,7 +24,7 @@ export class TimeToResolveReportComponent implements OnInit, OnDestroy, OnChange
   public lastPage = false;
   public firstPage = true;
   public totalCount = 0;
-  @ViewChild('pagerTemplate', { read: TemplateRef })
+  @ViewChild('pagerTemplate', { read: TemplateRef, static: false })
   public pager: TemplateRef<any>;
 
   private _perPage = 10;

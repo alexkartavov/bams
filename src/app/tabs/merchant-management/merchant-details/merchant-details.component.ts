@@ -14,7 +14,7 @@ export class MerchantDetailsComponent implements OnInit {
   @Input() btnTitle = 'View Complete Merchant Details';
   m: MerchantDetailsModel;
   @Input() merchant: MerchantModel;
-  @ViewChild('template', { read: TemplateRef }) public tmpl: TemplateRef<any>;
+  @ViewChild('template', { read: TemplateRef, static: false}) public tmpl: TemplateRef<any>;
   lgModal: BsModalRef;
 
   constructor(private merchDataService: MerchantDataService, private modalService: BsModalService) { }

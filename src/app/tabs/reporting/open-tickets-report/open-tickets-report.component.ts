@@ -19,14 +19,14 @@ export class OpenTicketsReportComponent implements OnInit, OnDestroy, OnChanges 
   @Input()
   public endDate?: number;
 
-  @ViewChild('ticketsGrid') public ticketsGrid: IgxGridComponent;
+  @ViewChild('ticketsGrid', { static: false }) public ticketsGrid: IgxGridComponent;
   dataSource: SupportDataSource;
 
   public page = 1;
   public lastPage = false;
   public firstPage = true;
   public totalCount = 0;
-  @ViewChild('pagerTemplate', { read: TemplateRef })
+  @ViewChild('pagerTemplate', { read: TemplateRef, static: false })
   public pager: TemplateRef<any>;
 
   private _perPage = 10;

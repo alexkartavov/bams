@@ -19,7 +19,7 @@ import { ProfileService } from 'src/app/_services/profile.service';
 })
 export class MerchantManagementComponent implements OnInit, OnDestroy, AfterViewInit {
 
-  @ViewChild('merchGrid') public merchGrid: IgxGridComponent;
+  @ViewChild('merchGrid', { static: false}) public merchGrid: IgxGridComponent;
   public dataSource: MerchantDataSource;
   public cardData: MerchantModel[];
 
@@ -102,7 +102,7 @@ export class MerchantManagementComponent implements OnInit, OnDestroy, AfterView
   public firstPage = true;
   public totalCount = 0;
   public loadedCount = 0;
-  @ViewChild('pagerTemplate', { read: TemplateRef })
+  @ViewChild('pagerTemplate', { read: TemplateRef, static: false })
   public pager: TemplateRef<any>;
 
   public showCards = false;
