@@ -13,6 +13,7 @@ import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 import { IgxTabsModule, IgxGridModule, IgxIconModule,
    IgxDialogModule, IgxNavbarModule, IgxColumnHidingModule,
    IgxAvatarModule, IgxListModule, IgxTooltipModule, IgxCheckboxModule } from 'igniteui-angular';
+import { OAuthModule } from 'angular-oauth2-oidc';
 
 // import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 // import { InMemoryDataServiceService } from './_services/in-memory-data-service.service';
@@ -120,7 +121,8 @@ import { ErrorInterceptor } from './_helpers/error.interceptor';
       IgxListModule,
       IgxTooltipModule,
       IgxCheckboxModule,
-      RouterModule.forRoot(appRoutes)
+      RouterModule.forRoot(appRoutes),
+      OAuthModule.forRoot(),
    ],
    providers: [
       AlertifyService,
