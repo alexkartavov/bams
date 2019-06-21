@@ -9,6 +9,7 @@ import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 import { IgxIconModule } from 'igniteui-angular';
 
 import { UpdateUserAccessComponent } from './update-user-access.component';
+import { OAuthModule } from 'angular-oauth2-oidc';
 
 describe('UpdateUserAccessComponent', () => {
   let component: UpdateUserAccessComponent;
@@ -23,7 +24,8 @@ describe('UpdateUserAccessComponent', () => {
         HttpClientTestingModule,
         ModalModule.forRoot(),
         TypeaheadModule.forRoot(),
-        IgxIconModule
+        IgxIconModule,
+        OAuthModule.forRoot()
       ]
     })
     .compileComponents();

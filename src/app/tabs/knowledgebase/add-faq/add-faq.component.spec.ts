@@ -7,6 +7,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ModalModule } from 'ngx-bootstrap/modal';
 
 import { AddFaqComponent } from './add-faq.component';
+import { OAuthModule } from 'angular-oauth2-oidc';
 
 describe('AddFaqComponent', () => {
   let component: AddFaqComponent;
@@ -19,7 +20,8 @@ describe('AddFaqComponent', () => {
         FormsModule,
         ReactiveFormsModule,
         HttpClientTestingModule,
-        ModalModule.forRoot()
+        ModalModule.forRoot(),
+        OAuthModule.forRoot()
       ]
     })
     .compileComponents();

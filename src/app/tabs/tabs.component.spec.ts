@@ -52,6 +52,7 @@ import { AnimationBuilder } from '@angular/animations';
 import { MerchantDetailsOrdersComponent } from './merchant-management/merchant-details-orders/merchant-details-orders.component';
 import { MerchantNotesComponent } from './merchant-management/merchant-notes/merchant-notes.component';
 import { ForgotPasswordComponent } from '../home/forgot-password/forgot-password.component';
+import { OAuthModule } from 'angular-oauth2-oidc';
 
 describe('TabsComponent', () => {
   let component: TabsComponent;
@@ -73,7 +74,8 @@ describe('TabsComponent', () => {
         IgxTabsModule, IgxGridModule, IgxIconModule,
         IgxDialogModule, IgxNavbarModule, IgxColumnHidingModule,
         IgxAvatarModule, IgxListModule, IgxTooltipModule,
-        IgxCheckboxModule
+        IgxCheckboxModule,
+        OAuthModule.forRoot()
       ],
       declarations: [
         InitialsPipe,

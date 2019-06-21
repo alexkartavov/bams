@@ -9,6 +9,7 @@ import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 import { IgxIconModule } from 'igniteui-angular';
 
 import { AddTicketComponent } from './add-ticket.component';
+import { OAuthModule } from 'angular-oauth2-oidc';
 
 describe('AddTicketComponent', () => {
   let component: AddTicketComponent;
@@ -23,7 +24,8 @@ describe('AddTicketComponent', () => {
         HttpClientTestingModule,
         ModalModule.forRoot(),
         TypeaheadModule.forRoot(),
-        IgxIconModule
+        IgxIconModule,
+        OAuthModule.forRoot()
       ]
     })
     .compileComponents();

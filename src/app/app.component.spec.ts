@@ -52,6 +52,7 @@ import { FilterTicketsComponent } from './tabs/my-support/filter-tickets/filter-
 import { MerchantDetailsOrdersComponent } from './tabs/merchant-management/merchant-details-orders/merchant-details-orders.component';
 import { MerchantNotesComponent } from './tabs/merchant-management/merchant-notes/merchant-notes.component';
 import { ForgotPasswordComponent } from './home/forgot-password/forgot-password.component';
+import { OAuthModule } from 'angular-oauth2-oidc';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -106,7 +107,8 @@ describe('AppComponent', () => {
         IgxTabsModule, IgxGridModule, IgxIconModule,
         IgxDialogModule, IgxNavbarModule, IgxColumnHidingModule,
         IgxAvatarModule, IgxListModule, IgxTooltipModule,
-        IgxCheckboxModule
+        IgxCheckboxModule,
+        OAuthModule.forRoot()
       ]
     }).compileComponents();
   }));

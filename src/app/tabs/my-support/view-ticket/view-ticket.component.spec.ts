@@ -11,6 +11,7 @@ import { InitialsPipe } from 'src/app/_services/initials.pipe';
 import { TimePassedPipe } from 'src/app/_services/time-passed.pipe';
 
 import { ViewTicketComponent } from './view-ticket.component';
+import { OAuthModule } from 'angular-oauth2-oidc';
 
 describe('ViewTicketComponent', () => {
   let component: ViewTicketComponent;
@@ -30,7 +31,8 @@ describe('ViewTicketComponent', () => {
         ModalModule.forRoot(),
         TypeaheadModule.forRoot(),
         IgxIconModule,
-        IgxAvatarModule
+        IgxAvatarModule,
+        OAuthModule.forRoot()
       ]
     })
     .compileComponents();

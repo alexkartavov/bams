@@ -53,6 +53,7 @@ import { MerchantDataReportComponent } from '../tabs/reporting/merchant-data-rep
 import { MerchantDetailsOrdersComponent } from '../tabs/merchant-management/merchant-details-orders/merchant-details-orders.component';
 import { MerchantNotesComponent } from '../tabs/merchant-management/merchant-notes/merchant-notes.component';
 import { ForgotPasswordComponent } from '../home/forgot-password/forgot-password.component';
+import { OAuthModule } from 'angular-oauth2-oidc';
 
 describe('NavComponent', () => {
   let component: NavComponent;
@@ -74,7 +75,8 @@ describe('NavComponent', () => {
         IgxTabsModule, IgxGridModule, IgxIconModule,
         IgxDialogModule, IgxNavbarModule, IgxColumnHidingModule,
         IgxAvatarModule, IgxListModule, IgxTooltipModule,
-        IgxCheckboxModule
+        IgxCheckboxModule,
+        OAuthModule.forRoot()
       ],
       declarations: [
         InitialsPipe,

@@ -8,6 +8,7 @@ import { AllTicketsReportComponent } from './all-tickets-report.component';
 import { BsDatepickerModule, PaginationModule } from 'ngx-bootstrap';
 import { IgxGridModule } from 'igniteui-angular';
 import { AnimationBuilder } from '@angular/animations';
+import { OAuthModule } from 'angular-oauth2-oidc';
 
 describe('AllTicketsReportComponent', () => {
   let component: AllTicketsReportComponent;
@@ -21,7 +22,8 @@ describe('AllTicketsReportComponent', () => {
         ReactiveFormsModule,
         BsDatepickerModule.forRoot(),
         PaginationModule.forRoot(),
-        IgxGridModule
+        IgxGridModule,
+        OAuthModule.forRoot()
       ],
       providers: [
         AnimationBuilder

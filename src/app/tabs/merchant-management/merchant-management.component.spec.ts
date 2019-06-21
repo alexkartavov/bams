@@ -52,6 +52,7 @@ import { AnimationBuilder } from '@angular/animations';
 import { MerchantDetailsOrdersComponent } from './merchant-details-orders/merchant-details-orders.component';
 import { MerchantNotesComponent } from './merchant-notes/merchant-notes.component';
 import { ForgotPasswordComponent } from 'src/app/home/forgot-password/forgot-password.component';
+import { OAuthModule } from 'angular-oauth2-oidc';
 
 describe('MerchantManagementComponent', () => {
   let component: MerchantManagementComponent;
@@ -73,7 +74,8 @@ describe('MerchantManagementComponent', () => {
         IgxTabsModule, IgxGridModule, IgxIconModule,
         IgxDialogModule, IgxNavbarModule, IgxColumnHidingModule,
         IgxAvatarModule, IgxListModule, IgxTooltipModule,
-        IgxCheckboxModule
+        IgxCheckboxModule,
+        OAuthModule.forRoot()
       ],
       declarations: [
         InitialsPipe,

@@ -39,6 +39,7 @@ import { MerchantDetailsOrdersComponent } from '../tabs/merchant-management/merc
 import { MerchantNotesComponent } from '../tabs/merchant-management/merchant-notes/merchant-notes.component';
 import { BsDropdownModule, BsDatepickerModule, TabsModule, ModalModule, PopoverModule,
   PaginationModule, TypeaheadModule } from 'ngx-bootstrap';
+import { OAuthModule } from 'angular-oauth2-oidc';
 
 describe('AuthGuard', () => {
   beforeEach(() => {
@@ -89,7 +90,8 @@ describe('AuthGuard', () => {
         IgxTabsModule, IgxGridModule, IgxIconModule,
         IgxDialogModule, IgxNavbarModule, IgxColumnHidingModule,
         IgxAvatarModule, IgxListModule, IgxTooltipModule,
-        IgxCheckboxModule
+        IgxCheckboxModule,
+        OAuthModule.forRoot()
       ],
       providers: [AuthGuard]
     });

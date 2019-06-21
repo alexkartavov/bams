@@ -8,6 +8,7 @@ import { OpenTicketsReportComponent } from './open-tickets-report.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IgxGridModule } from 'igniteui-angular';
 import { AnimationBuilder } from '@angular/animations';
+import { OAuthModule } from 'angular-oauth2-oidc';
 
 describe('OpenTicketsComponent', () => {
   let component: OpenTicketsReportComponent;
@@ -21,7 +22,8 @@ describe('OpenTicketsComponent', () => {
         ReactiveFormsModule,
         BsDatepickerModule.forRoot(),
         PaginationModule.forRoot(),
-        IgxGridModule
+        IgxGridModule,
+        OAuthModule.forRoot()
       ],
       providers: [
         AnimationBuilder

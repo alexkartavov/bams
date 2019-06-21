@@ -22,6 +22,7 @@ import { ConfirmComponent } from '../../confirm/confirm.component';
 
 import { UserAccessManagementComponent } from './user-access-management.component';
 import { AnimationBuilder } from '@angular/animations';
+import { OAuthModule } from 'angular-oauth2-oidc';
 
 describe('UserAccessManagementComponent', () => {
   let component: UserAccessManagementComponent;
@@ -47,7 +48,8 @@ describe('UserAccessManagementComponent', () => {
         TypeaheadModule.forRoot(),
         IgxTabsModule, IgxGridModule, IgxIconModule,
         IgxDialogModule, IgxNavbarModule, IgxColumnHidingModule,
-        IgxAvatarModule, IgxListModule, IgxTooltipModule
+        IgxAvatarModule, IgxListModule, IgxTooltipModule,
+        OAuthModule.forRoot()
       ],
       providers: [
         AnimationBuilder
