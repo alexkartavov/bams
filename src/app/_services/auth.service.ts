@@ -22,13 +22,13 @@ export class AuthService {
     }
 
   login(model: any) {
-    if (environment.authUrl) {
+    if (environment.auth.url) {
       const httpOptions = {
         headers: new HttpHeaders({
           'Content-Type':  'application/json'
         })
       };
-      return this.httpClient.post(environment.authUrl, model, httpOptions).pipe(
+      return this.httpClient.post(environment.auth.url, model, httpOptions).pipe(
         map((response: any) => {
           const user = response; // .find(u => u.email === model.username);
           if (user) {
