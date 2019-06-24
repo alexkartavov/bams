@@ -73,13 +73,15 @@
             </div>
           </form>
 
-          <div class="row mt-5">
-            <div class="col">For admin access use:</div>
-            <div class="col">admin@email.com / password</div>
-          </div>
-          <div class="row">
-            <div class="col">For support user access use:</div>
-            <div class="col">user@email.com / password</div>
+          <div *ngIf="!env.production">
+            <div class="row mt-5">
+              <div class="col">For admin access use:</div>
+              <div class="col">admin@non-prod.core.bankofamericamerchant.com / franchiseS3cretS4uce</div>
+            </div>
+            <div class="row">
+              <div class="col">For support user access use:</div>
+              <div class="col">user@non-prod.core.bankofamericamerchant.com / franchiseS3cretS4uce </div>
+            </div>
           </div>
         </div>
       </div>
@@ -110,9 +112,9 @@
       <img src="../../assets/home_knowledgebase.png" /><br/>
       <a class="btn btn-light mb-3" role="button" style="min-width: 190px;" [routerLink]="[tabsNav.routeFromIndex(2)]">{{tabsNav.headingFromIndex(2)}}</a>
       <ul class="text-left ml-4">
-          <li class="text-muted"><igx-icon class="boldred">check</igx-icon> Add New FAQs</li>
-          <li class="text-muted"><igx-icon class="boldred">check</igx-icon> Modify/Update FAQs</li>
-          <li class="text-muted"><igx-icon class="boldred">check</igx-icon> View Previous FAQs</li>
+          <li *ngIf="isAdmin()" class="text-muted"><igx-icon class="boldred">check</igx-icon> Add New FAQs</li>
+          <li *ngIf="isAdmin()" class="text-muted"><igx-icon class="boldred">check</igx-icon> Modify/Update FAQs</li>
+          <li class="text-muted"><igx-icon class="boldred">check</igx-icon> View FAQ articles</li>
         </ul>
       </div>
     <div class="col text-center">

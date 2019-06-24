@@ -7,8 +7,8 @@ export const environment = {
   production: false,
 
   auth: {
-    url: ''
-    // url: 'https://bams-cep-ist-dev-ue-fa.azurewebsites.net'
+    // url: ''
+    url: 'https://bams-cep-ist-dev-ue-fa.azurewebsites.net'
   },
 
   merchants: {
@@ -28,7 +28,7 @@ export const environment = {
     listPostUrl: 'https://bams-cep-ist-dev-ue-aks.eastus.cloudapp.azure.com/core/api/v1/cep-support/list/user',
     createUrl: 'https://bams-cep-ist-dev-ue-aks.eastus.cloudapp.azure.com/core/api/v1/cep-support/user',
     userUrl: 'https://bams-cep-ist-dev-ue-aks.eastus.cloudapp.azure.com/core/api/v1/cep-support/user/{user_id}',
-    userEmailUrl: 'https://bams-cep-ist-dev-ue-aks.eastus.cloudapp.azure.com/core/api/v1/cep-support/user/get-by-email',
+    userEmailUrl: 'https://bams-cep-ist-dev-ue-aks.eastus.cloudapp.azure.com/core/api/v1/cep-support/user/get-by-email/',
 
     profileGetUrl: 'https://bams-cep-ist-dev-ue-aks.eastus.cloudapp.azure.com/core/api/v1/cep-support/ANET/profile/get-user-profile/{user_id}',
     profileSetUrl: 'https://bams-cep-ist-dev-ue-aks.eastus.cloudapp.azure.com/core/api/v1/cep-support/ANET/profile/save-user-profile/{user_id}'

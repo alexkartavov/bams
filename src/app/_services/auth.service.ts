@@ -25,30 +25,6 @@ export class AuthService {
 
   login(model: any, success?, error?) {
     if (environment.auth.url) {
-    //   const httpOptions = {
-    //     headers: new HttpHeaders({
-    //       'Content-Type':  'application/json'
-    //     })
-    //   };
-    //   return this.httpClient.post(environment.auth.url, model, httpOptions).pipe(
-    //     map((response: any) => {
-    //       const user = response; // .find(u => u.email === model.username);
-    //       if (user) {
-    //         this.user = <UserAccessModel> {
-    //           id: user.id,
-    //           email: user.email,
-    //           firstName: user.firstName,
-    //           lastName: user.lastName,
-    //           role: user.role
-    //         };
-    //         this.decodeToken(user.token);
-    //         localStorage.setItem('user', JSON.stringify({
-    //           user: user,
-    //           token: user.token
-    //         }));
-    //       }
-    //     })
-    //   );
       this.oauthService.fetchTokenUsingPasswordFlow(model.username, model.password).then(() => {
         // Loading data about the user
         return this.loadUserProfile(model.username);
@@ -58,18 +34,22 @@ export class AuthService {
         if (error) {
           error(err.message);
         }
-      }).then(() => {
-        // Using the loaded user data
-        const claims: any = this.oauthService.getIdentityClaims();
-        if (claims) {
-          console.log(claims);
-        }
-        this.decodeToken(this.oauthService.getAccessToken());
-        if (success) {
-          success(this.user);
+      }).then((user) => {
+        if (user) {
+          this.user = <UserAccessModel> {
+            id: user.cepSupportUserId,
+            email: user.email,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            role: user.cepSupportRoleId ? Role.Admin : Role.User
+          };
+          this.decodeToken(this.oauthService.getAccessToken());
+          if (success) {
+            success(this.user);
+          }
         }
       });
-    } else {
+    } else if (!environment.production) {
       // Test routine
       this.user = <UserAccessModel> {
         id: 3,
@@ -88,7 +68,7 @@ export class AuthService {
     return this.httpClient.get(environment.users.userEmailUrl.replace('{user_email}', email),
       {
         headers: new HttpHeaders({
-          'Content-Type': 'application/json',
+          'Accept': 'application/json',
         }),
         params: {
           'email': email
@@ -108,7 +88,7 @@ export class AuthService {
   }
 
   loggedIn(): boolean {
-    return !!this.getToken();
+    return !!this.getToken() && !!this.getUser();
   }
 
   decodeToken(token) {

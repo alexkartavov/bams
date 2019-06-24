@@ -5,6 +5,8 @@ import { KnowledgebaseDataSource } from './knowledgebase-datasource';
 // import { faqData } from '../../_services/test-data/data.faq';
 import { ExportService } from 'src/app/_services/export.service';
 import { ProfileService } from 'src/app/_services/profile.service';
+import { AuthService } from 'src/app/_services/auth.service';
+import { Role } from 'src/app/models/role';
 
 @Component({
   selector: 'app-knowledgebase',
@@ -26,7 +28,8 @@ export class KnowledgebaseComponent implements OnInit {
 
   constructor(private faqDataService: FaqDataService,
     private exportService: ExportService,
-    private profileService: ProfileService) {
+    private profileService: ProfileService,
+    private auth: AuthService) {
     this.topics = [];
     this.dataSource = new KnowledgebaseDataSource(faqDataService);
   }
@@ -151,6 +154,10 @@ export class KnowledgebaseComponent implements OnInit {
         Answer: 'answer'
       },
       this.data);
+  }
+
+  isAdmin(): boolean {
+    return this.auth.getUserRole() === Role.Admin;
   }
 
 }

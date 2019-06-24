@@ -5,6 +5,7 @@ import { TabsNavService } from '../_services/tabs.nav.service';
 import { Router, NavigationExtras } from '@angular/router';
 import { SupportUserDataService } from '../_services/support-user-data.service';
 import { ProfileService } from '../_services/profile.service';
+import { environment } from 'src/environments/environment';
 import { Role } from '../models/role';
 
 @Component({
@@ -15,6 +16,7 @@ import { Role } from '../models/role';
 export class HomeComponent implements OnInit {
 
   model: any = {};
+  env = environment;
 
   constructor(
     private authService: AuthService,
@@ -42,9 +44,6 @@ export class HomeComponent implements OnInit {
           profile => this.profileService.setProfile(profile, false),
           err => console.error(err)
         );
-      },
-      error => {
-        this.alertify.error(error);
       }
     );
   }
