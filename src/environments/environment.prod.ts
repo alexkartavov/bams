@@ -16,7 +16,7 @@ export const environment = {
   },
 
   merchantDetails: {
-    detailsGetUrl: 'https://bams-cep-supporttool-uat-ue-aks.eastus.cloudapp.azure.com/core/api/v1/cep-support/merchants/{merchantId}',
+    detailsGetUrl: 'https://bams-cep-ist-uat-ue-aks.eastus.cloudapp.azure.com/core/api/v1/cep-support/merchants/{merchantId}',
     statementsGetUrl: 'https://cep-support-uat-api-management.azure-api.net/core/api/v1/cep-support/merchants/{merchantId}/statementDates?statementType=Location&dateFrom={dateFrom}&dateTo={dateTo}',
     statementGetUrl: 'https://cep-support-uat-api-management.azure-api.net/core/api/v1/cep-support/merchants/{merchantId}/statement-documents/{key}',
 
@@ -24,31 +24,31 @@ export const environment = {
   },
 
   users: {
-    listPostUrl: 'https://bams-cep-supporttool-uat-ue-aks.eastus.cloudapp.azure.com/core/api/v1/cep-support/list/user',
-    createUrl: 'https://bams-cep-supporttool-uat-ue-aks.eastus.cloudapp.azure.com/core/api/v1/cep-support/user',
-    userUrl: 'https://bams-cep-supporttool-uat-ue-aks.eastus.cloudapp.azure.com/core/api/v1/cep-support/user/{user_id}',
+    listPostUrl: 'https://bams-cep-ist-uat-ue-aks.eastus.cloudapp.azure.com/core/api/v1/cep-support/list/user',
+    createUrl: 'https://bams-cep-ist-uat-ue-aks.eastus.cloudapp.azure.com/core/api/v1/cep-support/user',
+    userUrl: 'https://bams-cep-ist-uat-ue-aks.eastus.cloudapp.azure.com/core/api/v1/cep-support/user/{user_id}',
 
-    profileGetUrl: 'https://bams-cep-supporttool-uat-ue-aks.eastus.cloudapp.azure.com/core/api/v1/cep-support/ANET/profile/get-user-profile/{user_id}',
-    profileSetUrl: 'https://bams-cep-supporttool-uat-ue-aks.eastus.cloudapp.azure.com/core/api/v1/cep-support/ANET/profile/save-user-profile/{user_id}'
+    profileGetUrl: 'https://bams-cep-ist-uat-ue-aks.eastus.cloudapp.azure.com/core/api/v1/cep-support/ANET/profile/get-user-profile/{user_id}',
+    profileSetUrl: 'https://bams-cep-ist-uat-ue-aks.eastus.cloudapp.azure.com/core/api/v1/cep-support/ANET/profile/save-user-profile/{user_id}'
   },
 
   faqs: {
-    listPostUrl: 'https://bams-cep-supporttool-uat-ue-aks.eastus.cloudapp.azure.com/core/api/v1/cep-support/list/supportFAQ',
-    createUrl: 'https://bams-cep-supporttool-uat-ue-aks.eastus.cloudapp.azure.com/core/api/v1/cep-support/supportFAQ'
+    listPostUrl: 'https://bams-cep-ist-uat-ue-aks.eastus.cloudapp.azure.com/core/api/v1/cep-support/list/supportFAQ',
+    createUrl: 'https://bams-cep-ist-uat-ue-aks.eastus.cloudapp.azure.com/core/api/v1/cep-support/supportFAQ'
   },
 
   tickets: {
-    listPostUrl: 'https://bams-cep-supporttool-uat-ue-aks.eastus.cloudapp.azure.com/core/api/v1/cep-support/ANET/list/ticket',
-    ticketGetUrl: 'https://bams-cep-supporttool-uat-ue-aks.eastus.cloudapp.azure.com/core/api/v1/cep-support/ANET/ticket/{ticket_id}',
-    createPostUrl: 'https://bams-cep-supporttool-uat-ue-aks.eastus.cloudapp.azure.com/core/api/v1/cep-support/ANET/ticket',
-    ticketDeleteUrl: 'https://bams-cep-supporttool-uat-ue-aks.eastus.cloudapp.azure.com/core/api/v1/cep-support/ANET/ticket/{ticket_id}',
-    assignPostUrl: 'https://bams-cep-supporttool-uat-ue-aks.eastus.cloudapp.azure.com/core/api/v1/cep-support/ANET/ticket/{ticket_id}/assign/{user_id}',
-    statusPostUrl: 'https://bams-cep-supporttool-uat-ue-aks.eastus.cloudapp.azure.com/core/api/v1/cep-support/ANET/ticket/{ticket_id}/status/{status}',
-    priorityPostUrl: 'https://bams-cep-supporttool-uat-ue-aks.eastus.cloudapp.azure.com/core/api/v1/cep-support/ANET/ticket/{ticket_id}/priority/{priority}',
-    listCommentsUrl: 'https://bams-cep-supporttool-uat-ue-aks.eastus.cloudapp.azure.com/core/api/v1/cep-support/ticket/{ticket_id}/post',
-    createCommentUrl: 'https://bams-cep-supporttool-uat-ue-aks.eastus.cloudapp.azure.com/core/api/v1/cep-support/post',
+    listPostUrl: 'https://bams-cep-ist-uat-ue-aks.eastus.cloudapp.azure.com/core/api/v1/cep-support/ANET/list/ticket',
+    ticketGetUrl: 'https://bams-cep-ist-uat-ue-aks.eastus.cloudapp.azure.com/core/api/v1/cep-support/ANET/ticket/{ticket_id}',
+    createPostUrl: 'https://bams-cep-ist-uat-ue-aks.eastus.cloudapp.azure.com/core/api/v1/cep-support/ANET/ticket',
+    ticketDeleteUrl: 'https://bams-cep-ist-uat-ue-aks.eastus.cloudapp.azure.com/core/api/v1/cep-support/ANET/ticket/{ticket_id}',
+    assignPostUrl: 'https://bams-cep-ist-uat-ue-aks.eastus.cloudapp.azure.com/core/api/v1/cep-support/ANET/ticket/{ticket_id}/assign/{user_id}',
+    statusPostUrl: 'https://bams-cep-ist-uat-ue-aks.eastus.cloudapp.azure.com/core/api/v1/cep-support/ANET/ticket/{ticket_id}/status/{status}',
+    priorityPostUrl: 'https://bams-cep-ist-uat-ue-aks.eastus.cloudapp.azure.com/core/api/v1/cep-support/ANET/ticket/{ticket_id}/priority/{priority}',
+    listCommentsUrl: 'https://bams-cep-ist-uat-ue-aks.eastus.cloudapp.azure.com/core/api/v1/cep-support/ticket/{ticket_id}/post',
+    createCommentUrl: 'https://bams-cep-ist-uat-ue-aks.eastus.cloudapp.azure.com/core/api/v1/cep-support/post',
 
-    uploadUrl: 'https://bams-cep-supporttool-uat-ue-aks.eastus.cloudapp.azure.com/core/api/v1/cep-support/ANET/ticket/{ticket_id}/attachment',
-    downloadUrl: 'https://bams-cep-supporttool-uat-ue-aks.eastus.cloudapp.azure.com/core/api/v1/cep-support/ANET/attachment/{attachment_id}'
+    uploadUrl: 'https://bams-cep-ist-uat-ue-aks.eastus.cloudapp.azure.com/core/api/v1/cep-support/ANET/ticket/{ticket_id}/attachment',
+    downloadUrl: 'https://bams-cep-ist-uat-ue-aks.eastus.cloudapp.azure.com/core/api/v1/cep-support/ANET/attachment/{attachment_id}'
   }
 }
