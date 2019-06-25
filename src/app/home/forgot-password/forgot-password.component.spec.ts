@@ -15,7 +15,7 @@ import { IgxCheckboxComponent, IgxIconComponent, IgxTabsModule, IgxGridModule,
   IgxIconModule, IgxDialogModule, IgxNavbarModule, IgxColumnHidingModule,
   IgxAvatarModule, IgxListModule, IgxTooltipModule, IgxCheckboxModule } from 'igniteui-angular';
 import { BsDropdownModule, BsDatepickerModule, TabsModule, ModalModule,
-  PopoverModule, PaginationModule, TypeaheadModule, PagerComponent } from 'ngx-bootstrap';
+  PopoverModule, PaginationModule, TypeaheadModule, PagerComponent, ButtonsModule } from 'ngx-bootstrap';
 import { MerchantManagementComponent } from 'src/app/tabs/merchant-management/merchant-management.component';
 import { UserAccessManagementComponent } from 'src/app/tabs/user-access-management/user-access-management.component';
 import { KnowledgebaseComponent } from 'src/app/tabs/knowledgebase/knowledgebase.component';
@@ -41,6 +41,7 @@ import { MerchantDetailsOrdersComponent } from 'src/app/tabs/merchant-management
 import { MerchantNotesComponent } from 'src/app/tabs/merchant-management/merchant-notes/merchant-notes.component';
 import { InitialsPipe } from 'src/app/_services/initials.pipe';
 import { TimePassedPipe } from 'src/app/_services/time-passed.pipe';
+import { BeneficialOwnersReportComponent } from 'src/app/tabs/reporting/beneficial-owners-report/beneficial-owners-report.component';
 
 describe('ForgotPasswordComponent', () => {
   let component: ForgotPasswordComponent;
@@ -77,6 +78,7 @@ describe('ForgotPasswordComponent', () => {
         TimeToResolveReportComponent,
         OpenTicketsReportComponent,
         MerchantDataReportComponent,
+        BeneficialOwnersReportComponent,
         MerchantDetailsOrdersComponent,
         MerchantNotesComponent
       ],
@@ -94,7 +96,8 @@ describe('ForgotPasswordComponent', () => {
         IgxTabsModule, IgxGridModule, IgxIconModule,
         IgxDialogModule, IgxNavbarModule, IgxColumnHidingModule,
         IgxAvatarModule, IgxListModule, IgxTooltipModule,
-        IgxCheckboxModule
+        IgxCheckboxModule,
+        ButtonsModule.forRoot()
       ]
     })
     .compileComponents();

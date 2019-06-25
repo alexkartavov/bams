@@ -1,9 +1,11 @@
 /* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { BeneficialOwnersReportComponent } from './beneficial-owners-report.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { ButtonsModule } from 'ngx-bootstrap';
+import { OAuthService, OAuthModule } from 'angular-oauth2-oidc';
 
 describe('BeneficialOwnersReportComponent', () => {
   let component: BeneficialOwnersReportComponent;
@@ -11,7 +13,14 @@ describe('BeneficialOwnersReportComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BeneficialOwnersReportComponent ]
+      declarations: [ BeneficialOwnersReportComponent ],
+      imports: [
+        FormsModule,
+        ReactiveFormsModule,
+        HttpClientTestingModule,
+        OAuthModule.forRoot(),
+        ButtonsModule.forRoot()
+      ]
     })
     .compileComponents();
   }));

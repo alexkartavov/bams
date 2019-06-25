@@ -7,7 +7,8 @@ export const environment = {
   production: true,
 
   auth: {
-    url: ''
+    // url: ''
+    url: 'https://bams-cep-ist-dev-ue-fa.azurewebsites.net'
   },
 
   merchants: {

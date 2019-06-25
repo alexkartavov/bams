@@ -9,7 +9,7 @@ import { InitialsPipe } from 'src/app/_services/initials.pipe';
 import { TimePassedPipe } from 'src/app/_services/time-passed.pipe';
 
 import { TabsModule } from 'ngx-bootstrap/tabs';
-import { BsDropdownModule, BsDatepickerModule } from 'ngx-bootstrap';
+import { BsDropdownModule, BsDatepickerModule, ButtonsModule } from 'ngx-bootstrap';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { PopoverModule } from 'ngx-bootstrap/popover';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
@@ -53,6 +53,7 @@ import { MerchantDetailsOrdersComponent } from './tabs/merchant-management/merch
 import { MerchantNotesComponent } from './tabs/merchant-management/merchant-notes/merchant-notes.component';
 import { ForgotPasswordComponent } from './home/forgot-password/forgot-password.component';
 import { OAuthModule } from 'angular-oauth2-oidc';
+import { BeneficialOwnersReportComponent } from './tabs/reporting/beneficial-owners-report/beneficial-owners-report.component';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -87,6 +88,7 @@ describe('AppComponent', () => {
         TimeToResolveReportComponent,
         OpenTicketsReportComponent,
         MerchantDataReportComponent,
+        BeneficialOwnersReportComponent,
         FilterTicketsComponent,
         MerchantDetailsOrdersComponent,
         MerchantNotesComponent,
@@ -108,7 +110,8 @@ describe('AppComponent', () => {
         IgxDialogModule, IgxNavbarModule, IgxColumnHidingModule,
         IgxAvatarModule, IgxListModule, IgxTooltipModule,
         IgxCheckboxModule,
-        OAuthModule.forRoot()
+        OAuthModule.forRoot(),
+        ButtonsModule.forRoot()
       ]
     }).compileComponents();
   }));

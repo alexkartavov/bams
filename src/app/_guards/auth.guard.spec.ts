@@ -38,8 +38,9 @@ import { MerchantDataReportComponent } from '../tabs/reporting/merchant-data-rep
 import { MerchantDetailsOrdersComponent } from '../tabs/merchant-management/merchant-details-orders/merchant-details-orders.component';
 import { MerchantNotesComponent } from '../tabs/merchant-management/merchant-notes/merchant-notes.component';
 import { BsDropdownModule, BsDatepickerModule, TabsModule, ModalModule, PopoverModule,
-  PaginationModule, TypeaheadModule } from 'ngx-bootstrap';
+  PaginationModule, TypeaheadModule, ButtonsModule } from 'ngx-bootstrap';
 import { OAuthModule } from 'angular-oauth2-oidc';
+import { BeneficialOwnersReportComponent } from '../tabs/reporting/beneficial-owners-report/beneficial-owners-report.component';
 
 describe('AuthGuard', () => {
   beforeEach(() => {
@@ -73,6 +74,7 @@ describe('AuthGuard', () => {
         TimeToResolveReportComponent,
         OpenTicketsReportComponent,
         MerchantDataReportComponent,
+        BeneficialOwnersReportComponent,
         MerchantDetailsOrdersComponent,
         MerchantNotesComponent
       ],
@@ -91,7 +93,8 @@ describe('AuthGuard', () => {
         IgxDialogModule, IgxNavbarModule, IgxColumnHidingModule,
         IgxAvatarModule, IgxListModule, IgxTooltipModule,
         IgxCheckboxModule,
-        OAuthModule.forRoot()
+        OAuthModule.forRoot(),
+        ButtonsModule.forRoot()
       ],
       providers: [AuthGuard]
     });
