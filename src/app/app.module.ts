@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { BsDropdownModule, BsDatepickerModule } from 'ngx-bootstrap';
+import { BsDropdownModule, BsDatepickerModule, ButtonsModule } from 'ngx-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ModalModule } from 'ngx-bootstrap/modal';
@@ -59,6 +59,7 @@ import { ForgotPasswordComponent } from './home/forgot-password/forgot-password.
 
 import { JwtInterceptor} from './_helpers/jwt.interceptor';
 import { ErrorInterceptor } from './_helpers/error.interceptor';
+import { BeneficialOwnersReportComponent } from './tabs/reporting/beneficial-owners-report/beneficial-owners-report.component';
 // import { fakeBackendProvider } from './_helpers/fake-backend';
 
 @NgModule({
@@ -95,7 +96,8 @@ import { ErrorInterceptor } from './_helpers/error.interceptor';
       MerchantDataReportComponent,
       MerchantDetailsOrdersComponent,
       MerchantNotesComponent,
-      ForgotPasswordComponent
+      ForgotPasswordComponent,
+      BeneficialOwnersReportComponent
    ],
    imports: [
       BrowserModule,
@@ -123,6 +125,7 @@ import { ErrorInterceptor } from './_helpers/error.interceptor';
       IgxCheckboxModule,
       RouterModule.forRoot(appRoutes),
       OAuthModule.forRoot(),
+      ButtonsModule.forRoot()
    ],
    providers: [
       AlertifyService,

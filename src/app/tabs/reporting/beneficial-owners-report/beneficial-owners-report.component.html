@@ -1,0 +1,21 @@
+
+<form #reportForm="ngForm" autocomplete="off">
+  <div class="container text-center">
+    <div class="btn-group">
+      <label class="btn btn-outline-primary" name="completed" [(ngModel)]="checkModel[0]"
+        btnCheckbox tabindex="0" role="button" [btnCheckboxFalse]="0" [btnCheckboxTrue]="1" (click)="click(0)">Completed</label>
+      <label class="btn btn-outline-primary" name="draft" [(ngModel)]="checkModel[1]"
+        btnCheckbox tabindex="0" role="button" [btnCheckboxFalse]="0" [btnCheckboxTrue]="1" (click)="click(1)">Draft</label>
+      <label class="btn btn-outline-primary" name="sent" [(ngModel)]="checkModel[2]"
+        btnCheckbox tabindex="0" role="button" [btnCheckboxFalse]="0" [btnCheckboxTrue]="1" (click)="click(2)">Sent</label>
+      <label class="btn btn-outline-primary" name="archived" [(ngModel)]="checkModel[3]"
+      btnCheckbox tabindex="0" role="button" [btnCheckboxFalse]="0" [btnCheckboxTrue]="1" (click)="click(3)">Archived</label>
+      <label class="btn btn-outline-primary" name="declined" [(ngModel)]="checkModel[4]"
+        btnCheckbox tabindex="0" role="button" [btnCheckboxFalse]="0" [btnCheckboxTrue]="1" (click)="click(4)">Declined</label>
+      <label class="btn btn-outline-primary" name="optedout" [(ngModel)]="checkModel[5]"
+        btnCheckbox tabindex="0" role="button" [btnCheckboxFalse]="0" [btnCheckboxTrue]="1" (click)="click(5)">Opted-Out</label>
+      <label class="btn btn-outline-primary" name="expired" [(ngModel)]="checkModel[6]"
+        btnCheckbox tabindex="0" role="button" [btnCheckboxFalse]="0" [btnCheckboxTrue]="1" (click)="click(6)">Expired</label>
+    </div>
+  </div>
+</form>

@@ -43,6 +43,7 @@ export class AuthService {
             lastName: user.lastName,
             role: user.cepSupportRoleId ? Role.Admin : Role.User
           };
+          localStorage.setItem('user', JSON.stringify(this.user));
           this.decodeToken(this.oauthService.getAccessToken());
           if (success) {
             success(this.user);
@@ -58,6 +59,7 @@ export class AuthService {
         lastName: 'yugandhar',
         role: model.username === 'admin@email.com' ? Role.Admin : Role.User
       };
+      localStorage.setItem('user', JSON.stringify(this.user));
       if (success) {
         success(this.user);
       }
@@ -80,6 +82,7 @@ export class AuthService {
     if (environment.auth.url) {
       this.oauthService.logOut();
     }
+    localStorage.removeItem('user');
     this.user = null;
   }
 
@@ -88,7 +91,17 @@ export class AuthService {
   }
 
   loggedIn(): boolean {
-    return !!this.getToken() && !!this.getUser();
+    const hasToken = !!this.getToken();
+    if (!this.user) {
+      const u = localStorage.getItem('user');
+      if (hasToken && u) {
+        this.user = JSON.parse(u);
+      } else {
+        localStorage.removeItem('user');
+        return false;
+      }
+    }
+    return hasToken;
   }
 
   decodeToken(token) {

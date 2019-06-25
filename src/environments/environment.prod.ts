@@ -51,5 +51,9 @@ export const environment = {
 
     uploadUrl: 'https://bams-cep-ist-uat-ue-aks.eastus.cloudapp.azure.com/core/api/v1/cep-support/ANET/ticket/{ticket_id}/attachment',
     downloadUrl: 'https://bams-cep-ist-uat-ue-aks.eastus.cloudapp.azure.com/core/api/v1/cep-support/ANET/attachment/{attachment_id}'
+  },
+
+  reports: {
+    boUrl: 'https://bams-cep-franchise-uat-ue-fa.azurewebsites.net/api/postBoCsv/a6986845-b4fa-4c29-a912-57696d75ab62?code=Zlz0Hn1mpKFrIsE0B/xOZPYgb2pxkXqHFa61DBJjN29JiKLNxx27Ew=='
   }
 }

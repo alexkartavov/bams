@@ -7,6 +7,7 @@ import { OpenTicketsReportComponent } from './open-tickets-report/open-tickets-r
 import { MerchantDataReportComponent } from './merchant-data-report/merchant-data-report.component';
 import { ProfileService } from 'src/app/_services/profile.service';
 import { BsDropdownDirective } from 'ngx-bootstrap';
+import { BeneficialOwnersReportComponent } from './beneficial-owners-report/beneficial-owners-report.component';
 
 @Component({
   selector: 'app-reporting',
@@ -73,6 +74,11 @@ export class ReportingComponent implements OnInit, AfterViewInit {
   @ViewChild('merchantDataReport')
   public merchantDataReport: MerchantDataReportComponent;
   // #endregion MerchantDataReport
+
+  // #region eneficialOwnersReport
+  @ViewChild('beneficialOwnersReport')
+  public beneficialOwnersReport: BeneficialOwnersReportComponent;
+  // #endregion eneficialOwnersReport
 
   doNotClose = false;
 
@@ -261,6 +267,9 @@ export class ReportingComponent implements OnInit, AfterViewInit {
       case this.reportTypeData[3]:
         this.merchantDataReport.download();
         break;
+        case this.reportTypeData[4]:
+          this.beneficialOwnersReport.download();
+          break;
     }
   }
 

@@ -54,7 +54,13 @@ export class ValueProcessingService {
   public reportRangePast12Months = 'Past 12 months';
   public reportRangeData: string[] = [this.reportRangeAll, this.reportRangeCurrentMonth, this.reportRangePast3Months,
     this.reportRangePast6Months, this.reportRangePast12Months];
-  public reportTypeData: string[] = ['All Support Tickets', 'Resolved Tickets', 'Open Tickets', 'Merchant'];
+  public reportTypeData: string[] = [
+    'All Support Tickets',
+    'Resolved Tickets',
+    'Open Tickets',
+    'Merchant',
+    'Beneficial Owners'
+  ];
 
   constructor() { }
 

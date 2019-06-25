@@ -99,4 +99,8 @@
   <div *ngIf="reportType == reportTypeData[3]" class="mt-2">
     <app-merchant-data-report #merchantDataReport></app-merchant-data-report>
   </div>
+
+  <div *ngIf="reportType == reportTypeData[4]" class="mt-2">
+    <app-beneficial-owners-report #beneficialOwnersReport [startDate]="startDate" [endDate]="endDate"></app-beneficial-owners-report>
+  </div>
 </div>
