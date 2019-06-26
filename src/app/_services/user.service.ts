@@ -5,30 +5,33 @@ import { Router } from '@angular/router';
 import { of } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { UserAccessModel } from '../models/user-access-model';
+import { environment } from 'src/environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  cachedUser: UserAccessModel;
+  cachedUser: any;
 
-  constructor(private authService: MsalService, private http: HttpClient, private router: Router) {
-    // register redirect call back (only for needed for loginRedirect)
-    this.authService.handleRedirectCallback(() => {
-      router.navigate(['myProfile']);
-    });
+  constructor(private msalService: MsalService, private http: HttpClient, private router: Router) {
+    // // register redirect call back (only for needed for loginRedirect)
+    // this.msalService.handleRedirectCallback(() => {
+    //   router.navigate(['myProfile']);
+    // });
   }
 
-  public tryToGetUser() {
-      if (this.authService.getAccount()) {
-          return this.getUser();
+  public tryToGetUser(email) {
+      if (this.msalService.getAccount()) {
+          return this.getUser(email);
       }
       return of(null);
   }
 
-  public getUser() {
-      return this.http.get<UserAccessModel>(`User/loggedinuser`).pipe(tap(user => {
-          this.cachedUser = user;
-      }));
+  public getUser(email) {
+      return this.http.get(environment.users.userEmailUrl, {
+        params: {
+          'email': email
+        }
+      }).pipe(tap(user => this.cachedUser = user));
   }
 }

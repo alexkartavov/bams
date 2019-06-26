@@ -10,10 +10,10 @@ import { filter } from 'rxjs/operators';
 })
 export class AppComponent {
   title = 'ng-supporttool';
-  _subFail: any;
-  _subSuccess: any;
-  _subAcqTokenSuccess: any;
-  _subAcqTokenFail: any;
+  // _subFail: any;
+  // _subSuccess: any;
+  // _subAcqTokenSuccess: any;
+  // _subAcqTokenFail: any;
 
   constructor() {
 

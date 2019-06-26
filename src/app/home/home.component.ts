@@ -35,7 +35,8 @@ export class HomeComponent implements OnInit {
   }
 
   login() {
-    this.authService.login(this.model,
+    this.authService.login(
+      // this.model,
       user => {
         this.alertify.success('Logged in successfully');
         // TODO after auth is fully implemented, use logged in user info to get the profile

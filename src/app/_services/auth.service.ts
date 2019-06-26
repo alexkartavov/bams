@@ -7,6 +7,7 @@ import { UserAccessModel } from '../models/user-access-model';
 import { ValueProcessingService } from './value-processing.service';
 import { MsalService } from 'angular-msal';
 import { UserService } from './user.service';
+import { AlertifyService } from './alertify.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,15 +17,89 @@ export class AuthService {
   constructor(
     private httpClient: HttpClient,
     private msalService: MsalService,
-    private userService: UserService) {
+    private userService: UserService,
+    private alertify: AlertifyService) {
     }
 
-  login() {
-    this.msalService.loginPopup().then(_ => {
-      this.userService.tryToGetUser().subscribe(_ => {
-        // this.router.navigate(['/']);
-     });
+  login(success) {
+    this.msalService.loginPopup({}).then(() => {
+      this.loadUserInfo(this.msalService.getAccount().name, success);
+    },
+    err => {
+      if (!environment.production) {
+      this.alertify.error(err.message);
+      }
     });
+  }
+
+  logout() {
+    this.msalService.logout();
+    this.user = null;
+    sessionStorage.removeItem('user');
+  }
+
+  loggedIn(): boolean {
+    if (this.msalService.getLoginInProgress()) {
+      return false;
+    }
+    const isLoggedIn =  !!this.msalService.getAccount();
+    if (isLoggedIn) {
+      const userData = sessionStorage.getItem('user');
+      if (!userData) {
+        this.loadUserInfo(this.msalService.getAccount().name);
+      } else {
+        this.user = JSON.parse(userData);
+      }
+    }
+    return isLoggedIn;
+  }
+
+  loadUserInfo(email, success?) {
+    this.userService.tryToGetUser(email).subscribe(user => {
+      this.user = <UserAccessModel>{
+        id: user.cepSupportUserId,
+        email: user.email,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        role: user.cepSupportRoleId === 1 ? Role.Admin : Role.User
+      };
+      sessionStorage.setItem('user', JSON.stringify(this.user));
+      if (success) {
+        success(this.user);
+      }
+    });
+  }
+
+  getUser() {
+    return this.user;
+  }
+
+  getUserRole() {
+    if (!this.user) {
+      return null;
+    }
+    return this.user.role;
+  }
+
+  getToken() {
+    if (this.loggedIn()) {
+      return this.msalService.getAccount().idToken;
+    }
+    return null;
+  }
+
+  getUserName() {
+    if (this.user) {
+      return this.user.firstName + ' ' + this.user.lastName;
+    }
+    return '';
+  }
+
+  getUserId() {
+    if (this.user) {
+      return this.user.id;
+    }
+    return null;
   }
 
 }

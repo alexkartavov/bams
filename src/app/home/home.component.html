@@ -22,7 +22,7 @@
             (ngSubmit)="login()">
 
             <div class="container">
-              <div class="row form-group">
+              <!-- <div class="row form-group">
                 <label for="username" class="primary-color">Email address</label>
                 <input
                   class="form-control"
@@ -51,16 +51,18 @@
                 <div class="col-6">
                   <a href="#" class="pull-right" [routerLink]="['/forgot-password']">Forgot password?</a>
                 </div>
-              </div>
+              </div> -->
 
               <div class="row">
-                <div class="col-12 text-center">
+                <div class="col-6 text-center">
                   <button
                     [disabled]="!loginForm.valid"
                     class="btn-lg btn-primary"
                     type="submit">
                     Sign In
                   </button>
+                </div>
+                <div class="col-6 text-center">
                 </div>
 
                 <!-- <div class="col-6 text-center">
@@ -73,7 +75,7 @@
             </div>
           </form>
 
-          <div *ngIf="!env.production">
+          <!-- <div *ngIf="!env.production">
             <div class="row mt-5">
               <div class="col">For admin access use:</div>
               <div class="col">admin@non-prod.core.bankofamericamerchant.com / franchiseS3cretS4uce</div>
@@ -82,7 +84,7 @@
               <div class="col">For support user access use:</div>
               <div class="col">user@non-prod.core.bankofamericamerchant.com / franchiseS3cretS4uce </div>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
   </div>

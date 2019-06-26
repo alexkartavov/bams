@@ -134,16 +134,16 @@ export function baseUri() {
          clientID: environment.auth.clientID,
          authority: environment.auth.authority, // + environment.auth.userFlowTeacher,
          validateAuthority: true,
-         cacheLocation: 'localStorage',
+         cacheLocation: 'sessionStorage',
          postLogoutRedirectUri: baseUri,
          redirectUri: baseUri,
          navigateToLoginRequestUrl: true,
-         popUp: false,
+         popUp: true,
          consentScopes: environment.auth.scopes,
          // logger: loggerCallback,
-         correlationId: 'correlationId1234',
-         level: LogLevel.Info,
-         piiLoggingEnabled: true
+         // correlationId: 'correlationId1234',
+         // level: LogLevel.Info,
+         // piiLoggingEnabled: true
       }),
       // MsalModule.forRoot({
       //    clientID: '32338b6d-d345-4c8a-a695-a07bd256ede0',
