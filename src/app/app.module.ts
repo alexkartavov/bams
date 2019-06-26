@@ -13,7 +13,7 @@ import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 import { IgxTabsModule, IgxGridModule, IgxIconModule,
    IgxDialogModule, IgxNavbarModule, IgxColumnHidingModule,
    IgxAvatarModule, IgxListModule, IgxTooltipModule, IgxCheckboxModule } from 'igniteui-angular';
-import { OAuthModule } from 'angular-oauth2-oidc';
+import { MsalModule, MsalInterceptor } from 'angular-msal';
 
 // import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 // import { InMemoryDataServiceService } from './_services/in-memory-data-service.service';
@@ -56,11 +56,17 @@ import { MerchantDataReportComponent } from './tabs/reporting/merchant-data-repo
 import { MerchantDetailsOrdersComponent } from './tabs/merchant-management/merchant-details-orders/merchant-details-orders.component';
 import { MerchantNotesComponent } from './tabs/merchant-management/merchant-notes/merchant-notes.component';
 import { ForgotPasswordComponent } from './home/forgot-password/forgot-password.component';
+import { BeneficialOwnersReportComponent } from './tabs/reporting/beneficial-owners-report/beneficial-owners-report.component';
 
 import { JwtInterceptor} from './_helpers/jwt.interceptor';
 import { ErrorInterceptor } from './_helpers/error.interceptor';
-import { BeneficialOwnersReportComponent } from './tabs/reporting/beneficial-owners-report/beneficial-owners-report.component';
+import { environment } from 'src/environments/environment';
+import { LogLevel } from 'msal';
 // import { fakeBackendProvider } from './_helpers/fake-backend';
+
+export function baseUri() {
+   return window.location.protocol + '//' + window.location.host + '/';
+}
 
 @NgModule({
    declarations: [
@@ -124,14 +130,46 @@ import { BeneficialOwnersReportComponent } from './tabs/reporting/beneficial-own
       IgxTooltipModule,
       IgxCheckboxModule,
       RouterModule.forRoot(appRoutes),
-      OAuthModule.forRoot(),
+      MsalModule.forRoot({
+         clientID: environment.auth.clientID,
+         authority: environment.auth.authority, // + environment.auth.userFlowTeacher,
+         validateAuthority: true,
+         cacheLocation: 'localStorage',
+         postLogoutRedirectUri: baseUri,
+         redirectUri: baseUri,
+         navigateToLoginRequestUrl: true,
+         popUp: false,
+         consentScopes: environment.auth.scopes,
+         // logger: loggerCallback,
+         correlationId: 'correlationId1234',
+         level: LogLevel.Info,
+         piiLoggingEnabled: true
+      }),
+      // MsalModule.forRoot({
+      //    clientID: '32338b6d-d345-4c8a-a695-a07bd256ede0',
+      //    authority: 'https://login.windows.net/bc8fea98-c3ce-4ff8-9f5c-cadeeebdf5a8/',
+      //    redirectUri: '/',
+      //    // validateAuthority : true,
+      //    // cacheLocation : 'localStorage',
+      //    postLogoutRedirectUri: '/',
+      //    navigateToLoginRequestUrl : true,
+      //    popUp: true,
+      //    // consentScopes: ['user.read', 'api://a88bb933-319c-41b5-9f04-eff36d985612/access_as_user'],
+      //    // unprotectedResources: ['https://angularjs.org/'],
+      //    // protectedResourceMap : protectedResourceMap,
+      //    // logger :loggerCallback,
+      //    // correlationId: '1234',
+      //    // level: LogLevel.Verbose,
+      //    // piiLoggingEnabled: true,
+      // }),
       ButtonsModule.forRoot()
    ],
    providers: [
       AlertifyService,
       SupportDataService,
 
-      { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+      // { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+      { provide: HTTP_INTERCEPTORS, useClass: MsalInterceptor, multi: true },
       { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
 
       // provider used to create fake backend

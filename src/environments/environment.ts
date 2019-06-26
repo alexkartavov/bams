@@ -8,7 +8,10 @@ export const environment = {
 
   auth: {
     // url: ''
-    url: 'https://bams-cep-ist-dev-ue-fa.azurewebsites.net'
+    // url: 'https://bams-cep-ist-dev-ue-fa.azurewebsites.net'
+    authority: 'https://login.windows.net/bc8fea98-c3ce-4ff8-9f5c-cadeeebdf5a8/oauth2/v2.0',
+    clientID: '32338b6d-d345-4c8a-a695-a07bd256ede0',
+    scopes: ['Users.Read']
   },
 
   merchants: {
