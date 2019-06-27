@@ -54,17 +54,28 @@
               </div> -->
 
               <div class="row">
-                <div class="col-6 text-center">
+                <div class="col-4 text-center">
                   <button
-                    [disabled]="!loginForm.valid"
                     class="btn-lg btn-primary"
                     type="submit">
                     Sign In
                   </button>
                 </div>
-                <div class="col-6 text-center">
+                <div *ngIf="!env.production" class="col-4 text-center">
+                  <button
+                    class="btn-lg btn-primary"
+                    (click)="login('admin@non-prod.core.bankofamericamerchant.com')">
+                    Continue as Admin
+                  </button>
                 </div>
-
+                <div *ngIf="!env.production" class="col-4 text-center">
+                    <button
+                      class="btn-lg btn-primary"
+                      (click)="login('user@non-prod.core.bankofamericamerchant.com')">
+                      Continue as User
+                    </button>
+                  </div>
+    
                 <!-- <div class="col-6 text-center">
                   <button
                     class="btn-lg btn-outline-primary" type="button">

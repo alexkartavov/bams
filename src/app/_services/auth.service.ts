@@ -21,24 +21,35 @@ export class AuthService {
     private alertify: AlertifyService) {
     }
 
-  login(success) {
-    this.msalService.loginPopup({}).then(() => {
-      this.loadUserInfo(this.msalService.getAccount().name, success);
-    },
-    err => {
-      if (!environment.production) {
-      this.alertify.error(err.message);
-      }
-    });
+  login(success, email?: string) {
+    if (email) {
+      localStorage.setItem('token', 'token');
+      this.loadUserInfo(email, success);
+    } else {
+      this.msalService.loginPopup({}).then(() => {
+        this.loadUserInfo(this.msalService.getAccount().name, success);
+      },
+      err => {
+        if (!environment.production) {
+        this.alertify.error(err.message);
+        }
+      });
+    }
   }
 
   logout() {
-    this.msalService.logout();
+    if (!localStorage.getItem('token')) {
+      this.msalService.logout();
+    }
     this.user = null;
     sessionStorage.removeItem('user');
+    localStorage.removeItem('token');
   }
 
   loggedIn(): boolean {
+    if (localStorage.getItem('token')) {
+      return true;
+    }
     if (this.msalService.getLoginInProgress()) {
       return false;
     }
@@ -82,6 +93,9 @@ export class AuthService {
   }
 
   getToken() {
+    if (localStorage.getItem('token')) {
+      return localStorage.getItem('token');
+    }
     if (this.loggedIn()) {
       return this.msalService.getAccount().idToken;
     }

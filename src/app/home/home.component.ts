@@ -34,7 +34,7 @@ export class HomeComponent implements OnInit {
     return this.authService.loggedIn();
   }
 
-  login() {
+  login(email?: string) {
     this.authService.login(
       // this.model,
       user => {
@@ -45,7 +45,8 @@ export class HomeComponent implements OnInit {
           profile => this.profileService.setProfile(profile, false),
           err => console.error(err)
         );
-      }
+      },
+      email
     );
   }
 

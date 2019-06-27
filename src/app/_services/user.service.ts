@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { of } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { UserAccessModel } from '../models/user-access-model';
-import { environment } from 'src/environments/environment.prod';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +21,7 @@ export class UserService {
   }
 
   public tryToGetUser(email) {
-      if (this.msalService.getAccount()) {
+      if (!environment.production || this.msalService.getAccount()) {
           return this.getUser(email);
       }
       return of(null);
