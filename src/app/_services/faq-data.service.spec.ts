@@ -3,7 +3,9 @@
 import { TestBed, async, inject } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { FaqDataService } from './faq-data.service';
-import { OAuthModule } from 'angular-oauth2-oidc';
+import { environment } from 'src/environments/environment';
+import { MsalModule, MsalConfig } from 'angular-msal';
+import { RouterModule } from '@angular/router';
 
 describe('Service: FaqData', () => {
   beforeEach(() => {
@@ -11,7 +13,8 @@ describe('Service: FaqData', () => {
       providers: [FaqDataService],
       imports: [
         HttpClientTestingModule,
-        OAuthModule.forRoot()
+        MsalModule.forRoot(<MsalConfig>environment.auth),
+        RouterModule.forRoot([]),
       ]
     });
   });

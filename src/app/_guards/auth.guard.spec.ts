@@ -3,7 +3,6 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 import { AuthGuard } from './auth.guard';
 import { RouterModule } from '@angular/router';
-import { appRoutes } from '../routes';
 import { HomeComponent } from '../home/home.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TabsComponent } from '../tabs/tabs.component';
@@ -39,8 +38,9 @@ import { MerchantDetailsOrdersComponent } from '../tabs/merchant-management/merc
 import { MerchantNotesComponent } from '../tabs/merchant-management/merchant-notes/merchant-notes.component';
 import { BsDropdownModule, BsDatepickerModule, TabsModule, ModalModule, PopoverModule,
   PaginationModule, TypeaheadModule, ButtonsModule } from 'ngx-bootstrap';
-import { OAuthModule } from 'angular-oauth2-oidc';
 import { BeneficialOwnersReportComponent } from '../tabs/reporting/beneficial-owners-report/beneficial-owners-report.component';
+import { environment } from 'src/environments/environment';
+import { MsalModule, MsalConfig } from 'angular-msal';
 
 describe('AuthGuard', () => {
   beforeEach(() => {
@@ -79,7 +79,7 @@ describe('AuthGuard', () => {
         MerchantNotesComponent
       ],
       imports: [
-        RouterModule.forRoot(appRoutes),
+        RouterModule.forRoot([]),
         FormsModule,
         ReactiveFormsModule,
         BsDropdownModule.forRoot(),
@@ -93,8 +93,8 @@ describe('AuthGuard', () => {
         IgxDialogModule, IgxNavbarModule, IgxColumnHidingModule,
         IgxAvatarModule, IgxListModule, IgxTooltipModule,
         IgxCheckboxModule,
-        OAuthModule.forRoot(),
-        ButtonsModule.forRoot()
+        ButtonsModule.forRoot(),
+        MsalModule.forRoot(<MsalConfig>environment.auth),
       ],
       providers: [AuthGuard]
     });

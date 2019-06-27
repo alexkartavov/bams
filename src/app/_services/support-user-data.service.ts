@@ -154,6 +154,9 @@ export class SupportUserDataService implements OnDestroy {
   }
 
   setProfile(userId: number, profile: any) {
+    if (!userId) {
+      return;
+    }
     this.http.post(this.profileSetUrl.replace('{user_id}', userId.toString()), profile, this.httpOptionsNoKey)
       .subscribe(
         () => {},

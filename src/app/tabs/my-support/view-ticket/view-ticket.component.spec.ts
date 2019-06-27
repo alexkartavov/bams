@@ -11,7 +11,9 @@ import { InitialsPipe } from 'src/app/_services/initials.pipe';
 import { TimePassedPipe } from 'src/app/_services/time-passed.pipe';
 
 import { ViewTicketComponent } from './view-ticket.component';
-import { OAuthModule } from 'angular-oauth2-oidc';
+import { environment } from 'src/environments/environment';
+import { MsalModule, MsalConfig } from 'angular-msal';
+import { RouterModule } from '@angular/router';
 
 describe('ViewTicketComponent', () => {
   let component: ViewTicketComponent;
@@ -32,7 +34,8 @@ describe('ViewTicketComponent', () => {
         TypeaheadModule.forRoot(),
         IgxIconModule,
         IgxAvatarModule,
-        OAuthModule.forRoot()
+        MsalModule.forRoot(<MsalConfig>environment.auth),
+        RouterModule.forRoot([]),
       ]
     })
     .compileComponents();

@@ -2,16 +2,30 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+export function baseUri() {
+  return window.location.protocol + '//' + window.location.host + '/';
+}
+
 /* tslint:disable */
 export const environment = {
   production: false,
 
   auth: {
     // url: ''
-    // url: 'https://bams-cep-ist-dev-ue-fa.azurewebsites.net'
-    authority: 'https://login.windows.net/bc8fea98-c3ce-4ff8-9f5c-cadeeebdf5a8',
+    // url: 'https://bams-cep-ist-dev-ue-fa.azurewebsites.net',
     clientID: '32338b6d-d345-4c8a-a695-a07bd256ede0',
-    scopes: ['Users.Read']
+    authority: 'https://login.windows.net/bc8fea98-c3ce-4ff8-9f5c-cadeeebdf5a8',
+    validateAuthority: true,
+    cacheLocation: 'sessionStorage',
+    postLogoutRedirectUri: baseUri,
+    redirectUri: baseUri,
+    navigateToLoginRequestUrl: true,
+    popUp: true,
+    consentScopes: ['Users.Read'],
+    // logger: loggerCallback,
+    // correlationId: 'correlationId1234',
+    // level: LogLevel.Info,
+    // piiLoggingEnabled: true
   },
 
   merchants: {

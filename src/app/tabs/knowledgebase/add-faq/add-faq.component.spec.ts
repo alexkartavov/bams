@@ -7,7 +7,9 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ModalModule } from 'ngx-bootstrap/modal';
 
 import { AddFaqComponent } from './add-faq.component';
-import { OAuthModule } from 'angular-oauth2-oidc';
+import { environment } from 'src/environments/environment';
+import { MsalModule, MsalConfig } from 'angular-msal';
+import { RouterModule } from '@angular/router';
 
 describe('AddFaqComponent', () => {
   let component: AddFaqComponent;
@@ -21,7 +23,8 @@ describe('AddFaqComponent', () => {
         ReactiveFormsModule,
         HttpClientTestingModule,
         ModalModule.forRoot(),
-        OAuthModule.forRoot()
+        MsalModule.forRoot(<MsalConfig>environment.auth),
+        RouterModule.forRoot([]),
       ]
     })
     .compileComponents();

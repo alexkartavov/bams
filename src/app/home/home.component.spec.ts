@@ -52,8 +52,9 @@ import { MerchantDataReportComponent } from '../tabs/reporting/merchant-data-rep
 import { MerchantDetailsOrdersComponent } from '../tabs/merchant-management/merchant-details-orders/merchant-details-orders.component';
 import { MerchantNotesComponent } from '../tabs/merchant-management/merchant-notes/merchant-notes.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
-import { OAuthModule } from 'angular-oauth2-oidc';
 import { BeneficialOwnersReportComponent } from '../tabs/reporting/beneficial-owners-report/beneficial-owners-report.component';
+import { environment } from 'src/environments/environment';
+import { MsalModule, MsalConfig } from 'angular-msal';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -111,8 +112,8 @@ describe('HomeComponent', () => {
         IgxDialogModule, IgxNavbarModule, IgxColumnHidingModule,
         IgxAvatarModule, IgxListModule, IgxTooltipModule,
         IgxCheckboxModule,
-        OAuthModule.forRoot(),
-        ButtonsModule.forRoot()
+        ButtonsModule.forRoot(),
+        MsalModule.forRoot(<MsalConfig>environment.auth),
       ]
     })
     .compileComponents();

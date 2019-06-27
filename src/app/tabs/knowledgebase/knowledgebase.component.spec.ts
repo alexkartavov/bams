@@ -5,8 +5,6 @@ import { DebugElement } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
-import { appRoutes } from 'src/app/routes';
-
 import { InitialsPipe } from 'src/app/_services/initials.pipe';
 import { TimePassedPipe } from 'src/app/_services/time-passed.pipe';
 
@@ -52,8 +50,9 @@ import { AnimationBuilder } from '@angular/animations';
 import { MerchantDetailsOrdersComponent } from '../merchant-management/merchant-details-orders/merchant-details-orders.component';
 import { MerchantNotesComponent } from '../merchant-management/merchant-notes/merchant-notes.component';
 import { ForgotPasswordComponent } from 'src/app/home/forgot-password/forgot-password.component';
-import { OAuthModule } from 'angular-oauth2-oidc';
 import { BeneficialOwnersReportComponent } from '../reporting/beneficial-owners-report/beneficial-owners-report.component';
+import { environment } from 'src/environments/environment';
+import { MsalModule, MsalConfig } from 'angular-msal';
 
 describe('KnowledgebaseComponent', () => {
   let component: KnowledgebaseComponent;
@@ -64,7 +63,7 @@ describe('KnowledgebaseComponent', () => {
       imports: [
         FormsModule,
         ReactiveFormsModule,
-        RouterModule.forRoot(appRoutes),
+        RouterModule.forRoot([]),
         BsDropdownModule.forRoot(),
         BsDatepickerModule.forRoot(),
         TabsModule.forRoot(),
@@ -76,8 +75,8 @@ describe('KnowledgebaseComponent', () => {
         IgxDialogModule, IgxNavbarModule, IgxColumnHidingModule,
         IgxAvatarModule, IgxListModule, IgxTooltipModule,
         IgxCheckboxModule,
-        OAuthModule.forRoot(),
-        ButtonsModule.forRoot()
+        ButtonsModule.forRoot(),
+        MsalModule.forRoot(<MsalConfig>environment.auth),
       ],
       declarations: [
         InitialsPipe,

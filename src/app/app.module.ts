@@ -13,7 +13,7 @@ import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 import { IgxTabsModule, IgxGridModule, IgxIconModule,
    IgxDialogModule, IgxNavbarModule, IgxColumnHidingModule,
    IgxAvatarModule, IgxListModule, IgxTooltipModule, IgxCheckboxModule } from 'igniteui-angular';
-import { MsalModule, MsalInterceptor } from 'angular-msal';
+import { MsalModule, MsalInterceptor, MsalConfig } from 'angular-msal';
 
 // import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 // import { InMemoryDataServiceService } from './_services/in-memory-data-service.service';
@@ -63,10 +63,6 @@ import { ErrorInterceptor } from './_helpers/error.interceptor';
 import { environment } from 'src/environments/environment';
 import { LogLevel } from 'msal';
 // import { fakeBackendProvider } from './_helpers/fake-backend';
-
-export function baseUri() {
-   return window.location.protocol + '//' + window.location.host + '/';
-}
 
 @NgModule({
    declarations: [
@@ -130,21 +126,7 @@ export function baseUri() {
       IgxTooltipModule,
       IgxCheckboxModule,
       RouterModule.forRoot(appRoutes),
-      MsalModule.forRoot({
-         clientID: environment.auth.clientID,
-         authority: environment.auth.authority, // + environment.auth.userFlowTeacher,
-         validateAuthority: true,
-         cacheLocation: 'sessionStorage',
-         postLogoutRedirectUri: baseUri,
-         redirectUri: baseUri,
-         navigateToLoginRequestUrl: true,
-         popUp: true,
-         consentScopes: environment.auth.scopes,
-         // logger: loggerCallback,
-         // correlationId: 'correlationId1234',
-         // level: LogLevel.Info,
-         // piiLoggingEnabled: true
-      }),
+      MsalModule.forRoot(<MsalConfig>environment.auth),
       // MsalModule.forRoot({
       //    clientID: '32338b6d-d345-4c8a-a695-a07bd256ede0',
       //    authority: 'https://login.windows.net/bc8fea98-c3ce-4ff8-9f5c-cadeeebdf5a8/',

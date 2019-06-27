@@ -8,7 +8,9 @@ import { InitialsPipe } from 'src/app/_services/initials.pipe';
 import { ModalModule } from 'ngx-bootstrap';
 import { IgxAvatarModule } from 'igniteui-angular';
 import { FormsModule } from '@angular/forms';
-import { OAuthModule } from 'angular-oauth2-oidc';
+import { environment } from 'src/environments/environment';
+import { MsalModule, MsalConfig } from 'angular-msal';
+import { RouterModule } from '@angular/router';
 
 describe('MerchantNotesComponent', () => {
   let component: MerchantNotesComponent;
@@ -24,7 +26,8 @@ describe('MerchantNotesComponent', () => {
         FormsModule,
         ModalModule.forRoot(),
         IgxAvatarModule,
-        OAuthModule.forRoot()
+        MsalModule.forRoot(<MsalConfig>environment.auth),
+        RouterModule.forRoot([]),
       ]
     })
     .compileComponents();
