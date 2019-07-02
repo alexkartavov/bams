@@ -81,7 +81,7 @@ export class MerchantManagementComponent implements OnInit, OnDestroy, AfterView
     },
     {
       header: 'Platform',
-      field: 'platform',
+      field: 'applicationReferenceNo',
       hidden: false
     },
     {
@@ -90,6 +90,8 @@ export class MerchantManagementComponent implements OnInit, OnDestroy, AfterView
       hidden: false
     }
   ];
+
+  platformNames = ['ANET', 'BAMS', 'BANA'];
 
   public currentRowID: string;
   public updateModel: MerchantModel;
@@ -407,14 +409,17 @@ export class MerchantManagementComponent implements OnInit, OnDestroy, AfterView
     };
   }
 
-  platformColorStyle(platform) {
-    let color = 'green';
-    switch (platform) {
-      case 'BANA':
-        color = 'darkcyan';
-        break;
-      case 'ANET':
+  platformColorStyle(appRefNo) {
+    let color = 'darkblue';
+    switch (this.platformName(appRefNo)) {
+      case this.platformNames[0]:
         color = 'orange';
+        break;
+      case this.platformNames[1]:
+        color = 'green';
+        break;
+      case this.platformNames[2]:
+        color = 'darkcyan';
         break;
     }
     return {
@@ -425,7 +430,14 @@ export class MerchantManagementComponent implements OnInit, OnDestroy, AfterView
     };
   }
 
-  platformName(platform) {
-    return platform;
+  platformName(appRefNo: string) {
+    if (appRefNo) {
+      for (let i = 0; i < this.platformNames.length; i++) {
+        if (appRefNo.startsWith(this.platformNames[i])) {
+          return this.platformNames[i];
+        }
+      }
+    }
+    return appRefNo;
   }
 }

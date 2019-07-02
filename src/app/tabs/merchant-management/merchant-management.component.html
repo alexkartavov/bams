@@ -91,7 +91,7 @@
           </igx-column>
           <igx-column [header]="columnObj(11).header" width="80px">
               <ng-template igxCell let-cell="cell">
-                <span [ngStyle]="platformColorStyle(cell.row.rowData.platform)">{{platformName(cell.row.rowData.platform)}}</span>
+                <span [ngStyle]="platformColorStyle(cell.row.rowData[columnObj(11).field])">{{platformName(cell.row.rowData[columnObj(11).field])}}</span>
               </ng-template>
           </igx-column>
           <igx-column header="Actions" width="100px" disableHiding="true">

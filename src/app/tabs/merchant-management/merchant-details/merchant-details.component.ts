@@ -32,7 +32,7 @@ export class MerchantDetailsComponent implements OnInit {
   public show(merchant: MerchantModel) {
     if (merchant) {
       this.merchant = merchant;
-      this.merchDataService.getMerchantDelails(merchant.id).subscribe(m => {
+      this.merchDataService.getMerchantDelails(merchant.midNumber).subscribe(m => {
         this.m = m;
         this.openModal(this.tmpl);
       });
