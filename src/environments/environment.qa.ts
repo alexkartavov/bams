@@ -12,8 +12,10 @@ export const environment = {
   },
 
   merchants: {
-    listPostUrl: 'https://bams-cep-anet-qa-ue-aks.eastus.cloudapp.azure.com/core/api/v1/support/list/merchants',
-    getUrl: 'https://bams-cep-anet-qa-ue-aks.eastus.cloudapp.azure.com/core/api/v1/support/merchant/{mid}'
+    // listPostUrl: 'https://bams-cep-anet-qa-ue-aks.eastus.cloudapp.azure.com/core/api/v1/support/list/merchants',
+    // getUrl: 'https://bams-cep-anet-qa-ue-aks.eastus.cloudapp.azure.com/core/api/v1/support/merchant/{mid}'
+    listPostUrl: 'https://bams-cep-banadigital-qa-ue-aks.eastus.cloudapp.azure.com/core/api/v1/support/list/merchants',
+    getUrl: 'https://bams-cep-banadigital-qa-ue-aks.eastus.cloudapp.azure.com/core/api/v1/support/merchant/{mid}'
   },
 
   merchantDetails: {
