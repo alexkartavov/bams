@@ -14,7 +14,7 @@ export const environment = {
   merchants: {
     // listPostUrl: 'https://bams-cep-anet-dev-ue-aks.eastus.cloudapp.azure.com/core/api/v1/support/list/merchants',
     // getUrl: 'https://bams-cep-anet-dev-ue-aks.eastus.cloudapp.azure.com/core/api/v1/support/merchant/{mid}'
-    listPostUrl: 'http://bams-cep-banadigital-dev-ue-aks.eastus.cloudapp.azure.com/core/api/v1/support/list/merchants',
+    listPostUrl: 'https://bams-cep-banadigital-dev-ue-aks.eastus.cloudapp.azure.com/core/api/v1/support/list/merchants',
     getUrl: 'https://bams-cep-banadigital-dev-ue-aks.eastus.cloudapp.azure.com/core/api/v1/support/merchant/{mid}'
   },
 
