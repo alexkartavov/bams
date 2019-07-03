@@ -17,14 +17,49 @@ export class AuthService {
   jwtHelper = new JwtHelperService();
   jwtDecodedToken: any;
   user: UserAccessModel = null;
+
+  testEmails = ['admin@email.com',
+    'user@email.com',
+    'admin@non-prod.core.bankofamericamerchant.com',
+    'user@non-prod.core.bankofamericamerchant.com'];
+
   constructor(
     private httpClient: HttpClient,
     private valueService: ValueProcessingService,
     private oauthService: OAuthService) {
     }
 
+  isTestEmail(email) {
+    return email === this.testEmails[0] || email === this.testEmails[1] ||
+    email === this.testEmails[2] || email === this.testEmails[3];
+  }
+
+  isTestAdmin(email) {
+    return email === this.testEmails[0] || email === this.testEmails[2];
+  }
+
   login(model: any, success?, error?) {
-    if (environment.auth.url) {
+    if (!environment.production && this.isTestEmail(model.username)) {
+      // Test routine
+      this.loadUserProfile(this.isTestAdmin(model.username) ?
+          this.testEmails[2] : this.testEmails[3]
+          ).then((user) => {
+        if (user) {
+          this.user = <UserAccessModel> {
+            id: user.cepSupportUserId,
+            email: user.email,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            role: user.cepSupportRoleId ? Role.Admin : Role.User
+          };
+          localStorage.setItem('user', JSON.stringify(this.user));
+          if (success) {
+            success(this.user);
+          }
+        }
+      });
+      // End test routine
+    } else {
       this.oauthService.fetchTokenUsingPasswordFlow(model.username, model.password).then(() => {
         // Loading data about the user
         return this.loadUserProfile(model.username);
@@ -50,19 +85,6 @@ export class AuthService {
           }
         }
       });
-    } else if (!environment.production) {
-      // Test routine
-      this.user = <UserAccessModel> {
-        id: 3,
-        email: model.username,
-        firstName: 'selva',
-        lastName: 'yugandhar',
-        role: model.username === 'admin@email.com' ? Role.Admin : Role.User
-      };
-      localStorage.setItem('user', JSON.stringify(this.user));
-      if (success) {
-        success(this.user);
-      }
     }
   }
 
@@ -79,7 +101,7 @@ export class AuthService {
   }
 
   logout() {
-    if (environment.auth.url) {
+    if (this.user && !this.isTestEmail(this.user.email)) {
       this.oauthService.logOut();
     }
     localStorage.removeItem('user');
@@ -94,10 +116,14 @@ export class AuthService {
     const hasToken = !!this.getToken();
     if (!this.user) {
       const u = localStorage.getItem('user');
-      if (hasToken && u) {
+      if (u) {
         this.user = JSON.parse(u);
-      } else {
+      }
+      if (this.user && this.isTestEmail(this.user.email)) {
+        return true;
+      } else if (!hasToken) {
         localStorage.removeItem('user');
+        this.user = null;
         return false;
       }
     }
@@ -109,7 +135,7 @@ export class AuthService {
   }
 
   getToken() {
-    if (environment.auth.url) {
+    if (this.user && !this.isTestEmail(this.user.email)) {
       return this.oauthService.getAccessToken();
     }
     return this.user ? 'token' : null;
