@@ -128,6 +128,11 @@ export class MerchantManagementComponent implements OnInit, OnDestroy, AfterView
 
   public set perPage(val: number) {
       this._perPage = val;
+      if (this._perPage === 10) {
+        this.profileService.remove('merchants.grid.perPage');
+      } else {
+        this.profileService.set('merchants.grid.perPage', this._perPage);
+      }
       this.paginate(0);
   }
 
@@ -145,6 +150,10 @@ export class MerchantManagementComponent implements OnInit, OnDestroy, AfterView
   }
 
   ngOnInit() {
+    const perPage = this.profileService.get('merchants.grid.perPage');
+    if (perPage) {
+      this._perPage = perPage;
+    }
     this.activatedRoute.queryParams.subscribe((params) => {
       this.searchBoxText = params['search'];
     });

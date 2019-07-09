@@ -2,9 +2,9 @@
     <div class="col-auto pt-1">Showing {{(page - 1) * pageSize + 1}} - {{(page * pageSize) > totalCount ? totalCount : page * pageSize}} of {{totalCount}} results</div>
     <div class="col-auto pt-1">
       Show
-      <select #selectPerPage (change)="pageSize = selectPerPage.value">
+      <select #selectPerPage [(ngModel)]="pageSize">
         <option>5</option>
-        <option selected>10</option>
+        <option>10</option>
         <option>25</option>
         <option>50</option>
         <option>100</option>

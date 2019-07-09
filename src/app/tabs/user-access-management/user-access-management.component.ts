@@ -43,6 +43,11 @@ export class UserAccessManagementComponent implements OnInit, OnDestroy, AfterVi
 
   public set perPage(val: number) {
       this._perPage = val;
+      if (this._perPage === 10) {
+        this.profileService.remove('users.grid.perPage');
+      } else {
+        this.profileService.set('users.grid.perPage', this._perPage);
+      }
       this.paginate(0);
   }
 
@@ -57,6 +62,10 @@ export class UserAccessManagementComponent implements OnInit, OnDestroy, AfterVi
   }
 
   ngOnInit() {
+    const perPage = this.profileService.get('users.grid.perPage');
+    if (perPage) {
+      this._perPage = perPage;
+    }
     const totalCountDS = this.dataSource.getTotalCount();
     if (totalCountDS !== null) {
       totalCountDS.subscribe(count => {

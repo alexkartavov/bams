@@ -34,6 +34,11 @@ export class MySupportComponent implements OnInit, OnDestroy, AfterViewInit {
   }
   public set perPage(val: number) {
       this._perPage = val;
+      if (this._perPage === 10) {
+        this.profileService.remove('tickets.grid.perPage');
+      } else {
+        this.profileService.set('tickets.grid.perPage', this._perPage);
+      }
       this.paginate(0);
   }
 
@@ -57,6 +62,10 @@ export class MySupportComponent implements OnInit, OnDestroy, AfterViewInit {
     }
 
   ngOnInit() {
+    const perPage = this.profileService.get('tickets.grid.perPage');
+    if (perPage) {
+      this._perPage = perPage;
+    }
     this.dataSource.getTotalCount().subscribe(count => this.totalCount = count);
 
     this.filterType = this.profileService.get('tickets.filterType');
