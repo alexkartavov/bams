@@ -14,8 +14,8 @@ export class BeneficialOwnersReportComponent implements OnInit {
 
   public checkModel = [
     1, // completed: true,
-    0, // draft: false,
-    0, // sent: false,
+    0, // in-progress: false (formerly draft),
+    0, // in-progress: false (formerly sent),
     0, // archived: false,
     0, // declined: false,
     0, // optedout: false,
@@ -42,15 +42,23 @@ export class BeneficialOwnersReportComponent implements OnInit {
   }
 
   click(n: number) {
-    let sel = 0;
-    for (let i = 0; !sel && i < this.checkModel.length; i++) {
-      sel = this.checkModel[i];
-    }
-    if (!sel) {
-      this.checkModel[n] = 1;
-    }
+    // doing it with a delay as Angular needs a pause to properly update the DOM
+    window.setTimeout(() => {
+      this.checkModel[2] = this.checkModel[1]; // draft and in-progress are the same
 
-    this.profileService.set('reports.bo.checkModel', this.checkModel);
+      let sel = 0;
+      for (let i = 0; !sel && i < this.checkModel.length; i++) {
+        sel = this.checkModel[i];
+      }
+      // not allowing to uncheck all
+      if (!sel) {
+        this.checkModel[n] = 1;
+      }
+
+      this.checkModel[2] = this.checkModel[1]; // in case in-progress was last unchecked
+
+      this.profileService.set('reports.bo.checkModel', this.checkModel);
+    });
   }
 
   download() {
