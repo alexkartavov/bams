@@ -54,7 +54,7 @@
       results
     </div>
     <div class="col">
-      <pagination class="pull-right" [totalItems]="totalCount" [itemsPerPage]="perPage" [(ngModel)]="page" [previousText]="'&lt; Previous'" [nextText]="'Next &gt;'" (pageChanged)="pageChanged($event)"></pagination>
+      <pagination class="pull-right" [totalItems]="totalCount" [itemsPerPage]="perPage" [(ngModel)]="page" [previousText]="'&lt; Previous'" [nextText]="'Next &gt;'" [maxSize]="15" (pageChanged)="pageChanged($event)"></pagination>
     </div>
   </div>
 </ng-template>

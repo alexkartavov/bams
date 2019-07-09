@@ -129,7 +129,23 @@
     </div>
 
     <ng-template #pagerTemplate>
-      <pagination [totalItems]="totalCount" [itemsPerPage]="perPage" [(ngModel)]="page" [previousText]="'&lt; Previous'" [nextText]="'Next &gt;'" (pageChanged)="pageChanged($event)"></pagination>
+      <div *ngIf="totalCount > 0" class="row" style="width:100%;">
+        <div class="col-auto pt-1">Showing {{(page - 1) * perPage + 1}} - {{(page * perPage) > totalCount ? totalCount : page * perPage}} of {{totalCount}} results</div>
+        <div class="col-auto pt-1">
+          Show
+          <select #selectPerPage (change)="perPage = selectPerPage.value">
+            <option>5</option>
+            <option selected>10</option>
+            <option>25</option>
+            <option>50</option>
+            <option>100</option>
+          </select>
+          results
+        </div>
+        <div class="col">
+          <pagination class="pull-right" [totalItems]="totalCount" [itemsPerPage]="perPage" [(ngModel)]="page" [previousText]="'&lt; Previous'" [nextText]="'Next &gt;'" [maxSize]="15" (pageChanged)="pageChanged($event)"></pagination>
+        </div>
+      </div>
     </ng-template>
   </div>
 
