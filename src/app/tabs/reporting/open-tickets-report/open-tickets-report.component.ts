@@ -4,6 +4,7 @@ import { SupportDataService } from 'src/app/_services/support-data.service';
 import { ValueProcessingService } from 'src/app/_services/value-processing.service';
 import { IgxGridComponent } from 'igniteui-angular';
 import { ExportService } from 'src/app/_services/export.service';
+import { AuthService } from 'src/app/_services/auth.service';
 
 @Component({
   selector: 'app-open-tickets-report',
@@ -40,7 +41,8 @@ export class OpenTicketsReportComponent implements OnInit, OnDestroy, OnChanges 
 
   constructor(private supportDataService: SupportDataService,
     private valueService: ValueProcessingService,
-    private exportService: ExportService) {
+    private exportService: ExportService,
+    private authService: AuthService) {
       this.dataSource = new SupportDataSource(supportDataService);
     }
 
@@ -71,7 +73,8 @@ export class OpenTicketsReportComponent implements OnInit, OnDestroy, OnChanges 
       endDate: this.endDate,
       search: null,
       sortByName: null,
-      sortAscending: true
+      sortAscending: true,
+      cepSupportUser: this.authService.getCepSupportUser()
     };
   }
 

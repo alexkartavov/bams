@@ -23,6 +23,8 @@ export const environment = {
     statementsGetUrl: 'https://cep-support-dev-api-management.azure-api.net/core/api/v1/cep-support/merchants/{merchantId}/statementDates?statementType=Location&dateFrom={dateFrom}&dateTo={dateTo}',
     statementGetUrl: 'https://cep-support-dev-api-management.azure-api.net/core/api/v1/cep-support/merchants/{merchantId}/statement-documents/{key}',
 
+    orderDetailsUrl: 'http://bams-cep-franchise-dev-ue-aks.eastus.cloudapp.azure.com/core/api/v1/merchant/orderHistory?orderId={order_id}',
+
     ocpApimSubscriptionKey: '7b46d6296b674122b4737b0308312b93'
   },
 

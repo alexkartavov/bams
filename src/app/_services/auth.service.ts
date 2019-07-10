@@ -53,6 +53,7 @@ export class AuthService {
             role: user.cepSupportRoleId ? Role.Admin : Role.User
           };
           localStorage.setItem('user', JSON.stringify(this.user));
+          localStorage.setItem('cepSupportUser', JSON.stringify(user));
           if (success) {
             success(this.user);
           }
@@ -79,6 +80,7 @@ export class AuthService {
             role: user.cepSupportRoleId ? Role.Admin : Role.User
           };
           localStorage.setItem('user', JSON.stringify(this.user));
+          localStorage.setItem('cepSupportUser', JSON.stringify(user));
           this.decodeToken(this.oauthService.getAccessToken());
           if (success) {
             success(this.user);
@@ -105,11 +107,20 @@ export class AuthService {
       this.oauthService.logOut();
     }
     localStorage.removeItem('user');
+    localStorage.removeItem('cepSupportUser');
     this.user = null;
   }
 
   getUser() {
     return this.user;
+  }
+
+  getCepSupportUser() {
+    const user = localStorage.getItem('cepSupportUser');
+    if (user) {
+      return JSON.parse(user);
+    }
+    return null;
   }
 
   loggedIn(): boolean {
@@ -123,6 +134,7 @@ export class AuthService {
         return true;
       } else if (!hasToken) {
         localStorage.removeItem('user');
+        localStorage.removeItem('cepSupportUser');
         this.user = null;
         return false;
       }

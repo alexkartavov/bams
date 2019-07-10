@@ -132,7 +132,8 @@ export class MySupportComponent implements OnInit, OnDestroy, AfterViewInit {
       ticketType: this.valueService.getTicketTypeValue(this.filterType),
       search: this.searchBoxText ? this.searchBoxText : null,
       sortByName: this.sortedColumn ? this.sortedColumn : null,
-      sortAscending: this.sortDirection
+      sortAscending: this.sortDirection,
+      cepSupportUser: this.authService.getCepSupportUser()
     };
   }
 
