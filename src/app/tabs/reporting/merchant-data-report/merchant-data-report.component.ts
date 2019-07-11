@@ -3,6 +3,7 @@ import { IgxGridComponent } from 'igniteui-angular';
 import { MerchantDataSource } from '../../merchant-management/merchant-datasource';
 import { MerchantDataService } from 'src/app/_services/merchant-data.service';
 import { ExportService } from 'src/app/_services/export.service';
+import { AuthService } from 'src/app/_services/auth.service';
 
 @Component({
   selector: 'app-merchant-data-report',
@@ -31,7 +32,8 @@ export class MerchantDataReportComponent implements OnInit, OnDestroy, OnChanges
   }
 
   constructor(private merchantDataService: MerchantDataService,
-    private exportService: ExportService) {
+    private exportService: ExportService,
+    private authService: AuthService) {
       this.dataSource = new MerchantDataSource(merchantDataService);
     }
 
@@ -54,11 +56,14 @@ export class MerchantDataReportComponent implements OnInit, OnDestroy, OnChanges
 
   requestParams(pageNo: number, count: number) {
     return {
-      page: pageNo,
-      pageSize: count,
-      search: null,
-      sortByName: null,
-      sortAscending: null
+      cepSupportUser: this.authService.getCepSupportUser(),
+      listMerchantRequest: {
+        page: pageNo,
+        pageSize: count,
+        search: null,
+        sortByName: null,
+        sortAscending: null
+      }
     };
   }
 

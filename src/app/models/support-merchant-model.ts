@@ -4,4 +4,5 @@ export class SupportMerchantModel {
     lastName: string;
     phoneNumber: string;
     emailAddress: string;
+    channel: string;
 }

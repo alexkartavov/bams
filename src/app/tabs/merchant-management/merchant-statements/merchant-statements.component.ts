@@ -96,8 +96,8 @@ export class MerchantStatementsComponent implements OnInit, AfterViewInit, OnDes
   downloadStatement(url) {
     this.http.get(url, {
       headers: new HttpHeaders({
-        'Ocp-Apim-Subscription-Key': environment.merchantDetails.ocpApimSubscriptionKey,
-        'Ocp-Api-Trace': 'true',
+        // 'Ocp-Apim-Subscription-Key': environment.merchantDetails.ocpApimSubscriptionKey,
+        // 'Ocp-Api-Trace': 'true',
         'Cache-Control': 'no-cache',
         'Content-Type': 'application/json',
         'token': ''

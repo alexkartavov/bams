@@ -137,17 +137,21 @@ export class AddTicketComponent implements OnInit, OnDestroy {
       this.model.merchant.phoneNumber = event.item.phoneNumber;
       this.model.merchant.emailAddress = event.item.emailAddress;
       this.model.mid = event.item.midNumber;
+      this.model.merchant.channel = this.valueService.platformName(event.item.applicationReferenceNo);
     }
   }
 
   changeTypeaheadLoading(e: boolean, searchParam: string): void {
     if (e) {
       this.merchDataSource.loadMerchants({
-        search: searchParam,
-        page: 0,
-        pageSize: 7,
-        sortAscending: true,
-        sortByName: 'dbaName'
+        cepSupportUser: this.authService.getCepSupportUser(),
+        listMerchantRequest: {
+          search: searchParam,
+          page: 0,
+          pageSize: 7,
+          sortAscending: true,
+          sortByName: 'dbaName'
+        }
       });
     }
     this.typeaheadLoading = e;
@@ -156,11 +160,14 @@ export class AddTicketComponent implements OnInit, OnDestroy {
   phoneTypeaheadLoading(e: boolean, searchParam: string): void {
     if (e) {
       this.phoneDataSource.loadMerchants({
-        search: searchParam,
-        page: 0,
-        pageSize: 7,
-        sortAscending: true,
-        sortByName: 'phoneNumber'
+        cepSupportUser: this.authService.getCepSupportUser(),
+        listMerchantRequest: {
+          search: searchParam,
+          page: 0,
+          pageSize: 7,
+          sortAscending: true,
+          sortByName: 'phoneNumber'
+        }
       });
     }
     this.typeaheadLoading = e;
@@ -169,11 +176,14 @@ export class AddTicketComponent implements OnInit, OnDestroy {
   midTypeaheadLoading(e: boolean, searchParam: string): void {
     if (e) {
       this.midDataSource.loadMerchants({
-        search: searchParam,
-        page: 0,
-        pageSize: 7,
-        sortAscending: true,
-        sortByName: 'midNumber'
+        cepSupportUser: this.authService.getCepSupportUser(),
+        listMerchantRequest: {
+          search: searchParam,
+          page: 0,
+          pageSize: 7,
+          sortAscending: true,
+          sortByName: 'midNumber'
+        }
       });
     }
     this.typeaheadLoading = e;
@@ -182,11 +192,14 @@ export class AddTicketComponent implements OnInit, OnDestroy {
   emailTypeaheadLoading(e: boolean, searchParam: string): void {
     if (e) {
       this.emailDataSource.loadMerchants({
-        search: searchParam,
-        page: 0,
-        pageSize: 7,
-        sortAscending: true,
-        sortByName: 'emailAddress'
+        cepSupportUser: this.authService.getCepSupportUser(),
+        listMerchantRequest: {
+          search: searchParam,
+          page: 0,
+          pageSize: 7,
+          sortAscending: true,
+          sortByName: 'emailAddress'
+        }
       });
     }
     this.typeaheadLoading = e;

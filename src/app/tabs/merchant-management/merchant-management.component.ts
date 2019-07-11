@@ -11,6 +11,8 @@ import { MerchantDataSource } from './merchant-datasource';
 import { ActivatedRoute } from '@angular/router';
 import { ExportService } from 'src/app/_services/export.service';
 import { ProfileService } from 'src/app/_services/profile.service';
+import { ValueProcessingService } from 'src/app/_services/value-processing.service';
+import { AuthService } from 'src/app/_services/auth.service';
 
 @Component({
   selector: 'app-merchant-management',
@@ -91,8 +93,6 @@ export class MerchantManagementComponent implements OnInit, OnDestroy, AfterView
     }
   ];
 
-  platformNames = ['ANET', 'BAMS', 'BANA'];
-
   public currentRowID: string;
   public updateModel: MerchantModel;
   bsModalRef: BsModalRef;
@@ -143,7 +143,9 @@ export class MerchantManagementComponent implements OnInit, OnDestroy, AfterView
     private activatedRoute: ActivatedRoute,
     private exportService: ExportService,
     private profileService: ProfileService,
-    private cd: ChangeDetectorRef) {
+    private cd: ChangeDetectorRef,
+    private valueService: ValueProcessingService,
+    private authService: AuthService) {
       this.dataSource = new MerchantDataSource(merchDataService);
       this.updateModel = new MerchantModel();
       this.cardData = [];
@@ -233,6 +235,7 @@ export class MerchantManagementComponent implements OnInit, OnDestroy, AfterView
       this.supportTicket.merchant.lastName = this.currentRowData.merchantLastName;
       this.supportTicket.merchant.phoneNumber = this.currentRowData.phoneNumber;
       this.supportTicket.merchant.emailAddress = this.currentRowData.emailAddress;
+      this.supportTicket.merchant.channel = this.currentRowData.platform;
       this.supportTicket.mid = this.currentRowData.midNumber;
       this.supportTicket.id = 0;
       this.supportTicket.type = '';
@@ -250,11 +253,14 @@ export class MerchantManagementComponent implements OnInit, OnDestroy, AfterView
 
   requestParams(pageNo: number, count: number) {
     return {
-      page: pageNo,
-      pageSize: count,
-      search: this.searchBoxText ? this.searchBoxText : null,
-      sortByName: this.sortedColumn,
-      sortAscending: this.sortDirection
+      cepSupportUser: this.authService.getCepSupportUser(),
+      listMerchantRequest: {
+        page: pageNo,
+        pageSize: count,
+        search: this.searchBoxText ? this.searchBoxText : null,
+        sortByName: this.sortedColumn,
+        sortAscending: this.sortDirection
+      }
     };
   }
 
@@ -419,34 +425,12 @@ export class MerchantManagementComponent implements OnInit, OnDestroy, AfterView
   }
 
   platformColorStyle(appRefNo) {
-    let color = 'darkblue';
-    switch (this.platformName(appRefNo)) {
-      case this.platformNames[0]:
-        color = 'orange';
-        break;
-      case this.platformNames[1]:
-        color = 'green';
-        break;
-      case this.platformNames[2]:
-        color = 'darkcyan';
-        break;
-    }
+    const color = this.valueService.platformNameColor(appRefNo);
     return {
       'color': 'white',
       'padding-left': '2px',
       'padding-right': '2px',
       'background-color': color
     };
-  }
-
-  platformName(appRefNo: string) {
-    if (appRefNo) {
-      for (let i = 0; i < this.platformNames.length; i++) {
-        if (appRefNo.startsWith(this.platformNames[i])) {
-          return this.platformNames[i];
-        }
-      }
-    }
-    return appRefNo;
   }
 }

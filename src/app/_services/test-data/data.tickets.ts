@@ -15,7 +15,8 @@ export const ticketsData: Array<SupportTicketModel> = [
       firstName: "John",
       lastName: "Smith",
       phoneNumber: null,
-      emailAddress: null
+      emailAddress: null,
+      channel: "BAMS"
     },
     createdBy: "selva yugandhar",
     createdById: 3,
@@ -41,7 +42,8 @@ export const ticketsData: Array<SupportTicketModel> = [
       firstName: "John",
       lastName: "Smith",
       phoneNumber: "1234567890",
-      emailAddress: "williamsmith@email.com"
+      emailAddress: "williamsmith@email.com",
+      channel: "BAMS"
     },
     createdBy: "selva yugandhar",
     createdById: 3,
@@ -67,7 +69,8 @@ export const ticketsData: Array<SupportTicketModel> = [
       firstName: "John",
       lastName: "Smith",
       phoneNumber: null,
-      emailAddress: null
+      emailAddress: null,
+      channel: "BAMS"
     },
     createdBy: "selva yugandhar",
     createdById: 3,
@@ -93,7 +96,8 @@ export const ticketsData: Array<SupportTicketModel> = [
       firstName: "John",
       lastName: "Smith",
       phoneNumber: null,
-      emailAddress: null
+      emailAddress: null,
+      channel: "BAMS"
     },
     createdBy: "selva yugandhar",
     createdById: 3,
@@ -119,7 +123,8 @@ export const ticketsData: Array<SupportTicketModel> = [
       firstName: "John",
       lastName: "Smith",
       phoneNumber: null,
-      emailAddress: null
+      emailAddress: null,
+      channel: "BAMS"
     },
     createdBy: "selva yugandhar",
     createdById: 3,
@@ -185,7 +190,8 @@ export const ticketsData: Array<SupportTicketModel> = [
       firstName: "John",
       lastName: "Smith",
       phoneNumber: "1234567890",
-      emailAddress: "williamsmith@email.com"
+      emailAddress: "williamsmith@email.com",
+      channel: "BAMS"
     },
     createdBy: "selva yugandhar",
     createdById: 3,
@@ -211,7 +217,8 @@ export const ticketsData: Array<SupportTicketModel> = [
       firstName: "John",
       lastName: "Smith",
       phoneNumber: "1234567890",
-      emailAddress: "williamsmith@email.com"
+      emailAddress: "williamsmith@email.com",
+      channel: "BAMS"
     },
     createdBy: "selva yugandhar",
     createdById: 3,
@@ -237,7 +244,8 @@ export const ticketsData: Array<SupportTicketModel> = [
       firstName: "John",
       lastName: "Smith",
       phoneNumber: "1234567890",
-      emailAddress: "williamsmith@email.com"
+      emailAddress: "williamsmith@email.com",
+      channel: "BAMS"
     },
     createdBy: "selva yugandhar",
     createdById: 3,

@@ -12,7 +12,7 @@ import { MerchantDetailsModel } from '../models/merchant-details-model';
 export class MerchantDataService implements OnDestroy {
 
   public postUrl = environment.merchants.listPostUrl;
-  public getUrl = environment.merchants.getUrl;
+  public getUrl = environment.merchantDetails.detailsGetUrl;
   httpOptions: any;
   httpDetailsOptions: any;
   totalCountSubject = new BehaviorSubject<number>(0);
@@ -33,8 +33,8 @@ export class MerchantDataService implements OnDestroy {
     };
     this.httpDetailsOptions = {
       headers: new HttpHeaders({
-        'Ocp-Apim-Subscription-Key': environment.merchantDetails.ocpApimSubscriptionKey,
-        'Ocp-Api-Trace': 'true',
+        // 'Ocp-Apim-Subscription-Key': environment.merchantDetails.ocpApimSubscriptionKey,
+        // 'Ocp-Api-Trace': 'true',
         'Cache-Control': 'no-cache',
         'Content-Type': 'application/json',
         'token': ''

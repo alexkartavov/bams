@@ -62,6 +62,8 @@ export class ValueProcessingService {
     'Beneficial Owners'
   ];
 
+  platformNames = ['ANET', 'BAMS', 'BANA', 'FB', 'IAO', 'LVMH'];
+
   constructor() { }
 
   private getValueByTitle(title: string, values: string[], titles: string[]): string {
@@ -130,5 +132,32 @@ export class ValueProcessingService {
 
   public getUserRoleValue(title: string): string {
     return this.getValueByTitle(title, this.userRoleValues, this.userRoleData);
+  }
+
+  platformName(appRefNo: string) {
+    if (appRefNo) {
+      for (let i = 0; i < this.platformNames.length; i++) {
+        if (appRefNo.startsWith(this.platformNames[i])) {
+          return this.platformNames[i];
+        }
+      }
+    }
+    return appRefNo;
+  }
+
+  platformNameColor(appRefNo: string) {
+    let color = 'darkblue';
+    switch (this.platformName(appRefNo)) {
+      case this.platformNames[0]:
+        color = 'orange';
+        break;
+      case this.platformNames[1]:
+        color = 'green';
+        break;
+      case this.platformNames[2]:
+        color = 'darkcyan';
+        break;
+    }
+    return color;
   }
 }
