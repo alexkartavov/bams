@@ -49,6 +49,16 @@
           </select>
         </div>
 
+        <div class="container">
+          <div class="row">
+            <div class="col-auto pl-0">Channels:</div>
+            <div class="btn-group col-auto pr-0">
+              <label *ngFor="let channel of userChannels()" class="btn btn-outline-primary" [class.active]="updateForm.value[channel.property]"
+                btnCheckbox [formControlName]="channel.property" tabindex="0" role="button">{{channel.title}}</label>
+            </div>
+          </div>
+        </div>
+        
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-outline-secondary" (click)="modalRef.hide()">Close</button>

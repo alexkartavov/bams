@@ -117,6 +117,12 @@ export class SupportUserDataService implements OnDestroy {
         userProfile: user.userProfile
     };
 
+    this.valueService.channels.forEach(c => {
+      if (typeof user[c.property] !== 'undefined') {
+        request[c.map] = user[c.property];
+      }
+    });
+
     this.http.put(this.userUrl.replace('{user_id}', user.id.toString()), request, this.httpOptions)
       .pipe(
         retry(3)

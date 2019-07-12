@@ -6,4 +6,9 @@ export class UserAccessModel {
     password = '';
     role = '';
     userProfile = '';
+    isBams?: false;
+    isBana?: false;
+    isFb?: false;
+    isIao?: false;
+    isLvmh?: false;
 }

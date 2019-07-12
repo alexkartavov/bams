@@ -6,6 +6,7 @@ import { SupportUserDataService } from 'src/app/_services/support-user-data.serv
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MustMatch } from 'src/app/_services/must-match';
 import { ValueProcessingService } from 'src/app/_services/value-processing.service';
+import { AuthService } from 'src/app/_services/auth.service';
 
 @Component({
   selector: 'app-update-user-access',
@@ -26,11 +27,15 @@ export class UpdateUserAccessComponent implements OnInit {
 
   public model: UserAccessModel;
 
+  channels = [];
+  SHOW_ALL = false; // DEBUG: set to true to show all channels
+
   constructor(private formBuilder: FormBuilder,
       private modalService: BsModalService,
       private alertify: AlertifyService,
       private userDataService: SupportUserDataService,
-      private valueService: ValueProcessingService) {
+      private valueService: ValueProcessingService,
+      private authService: AuthService) {
     this.model = new UserAccessModel();
     this.userRoleData = valueService.userRoles();
   }
@@ -56,6 +61,9 @@ export class UpdateUserAccessComponent implements OnInit {
       this.model.email = this.user.email;
       this.model.password = this.user.password;
       this.model.role = this.user.role;
+      this.userChannels().forEach(channel => {
+        this.model[channel.property] = this.user[channel.map] ? this.user[channel.map] : false;
+      });
     } else {
       this.model.id = 0;
       this.model.firstName = '';
@@ -63,6 +71,9 @@ export class UpdateUserAccessComponent implements OnInit {
       this.model.email = '';
       this.model.password = '';
       this.model.role = '';
+      this.userChannels().forEach(channel => {
+        this.model[channel.property] = false;
+      });
     }
   }
 
@@ -72,17 +83,25 @@ export class UpdateUserAccessComponent implements OnInit {
     this.model.email = this.f.email.value;
     this.model.password = this.f.password.value;
     this.model.role = this.f.role.value;
+    this.userChannels().forEach(channel => {
+      this.model[channel.property] = this.f[channel.property].value;
+    });
   }
 
   updateFormControls() {
-    this.updateForm = this.formBuilder.group({
+    const controlsConfig = {
       firstName: [this.model.firstName, Validators.required],
       lastName: [this.model.lastName, Validators.required],
       email: [this.model.email, [Validators.required, Validators.email]],
       password: [this.model.password],
       confirmPassword: [this.model.password],
       role: [this.model.role, Validators.required]
-    }, {
+    };
+
+    this.userChannels().forEach((c) => {
+      controlsConfig[c.property] = [this.model[c.property]];
+    });
+    this.updateForm = this.formBuilder.group(controlsConfig, {
       validator: MustMatch('password', 'confirmPassword')
     });
   }
@@ -122,5 +141,20 @@ export class UpdateUserAccessComponent implements OnInit {
 
   getUserRoleValue(role: string): string {
     return this.valueService.getUserRoleValue(role);
+  }
+
+  self(): boolean {
+    return this.user && this.authService.getUserId() === this.user.id;
+  }
+
+  userChannels() {
+    if (this.user && this.channels.length === 0) {
+      this.valueService.channels.forEach(c => {
+        if (this.SHOW_ALL || this.authService.getCepSupportUser()[c.property]) {
+          this.channels.push(c);
+        }
+      });
+    }
+    return this.channels;
   }
 }

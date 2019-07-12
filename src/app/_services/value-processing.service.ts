@@ -62,7 +62,44 @@ export class ValueProcessingService {
     'Beneficial Owners'
   ];
 
-  platformNames = ['ANET', 'BAMS', 'BANA', 'FB', 'IAO', 'LVMH'];
+  channels = [
+    {
+      title: 'ANET',
+      property: 'isAnet',
+      map: 'anet',
+      color: 'darkblue'
+    },
+    {
+      title: 'BAMS',
+      property: 'isBams',
+      map: 'bams',
+      color: 'orange'
+    },
+    {
+      title: 'BANA',
+      property: 'isBana',
+      map: 'bana',
+      color: 'green'
+    },
+    {
+      title: 'FB',
+      property: 'isFb',
+      map: 'fb',
+      color: 'brown'
+    },
+    {
+      title: 'IAO',
+      property: 'isIao',
+      map: 'iao',
+      color: 'red'
+    },
+    {
+      title: 'LVMH',
+      property: 'isLvmh',
+      map: 'lvmh',
+      color: 'darkcyan'
+    }
+  ];
 
   constructor() { }
 
@@ -136,9 +173,9 @@ export class ValueProcessingService {
 
   platformName(appRefNo: string) {
     if (appRefNo) {
-      for (let i = 0; i < this.platformNames.length; i++) {
-        if (appRefNo.startsWith(this.platformNames[i])) {
-          return this.platformNames[i];
+      for (let i = 0; i < this.channels.length; i++) {
+        if (appRefNo.startsWith(this.channels[i].title)) {
+          return this.channels[i].title;
         }
       }
     }
@@ -147,17 +184,11 @@ export class ValueProcessingService {
 
   platformNameColor(appRefNo: string) {
     let color = 'darkblue';
-    switch (this.platformName(appRefNo)) {
-      case this.platformNames[0]:
-        color = 'orange';
-        break;
-      case this.platformNames[1]:
-        color = 'green';
-        break;
-      case this.platformNames[2]:
-        color = 'darkcyan';
-        break;
-    }
+    this.channels.forEach(c => {
+      if (this.platformName(appRefNo) === c.title) {
+        color = c.color;
+      }
+    });
     return color;
   }
 }
