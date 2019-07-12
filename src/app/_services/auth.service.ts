@@ -38,7 +38,7 @@ export class AuthService {
     return email === this.testEmails[0] || email === this.testEmails[2];
   }
 
-  login(model: any, success?, error?) {
+  login(model: any, success?, mfa?, error?) {
     if (!environment.production && this.isTestEmail(model.username)) {
       // Test routine
       this.loadUserProfile(this.isTestAdmin(model.username) ?
@@ -67,7 +67,11 @@ export class AuthService {
       },
       err => {
         console.log(error);
-        if (error) {
+        if (err.status === 428) {
+          if (mfa) {
+            mfa(err);
+          }
+        } else if (error) {
           error(err.message);
         }
       }).then((user) => {

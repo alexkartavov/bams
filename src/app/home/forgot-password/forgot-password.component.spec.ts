@@ -42,6 +42,7 @@ import { MerchantNotesComponent } from 'src/app/tabs/merchant-management/merchan
 import { InitialsPipe } from 'src/app/_services/initials.pipe';
 import { TimePassedPipe } from 'src/app/_services/time-passed.pipe';
 import { BeneficialOwnersReportComponent } from 'src/app/tabs/reporting/beneficial-owners-report/beneficial-owners-report.component';
+import { MfaComponent } from '../mfa/mfa.component';
 
 describe('ForgotPasswordComponent', () => {
   let component: ForgotPasswordComponent;
@@ -80,7 +81,8 @@ describe('ForgotPasswordComponent', () => {
         MerchantDataReportComponent,
         BeneficialOwnersReportComponent,
         MerchantDetailsOrdersComponent,
-        MerchantNotesComponent
+        MerchantNotesComponent,
+        MfaComponent
       ],
       imports: [
         FormsModule,

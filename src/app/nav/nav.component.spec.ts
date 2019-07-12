@@ -55,6 +55,7 @@ import { MerchantNotesComponent } from '../tabs/merchant-management/merchant-not
 import { ForgotPasswordComponent } from '../home/forgot-password/forgot-password.component';
 import { OAuthModule } from 'angular-oauth2-oidc';
 import { BeneficialOwnersReportComponent } from '../tabs/reporting/beneficial-owners-report/beneficial-owners-report.component';
+import { MfaComponent } from '../home/mfa/mfa.component';
 
 describe('NavComponent', () => {
   let component: NavComponent;
@@ -113,7 +114,8 @@ describe('NavComponent', () => {
         MerchantDetailsOrdersComponent,
         BeneficialOwnersReportComponent,
         MerchantNotesComponent,
-        ForgotPasswordComponent
+        ForgotPasswordComponent,
+        MfaComponent
       ]
     })
     .compileComponents();

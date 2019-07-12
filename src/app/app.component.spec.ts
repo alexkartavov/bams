@@ -54,6 +54,7 @@ import { MerchantNotesComponent } from './tabs/merchant-management/merchant-note
 import { ForgotPasswordComponent } from './home/forgot-password/forgot-password.component';
 import { OAuthModule } from 'angular-oauth2-oidc';
 import { BeneficialOwnersReportComponent } from './tabs/reporting/beneficial-owners-report/beneficial-owners-report.component';
+import { MfaComponent } from './home/mfa/mfa.component';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -92,7 +93,8 @@ describe('AppComponent', () => {
         FilterTicketsComponent,
         MerchantDetailsOrdersComponent,
         MerchantNotesComponent,
-        ForgotPasswordComponent
+        ForgotPasswordComponent,
+        MfaComponent
       ],
       imports: [
         HttpClientModule,

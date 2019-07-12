@@ -1,0 +1,31 @@
+<span (click)="openModal(template)">
+    <ng-content></ng-content>
+  </span>
+  
+  <ng-template #template>
+    <div class="modal-header">
+      <h4 *ngIf="requesting" class="modal-title pull-left">Logging in...</h4>
+      <h4 *ngIf="!requesting" class="modal-title pull-left">Two-factor Authentication</h4>
+    </div>
+    <div *ngIf="!requesting" class="modal-body">
+      <div>A message with a verification code has been sent to your device.</div>
+      <div>Enter the verification code to continue:</div>
+      <div class="text-center mt-2">
+        <input #code0 type="text" class="mfa-number" [(ngModel)]="code[0]" autofocus (keypress)="keyPress($event)" (keyup)="keyUp($event, code1)">
+        <input #code1 type="text" class="mfa-number" [(ngModel)]="code[1]" (keypress)="keyPress($event)" (keyup)="keyUp($event, code2)">
+        <input #code2 type="text" class="mfa-number" [(ngModel)]="code[2]" (keypress)="keyPress($event)" (keyup)="keyUp($event, code3)">
+        <input #code3 type="text" class="mfa-number" [(ngModel)]="code[3]" (keypress)="keyPress($event)" (keyup)="keyUp($event, code4)">
+        <input #code4 type="text" class="mfa-number" [(ngModel)]="code[4]" (keypress)="keyPress($event)" (keyup)="keyUp($event, code5)">
+        <input #code5 type="text" class="mfa-number" [(ngModel)]="code[5]" (keypress)="keyPress($event)" (keyup)="keyUp($event, btnDone)">
+      </div>
+    </div>
+    <div *ngIf="!requesting" class="modal-footer">
+      <button #btnDone type="button" class="btn btn-primary" (click)="done()" [disabled]="!codeValid()">Done</button>
+    </div>
+
+    <div *ngIf="requesting" class="text-center mt-5 mb-5">
+      <div class="spinner-border text-primary" role="status">
+        <span class="sr-only">Logging in...</span>
+      </div>
+    </div>
+  </ng-template>

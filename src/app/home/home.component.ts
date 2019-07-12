@@ -34,17 +34,23 @@ export class HomeComponent implements OnInit {
     return this.authService.loggedIn();
   }
 
-  login() {
-    this.authService.login(this.model,
-      user => {
-        this.alertify.success('Logged in successfully');
-        // TODO after auth is fully implemented, use logged in user info to get the profile
-        // this.profileService.setProfile(user.userProfile, false);
-        this.userService.getProfile(this.authService.getUserId()).subscribe(
-          profile => this.profileService.setProfile(profile, false),
-          err => console.error(err)
-        );
-      }
+  login(model) {
+    if (model.pin) { // the auth requires another login with an MFA code
+      this.authService.login(model,
+        user => {
+          this.loadUserProfile();
+        }
+      );
+    } else { // the MFA component already logged us in, just need to load the profile
+      this.loadUserProfile();
+    }
+  }
+
+  loadUserProfile() {
+    this.alertify.success('Logged in successfully');
+    this.userService.getProfile(this.authService.getUserId()).subscribe(
+      profile => this.profileService.setProfile(profile, false),
+      err => console.error(err)
     );
   }
 

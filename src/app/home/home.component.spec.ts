@@ -54,6 +54,7 @@ import { MerchantNotesComponent } from '../tabs/merchant-management/merchant-not
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { OAuthModule } from 'angular-oauth2-oidc';
 import { BeneficialOwnersReportComponent } from '../tabs/reporting/beneficial-owners-report/beneficial-owners-report.component';
+import { MfaComponent } from './mfa/mfa.component';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -93,7 +94,8 @@ describe('HomeComponent', () => {
         BeneficialOwnersReportComponent,
         MerchantDetailsOrdersComponent,
         MerchantNotesComponent,
-        ForgotPasswordComponent
+        ForgotPasswordComponent,
+        MfaComponent
       ],
       imports: [
         FormsModule,

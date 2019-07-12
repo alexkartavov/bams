@@ -424,6 +424,10 @@ export class MerchantManagementComponent implements OnInit, OnDestroy, AfterView
     };
   }
 
+  platformName(apprRefNo) {
+    return this.valueService.platformName(apprRefNo);
+  }
+
   platformColorStyle(appRefNo) {
     const color = this.valueService.platformNameColor(appRefNo);
     return {

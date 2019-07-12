@@ -18,8 +18,7 @@
           <br/>
           
           <form
-            #loginForm="ngForm"
-            (ngSubmit)="login()">
+            #loginForm="ngForm">
 
             <div class="container">
               <div class="row form-group">
@@ -55,12 +54,14 @@
 
               <div class="row">
                 <div class="col-12 text-center">
-                  <button
-                    [disabled]="!loginForm.valid"
-                    class="btn-lg btn-primary"
-                    type="submit">
-                    Sign In
-                  </button>
+                  <app-mfa [model]="model" (loggedIn)="login($event)" (codeEntered)="login($event)">
+                    <button
+                      [disabled]="!loginForm.valid"
+                      class="btn-lg btn-primary"
+                      type="submit">
+                      Sign In
+                    </button>
+                  </app-mfa>
                 </div>
 
                 <!-- <div class="col-6 text-center">

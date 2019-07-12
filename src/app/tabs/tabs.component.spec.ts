@@ -54,6 +54,7 @@ import { MerchantNotesComponent } from './merchant-management/merchant-notes/mer
 import { ForgotPasswordComponent } from '../home/forgot-password/forgot-password.component';
 import { OAuthModule } from 'angular-oauth2-oidc';
 import { BeneficialOwnersReportComponent } from './reporting/beneficial-owners-report/beneficial-owners-report.component';
+import { MfaComponent } from '../home/mfa/mfa.component';
 
 describe('TabsComponent', () => {
   let component: TabsComponent;
@@ -111,7 +112,8 @@ describe('TabsComponent', () => {
         BeneficialOwnersReportComponent,
         MerchantDetailsOrdersComponent,
         MerchantNotesComponent,
-        ForgotPasswordComponent
+        ForgotPasswordComponent,
+        MfaComponent
       ],
       providers: [
         AnimationBuilder

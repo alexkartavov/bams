@@ -41,6 +41,7 @@ import { BsDropdownModule, BsDatepickerModule, TabsModule, ModalModule, PopoverM
   PaginationModule, TypeaheadModule, ButtonsModule } from 'ngx-bootstrap';
 import { OAuthModule } from 'angular-oauth2-oidc';
 import { BeneficialOwnersReportComponent } from '../tabs/reporting/beneficial-owners-report/beneficial-owners-report.component';
+import { MfaComponent } from '../home/mfa/mfa.component';
 
 describe('AuthGuard', () => {
   beforeEach(() => {
@@ -76,7 +77,8 @@ describe('AuthGuard', () => {
         MerchantDataReportComponent,
         BeneficialOwnersReportComponent,
         MerchantDetailsOrdersComponent,
-        MerchantNotesComponent
+        MerchantNotesComponent,
+        MfaComponent
       ],
       imports: [
         RouterModule.forRoot(appRoutes),

@@ -60,6 +60,7 @@ import { ForgotPasswordComponent } from './home/forgot-password/forgot-password.
 import { JwtInterceptor} from './_helpers/jwt.interceptor';
 import { ErrorInterceptor } from './_helpers/error.interceptor';
 import { BeneficialOwnersReportComponent } from './tabs/reporting/beneficial-owners-report/beneficial-owners-report.component';
+import { MfaComponent } from './home/mfa/mfa.component';
 // import { fakeBackendProvider } from './_helpers/fake-backend';
 
 @NgModule({
@@ -97,7 +98,8 @@ import { BeneficialOwnersReportComponent } from './tabs/reporting/beneficial-own
       MerchantDetailsOrdersComponent,
       MerchantNotesComponent,
       ForgotPasswordComponent,
-      BeneficialOwnersReportComponent
+      BeneficialOwnersReportComponent,
+      MfaComponent
    ],
    imports: [
       BrowserModule,
