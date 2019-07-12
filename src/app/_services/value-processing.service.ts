@@ -30,8 +30,8 @@ export class ValueProcessingService {
   public priorityData: any[] = ['Warm Call Transfer', 'Low', 'Medium', 'High'];
   priorityValues = ['WARM_CALL_TRANSFER', 'LOW', 'MEDIUM', 'HIGH'];
 
-  public userRoleData: any[] = ['Support Administrator', 'Support User'];
-  userRoleValues = [Role.Admin, Role.User];
+  public userRoleData: any[] = ['Support User', 'Support Administrator'];
+  public userRoleValues = [Role.User, Role.Admin];
 
   public kbTopicsData: any[] = [{
       topic: 'General'
@@ -72,7 +72,7 @@ export class ValueProcessingService {
     {
       title: 'BAMS',
       property: 'isBams',
-      map: 'bams',
+      map: 'bams', // if PUT payload expects a different field name, it can be specified here
       color: 'orange'
     },
     {

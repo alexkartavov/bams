@@ -6,9 +6,10 @@ export class UserAccessModel {
     password = '';
     role = '';
     userProfile = '';
-    isBams?: false;
-    isBana?: false;
-    isFb?: false;
-    isIao?: false;
-    isLvmh?: false;
+    anet?: false;
+    bams?: false;
+    bana?: false;
+    fb?: false;
+    iao?: false;
+    lvmh?: false;
 }

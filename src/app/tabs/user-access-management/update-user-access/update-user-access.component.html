@@ -29,7 +29,8 @@
           <input type="text" class="form-control" formControlName="email" [value]="model.email">
         </div>
 
-        <div class="row" *ngIf="!isUpdating()">
+        <!-- No passwords since actual auth is handled by Azure AD -->
+        <!-- <div class="row" *ngIf="!isUpdating()">
           <div class="form-group col-6">
             <label for="password">Password:</label>
             <input type="password" class="form-control" formControlName="password"/>
@@ -39,7 +40,7 @@
             <label for="confirmPassword">Confirm Password:</label>
             <input type="password" class="form-control" formControlName="confirmPassword" />
           </div>
-        </div>
+        </div> -->
 
         <div class="form-group">
           <label for="role">Role:</label>
@@ -53,8 +54,8 @@
           <div class="row">
             <div class="col-auto pl-0">Channels:</div>
             <div class="btn-group col-auto pr-0">
-              <label *ngFor="let channel of userChannels()" class="btn btn-outline-primary" [class.active]="updateForm.value[channel.property]"
-                btnCheckbox [formControlName]="channel.property" tabindex="0" role="button">{{channel.title}}</label>
+              <label *ngFor="let channel of userChannels()" class="btn btn-outline-primary" [class.active]="updateForm.value[channel.map]"
+                btnCheckbox [formControlName]="channel.map" tabindex="0" role="button">{{channel.title}}</label>
             </div>
           </div>
         </div>

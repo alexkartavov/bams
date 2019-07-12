@@ -62,7 +62,7 @@ export class UpdateUserAccessComponent implements OnInit {
       this.model.password = this.user.password;
       this.model.role = this.user.role;
       this.userChannels().forEach(channel => {
-        this.model[channel.property] = this.user[channel.map] ? this.user[channel.map] : false;
+        this.model[channel.map] = this.user[channel.map] ? this.user[channel.map] : false;
       });
     } else {
       this.model.id = 0;
@@ -72,7 +72,7 @@ export class UpdateUserAccessComponent implements OnInit {
       this.model.password = '';
       this.model.role = '';
       this.userChannels().forEach(channel => {
-        this.model[channel.property] = false;
+        this.model[channel.map] = false;
       });
     }
   }
@@ -84,7 +84,7 @@ export class UpdateUserAccessComponent implements OnInit {
     this.model.password = this.f.password.value;
     this.model.role = this.f.role.value;
     this.userChannels().forEach(channel => {
-      this.model[channel.property] = this.f[channel.property].value;
+      this.model[channel.map] = this.f[channel.map].value;
     });
   }
 
@@ -99,7 +99,7 @@ export class UpdateUserAccessComponent implements OnInit {
     };
 
     this.userChannels().forEach((c) => {
-      controlsConfig[c.property] = [this.model[c.property]];
+      controlsConfig[c.map] = [this.model[c.map]];
     });
     this.updateForm = this.formBuilder.group(controlsConfig, {
       validator: MustMatch('password', 'confirmPassword')

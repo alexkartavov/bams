@@ -83,13 +83,13 @@ export class SupportUserDataService implements OnDestroy {
           lastName: user.lastName,
           email: user.email,
           role: user.role,
-          bana: false,
-          lvmh: false,
-          anet: true,
-          bams: false
       },
       password: user.password
     };
+
+    this.valueService.channels.forEach(c => {
+      request.user[c.map] = user[c.map] ? user[c.map] : false;
+    });
 
     this.http.post(this.createUrl, request, this.httpOptions)
       .pipe(
