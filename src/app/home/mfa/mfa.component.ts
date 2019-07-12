@@ -26,6 +26,7 @@ export class MfaComponent implements OnInit {
 
   openModal(template: BsModalService) {
     this.requesting = true;
+    this.model.pin = '';
     this.modalRef = this.modalService.show(template);
     this.authService.login(this.model,
       user => {
@@ -71,12 +72,14 @@ export class MfaComponent implements OnInit {
     }
   }
 
-  keyUp(evt, nextEl) {
+  keyUp(evt, nextEl?) {
     const val: string = evt.srcElement.value;
     if (val.length > 1) {
       evt.srcElement.value = val.substring(val.length - 1);
     }
-    nextEl.focus();
+    if (nextEl) {
+      nextEl.focus();
+    }
   }
 
 }

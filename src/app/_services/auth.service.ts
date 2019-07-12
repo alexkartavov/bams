@@ -41,24 +41,28 @@ export class AuthService {
   login(model: any, success?, mfa?, error?) {
     if (!environment.production && this.isTestEmail(model.username)) {
       // Test routine
-      this.loadUserProfile(this.isTestAdmin(model.username) ?
-          this.testEmails[2] : this.testEmails[3]
-          ).then((user) => {
-        if (user) {
-          this.user = <UserAccessModel> {
-            id: user.cepSupportUserId,
-            email: user.email,
-            firstName: user.firstName,
-            lastName: user.lastName,
-            role: user.cepSupportRoleId ? Role.Admin : Role.User
-          };
-          localStorage.setItem('user', JSON.stringify(this.user));
-          localStorage.setItem('cepSupportUser', JSON.stringify(user));
-          if (success) {
-            success(this.user);
+      if (!model.pin) {
+        mfa(model);
+      } else {
+        this.loadUserProfile(this.isTestAdmin(model.username) ?
+            this.testEmails[2] : this.testEmails[3]
+            ).then((user) => {
+          if (user) {
+            this.user = <UserAccessModel> {
+              id: user.cepSupportUserId,
+              email: user.email,
+              firstName: user.firstName,
+              lastName: user.lastName,
+              role: user.cepSupportRoleId ? Role.Admin : Role.User
+            };
+            localStorage.setItem('user', JSON.stringify(this.user));
+            localStorage.setItem('cepSupportUser', JSON.stringify(user));
+            if (success) {
+              success(this.user);
+            }
           }
-        }
-      });
+        });
+      }
       // End test routine
     } else {
       this.oauthService.fetchTokenUsingPasswordFlow(model.username, model.password).then(() => {
