@@ -8,6 +8,7 @@ import { BsDatepickerModule, PaginationModule } from 'ngx-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IgxGridModule } from 'igniteui-angular';
 import { AnimationBuilder } from '@angular/animations';
+import { OAuthModule } from 'angular-oauth2-oidc';
 
 describe('MerchantDataReportComponent', () => {
   let component: MerchantDataReportComponent;
@@ -21,7 +22,8 @@ describe('MerchantDataReportComponent', () => {
         ReactiveFormsModule,
         BsDatepickerModule.forRoot(),
         PaginationModule.forRoot(),
-        IgxGridModule
+        IgxGridModule,
+        OAuthModule.forRoot()
       ],
       providers: [
         AnimationBuilder
