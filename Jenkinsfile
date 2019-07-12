@@ -3,5 +3,6 @@
 appName = 'ist'
 angularProjectName = 'ng-supporttool'
 friendlyAppName = "Integrated Support Tool"
+nodeVersion = "node-10.16"
 
-angularTestBuildDeploy(appName, angularProjectName, friendlyAppName)
+angularTestBuildDeploy(appName, angularProjectName, friendlyAppName, nodeVersion)
