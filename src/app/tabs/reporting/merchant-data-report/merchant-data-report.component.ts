@@ -57,7 +57,7 @@ export class MerchantDataReportComponent implements OnInit, OnDestroy, OnChanges
   requestParams(pageNo: number, count: number) {
     return {
       cepSupportUser: this.authService.getCepSupportUser(),
-      listMerchantRequest: {
+      listMerchantsRequest: {
         page: pageNo,
         pageSize: count,
         search: null,

@@ -145,7 +145,7 @@ export class AddTicketComponent implements OnInit, OnDestroy {
     if (e) {
       this.merchDataSource.loadMerchants({
         cepSupportUser: this.authService.getCepSupportUser(),
-        listMerchantRequest: {
+        listMerchantsRequest: {
           search: searchParam,
           page: 0,
           pageSize: 7,
@@ -161,7 +161,7 @@ export class AddTicketComponent implements OnInit, OnDestroy {
     if (e) {
       this.phoneDataSource.loadMerchants({
         cepSupportUser: this.authService.getCepSupportUser(),
-        listMerchantRequest: {
+        listMerchantsRequest: {
           search: searchParam,
           page: 0,
           pageSize: 7,
@@ -177,7 +177,7 @@ export class AddTicketComponent implements OnInit, OnDestroy {
     if (e) {
       this.midDataSource.loadMerchants({
         cepSupportUser: this.authService.getCepSupportUser(),
-        listMerchantRequest: {
+        listMerchantsRequest: {
           search: searchParam,
           page: 0,
           pageSize: 7,
@@ -193,7 +193,7 @@ export class AddTicketComponent implements OnInit, OnDestroy {
     if (e) {
       this.emailDataSource.loadMerchants({
         cepSupportUser: this.authService.getCepSupportUser(),
-        listMerchantRequest: {
+        listMerchantsRequest: {
           search: searchParam,
           page: 0,
           pageSize: 7,
