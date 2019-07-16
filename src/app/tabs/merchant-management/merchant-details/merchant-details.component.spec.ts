@@ -10,6 +10,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { IgxAvatarModule} from 'igniteui-angular';
 
 import { MerchantDetailsComponent } from './merchant-details.component';
+import { OAuthModule } from 'angular-oauth2-oidc';
 
 describe('MerchantDetailsComponent', () => {
   let component: MerchantDetailsComponent;
@@ -24,7 +25,8 @@ describe('MerchantDetailsComponent', () => {
       imports: [
         TabsModule.forRoot(),
         ModalModule.forRoot(),
-        IgxAvatarModule
+        IgxAvatarModule,
+        OAuthModule.forRoot()
       ]
     })
     .compileComponents();

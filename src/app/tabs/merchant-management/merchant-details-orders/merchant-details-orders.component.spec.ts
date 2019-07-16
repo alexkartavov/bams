@@ -6,6 +6,7 @@ import { DebugElement } from '@angular/core';
 import { MerchantDetailsOrdersComponent } from './merchant-details-orders.component';
 import { TabsModule, ModalModule } from 'ngx-bootstrap';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { OAuthModule } from 'angular-oauth2-oidc';
 
 describe('MerchantDetailsOrdersComponent', () => {
   let component: MerchantDetailsOrdersComponent;
@@ -19,7 +20,8 @@ describe('MerchantDetailsOrdersComponent', () => {
       imports: [
         TabsModule.forRoot(),
         ModalModule.forRoot(),
-        HttpClientTestingModule
+        HttpClientTestingModule,
+        OAuthModule.forRoot()
       ]
     })
     .compileComponents();

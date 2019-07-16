@@ -13,6 +13,7 @@ import { MerchantDetailsComponent } from 'src/app/tabs/merchant-management/merch
 import { MerchantStatementsComponent } from 'src/app/tabs/merchant-management/merchant-statements/merchant-statements.component';
 import { MoreActionsMerchantComponent } from './more-actions-merchant.component';
 import { MerchantDetailsOrdersComponent } from '../merchant-details-orders/merchant-details-orders.component';
+import { OAuthModule } from 'angular-oauth2-oidc';
 
 describe('MoreActionsMerchantComponent', () => {
   let component: MoreActionsMerchantComponent;
@@ -26,7 +27,8 @@ describe('MoreActionsMerchantComponent', () => {
         IgxAvatarModule,
         IgxIconModule,
         TabsModule.forRoot(),
-        ModalModule.forRoot()
+        ModalModule.forRoot(),
+        OAuthModule.forRoot()
       ],
       declarations: [
         InitialsPipe,

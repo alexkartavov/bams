@@ -9,6 +9,7 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ModalModule } from 'ngx-bootstrap/modal';
 
 import { MerchantStatementsComponent } from './merchant-statements.component';
+import { OAuthModule } from 'angular-oauth2-oidc';
 
 describe('MerchantStatementsComponent', () => {
   let component: MerchantStatementsComponent;
@@ -25,7 +26,8 @@ describe('MerchantStatementsComponent', () => {
         TabsModule.forRoot(),
         ModalModule.forRoot(),
         IgxIconModule,
-        IgxAvatarModule
+        IgxAvatarModule,
+        OAuthModule.forRoot()
       ]
     })
     .compileComponents();
