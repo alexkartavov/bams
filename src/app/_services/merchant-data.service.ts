@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { MerchantModel } from '../models/merchant-model';
 import { MerchantDetailsModel } from '../models/merchant-details-model';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,7 @@ export class MerchantDataService implements OnDestroy {
   public getDetailsUrl = environment.merchantDetails.detailsGetUrl;
   public getStatementsUrl = environment.merchantDetails.statementsGetUrl;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private authService: AuthService) {
 
     this.httpOptions = {
       headers: new HttpHeaders({
@@ -68,19 +69,18 @@ export class MerchantDataService implements OnDestroy {
   }
 
   getById(mid: number): Observable<MerchantModel> {
-    return this.http.get(this.getUrl.replace('{mid}', mid.toString()), this.httpOptions)
+    return this.http.post(this.getUrl.replace('{merchantId}', mid.toString()), this.authService.getCepSupportUser(), this.httpOptions)
       .pipe(map<any, MerchantModel>(data => data.items[0])
     );
   }
 
   getMerchantDelails(id: number): Observable<MerchantDetailsModel> {
-    return this.http.get(this.getDetailsUrl.replace('{merchantId}', id.toString()), this.httpOptions)
+    return this.http.post(this.getDetailsUrl.replace('{merchantId}', id.toString()), this.authService.getCepSupportUser(), this.httpOptions)
       .pipe(map<any, MerchantDetailsModel>(data => data)
     );
   }
 
   getStatements(params: any) {
-
     return this.http
       .get(this.getStatementsUrl.replace('{merchantId}', params.merchantId).replace('{dateFrom}', params.dateFrom)
         .replace('{dateTo}', params.dateTo), this.httpDetailsOptions)
