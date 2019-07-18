@@ -48,7 +48,7 @@
                   <igx-checkbox name="remember" class="primary-color" [(ngModel)]="model.remember">Remember me</igx-checkbox>
                 </div>
                 <div class="col-6">
-                  <a href="#" class="pull-right" [routerLink]="['/forgot-password']">Forgot password?</a>
+                  <a href="#" class="pull-right" [routerLink]="['/forgot-password']"  [queryParams]="{ username: model.username }">Forgot password?</a>
                 </div>
               </div>
 
