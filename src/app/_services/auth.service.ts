@@ -8,6 +8,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { UserAccessModel } from '../models/user-access-model';
 import { ValueProcessingService } from './value-processing.service';
 import { OAuthService } from 'angular-oauth2-oidc';
+import { ProfileService } from './profile.service';
 
 @Injectable({
   providedIn: 'root'
@@ -55,6 +56,13 @@ export class AuthService {
               lastName: user.lastName,
               role: user.cepSupportRoleId ? Role.Admin : Role.User
             };
+
+            this.valueService.channels.forEach(c => {
+              if (typeof user[c.map] !== 'undefined') {
+                this.user[c.map] = user[c.map];
+              }
+            });
+
             localStorage.setItem('user', JSON.stringify(this.user));
             localStorage.setItem('cepSupportUser', JSON.stringify(user));
             if (success) {
@@ -87,6 +95,13 @@ export class AuthService {
             lastName: user.lastName,
             role: user.cepSupportRoleId ? Role.Admin : Role.User
           };
+
+          this.valueService.channels.forEach(c => {
+            if (typeof user[c.map] !== 'undefined') {
+              this.user[c.map] = user[c.map];
+            }
+          });
+
           localStorage.setItem('user', JSON.stringify(this.user));
           localStorage.setItem('cepSupportUser', JSON.stringify(user));
           this.decodeToken(this.oauthService.getAccessToken());
@@ -116,6 +131,7 @@ export class AuthService {
     }
     localStorage.removeItem('user');
     localStorage.removeItem('cepSupportUser');
+    localStorage.removeItem(this.valueService.profileId);
     this.user = null;
   }
 

@@ -1,12 +1,12 @@
 <form class="card card-sm mb-2 rounded-0">
   <div class="row no-gutters align-items-center p-1">
-      <div class="col-auto pl-1 pt-2">
+      <div class="col-auto pl-1 pt-2" style="cursor:default;">
           <igx-icon *ngIf="searchBoxText.length == 0">search</igx-icon>
           <igx-icon *ngIf="searchBoxText.length > 0" (click)="clearSearch()">clear</igx-icon>
       </div>
       <div class="col">
-          <input #search1 name="search1" class="form-control form-control-borderless border-0" type="search" placeholder="Search" 
-            [(ngModel)]="searchBoxText" (keyup.enter)="doSearch()" (keyup.esc)="clearSearch()">
+          <input #search1 name="search1" class="form-control form-control-borderless border-0" type="text" placeholder="Search" 
+            [(ngModel)]="searchBoxText" (keyup.esc)="clearSearch()">
       </div>
       <div class="col-auto">
           <button class="btn btn-primary" (click)="doSearch()">Search</button>

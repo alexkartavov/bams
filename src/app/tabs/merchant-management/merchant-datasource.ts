@@ -23,7 +23,6 @@ export class MerchantDataSource {
 
     loadMerchants(params: any, loaded?: Function) {
         this.loadingSubject.next(true);
-
         this.merchantService.getMerchants(params).pipe(
             map((response) => {
                 if (loaded) { loaded(response); }

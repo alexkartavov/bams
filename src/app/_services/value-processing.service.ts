@@ -6,6 +6,8 @@ import { Role } from '../models/role';
 })
 export class ValueProcessingService {
 
+  public profileId = 'anettool-profile';
+
   public typeData: any[] = ['Account Update',
                             'DDA/Bank Account Update',
                             'Statement/Fee Enquiry',

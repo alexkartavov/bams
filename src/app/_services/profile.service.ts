@@ -1,19 +1,17 @@
 import { Injectable } from '@angular/core';
 import { SupportUserDataService } from './support-user-data.service';
 import { AuthService } from './auth.service';
-import { AlertifyService } from './alertify.service';
-import { UserAccessModel } from '../models/user-access-model';
+import { ValueProcessingService } from './value-processing.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProfileService {
 
-  profileId = 'anettool-profile';
-
   constructor(
     private authService: AuthService,
-    private userService: SupportUserDataService) { }
+    private userService: SupportUserDataService,
+    private valueService: ValueProcessingService) { }
 
   // section is . separated path to the value in profile
   // ex: get('merchantsGrid.mid.width')
@@ -80,7 +78,7 @@ export class ProfileService {
   }
 
   getProfile(): any {
-    const profileStr = localStorage.getItem(this.profileId);
+    const profileStr = localStorage.getItem(this.valueService.profileId);
     let profile: any = {};
     if (profileStr) {
       profile = JSON.parse(profileStr);
@@ -90,11 +88,12 @@ export class ProfileService {
 
   setProfile(profile: any, updateServer = true) {
     if (!profile) {
+      localStorage.removeItem(this.valueService.profileId);
       return;
     }
 
     const profileStr = JSON.stringify(profile);
-    localStorage.setItem(this.profileId, profileStr);
+    localStorage.setItem(this.valueService.profileId, profileStr);
     if (updateServer) {
       this.userService.setProfile(this.authService.getUserId(), profile);
     }

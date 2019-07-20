@@ -118,8 +118,8 @@ export class SupportUserDataService implements OnDestroy {
     };
 
     this.valueService.channels.forEach(c => {
-      if (typeof user[c.property] !== 'undefined') {
-        request[c.map] = user[c.property];
+      if (typeof user[c.map] !== 'undefined') {
+        request[c.map] = user[c.map];
       }
     });
 

@@ -21,7 +21,7 @@
   
   <div *ngIf="!showCards">
     <div class="grid-container">
-      <igx-grid #merchGrid [primaryKey]="'midNumber'" [paging]="true" [paginationTemplate]="pagerTemplate" [data]="dataSource.connect() | async" [perPage]="perPage" height="500px" width="100%" 
+      <igx-grid #merchGrid [primaryKey]="'id'" [paging]="true" [paginationTemplate]="pagerTemplate" [data]="dataSource.connect() | async" [perPage]="perPage" height="500px" width="100%" 
         [displayDensity]="'cosy'" [rowSelectable]="false" (onSelection)="handleRowSelection($event)" [emptyGridMessage]="' '" (onSortingDone)="sortingDone()" (onColumnResized)="columnResized($event)">
           <igx-column [field]="columnObj(0).field" [header]="columnObj(0).header" width="100px" [sortable]="true" [resizable]="true">
             <ng-template igxHeader let-value>
