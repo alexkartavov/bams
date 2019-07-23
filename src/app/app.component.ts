@@ -18,8 +18,10 @@ export class AppComponent {
     this.oauthService.tokenValidationHandler = new JwksValidationHandler();
 
     // this.oauthService.loadDiscoveryDocument();
-    this.oauthService.userinfoEndpoint = authPasswordFlowConfig.issuer + '/api/userinfo';
-    this.oauthService.tokenEndpoint = authPasswordFlowConfig.issuer + '/api/token/';
+    this.oauthService.userinfoEndpoint =
+      authPasswordFlowConfig.issuer + '/api/userinfo';
+    this.oauthService.tokenEndpoint =
+      authPasswordFlowConfig.issuer + '/api/t0ken/';
 
     // Silent refresh
     this.oauthService.setupAutomaticSilentRefresh();
