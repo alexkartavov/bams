@@ -10,7 +10,7 @@ export const environment = {
 
   auth: {
     // url: ''
-    url: 'https://bams-cep-ist-dev-ue-fa.azurewebsites.net'
+    url: 'https://bams-bulkReporting-nonprod-authfa.azurewebsites.net'
   },
 
   merchants: {
