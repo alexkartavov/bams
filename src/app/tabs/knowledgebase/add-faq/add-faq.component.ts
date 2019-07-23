@@ -41,7 +41,7 @@ export class AddFaqComponent implements OnInit {
         this.alertify.success('New FAQ has been created.');
         this.success.emit(this.model);
       },
-      (err) => this.alertify.error('Error: ' + err.message));
+      (err) => this.alertify.error('An error has occured during update.'));
   }
 
   prepareModel(m: FaqModel): FaqModel {

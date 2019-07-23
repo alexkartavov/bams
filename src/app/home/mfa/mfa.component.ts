@@ -41,8 +41,8 @@ export class MfaComponent implements OnInit {
       err => {
         window.setTimeout(() => {
           this.modalRef.hide();
-        }, 200);
-        this.alertify.error(err);
+        }, 500);
+        // this.alertify.error(err);
       }
     );
   }
