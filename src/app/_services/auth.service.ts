@@ -18,6 +18,7 @@ export class AuthService {
   jwtHelper = new JwtHelperService();
   jwtDecodedToken: any;
   user: UserAccessModel = null;
+  mfaCode = '';
 
   testEmails = ['admin@email.com',
     'user@email.com',
@@ -133,6 +134,14 @@ export class AuthService {
     localStorage.removeItem('cepSupportUser');
     localStorage.removeItem(this.valueService.profileId);
     this.user = null;
+  }
+
+  setMfaCode(code) {
+    this.mfaCode = code;
+  }
+
+  getMfaCode() {
+    return this.mfaCode;
   }
 
   getUser() {

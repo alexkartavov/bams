@@ -36,12 +36,16 @@ export class HomeComponent implements OnInit {
 
   login(model) {
     if (model.pin) { // the auth requires another login with an MFA code
+      this.authService.setMfaCode(model.pin);
       this.authService.login(model,
         user => {
+          model.pin = '';
+          this.authService.setMfaCode('');
           this.loadUserProfile();
         }
       );
     } else { // the MFA component already logged us in, just need to load the profile
+      this.authService.setMfaCode('');
       this.loadUserProfile();
     }
   }

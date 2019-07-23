@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/common/http';
+import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AuthService } from '../_services/auth.service';
 
@@ -15,6 +15,11 @@ export class JwtInterceptor implements HttpInterceptor {
                     Authorization: `Bearer ${this.authService.getToken()}`
                 }
             });
+        } else if (this.authService.getMfaCode()) {
+            const params: HttpParams = request.body;
+            request =  request.clone({
+                body: request.body.append('pin', this.authService.getMfaCode())
+              });
         }
 
         return next.handle(request);

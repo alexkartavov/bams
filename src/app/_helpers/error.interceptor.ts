@@ -25,12 +25,10 @@ export class ErrorInterceptor implements HttpInterceptor {
                         this.alertify.error('User is unauthorized to access.');
                         break;
                 }
-            } else if (!environment.production && err.status >= 400) {
+            } else if (!environment.production && err.status >= 400 && err.status !== 428) {
                 this.alertify.error(err.message);
             }
-
-            const error = err.message || err.statusText;
-            return throwError(error);
+            return throwError(err);
         }));
     }
 }

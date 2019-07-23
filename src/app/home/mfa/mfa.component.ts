@@ -49,9 +49,11 @@ export class MfaComponent implements OnInit {
 
   done() {
     this.modalRef.hide();
-    this.model.pin = this.code.join('');
-    // Bypass pin
-    // this.model.pin = '9d11a5d3-9203-4c1d-8dc6-2811e6bd1b25';
+
+    // Bypass pin - remove for prod
+    this.model.pin = '9d11a5d3-9203-4c1d-8dc6-2811e6bd1b25';
+    // this.model.pin = this.code.join('');
+
     this.codeEntered.emit(this.model);
   }
 
