@@ -15,7 +15,7 @@ export class JwtInterceptor implements HttpInterceptor {
                     Authorization: `Bearer ${this.authService.getToken()}`
                 }
             });
-        } else if (this.authService.getMfaCode()) {
+        } else if (this.authService.getMfaCode() && request.body) {
             const params: HttpParams = request.body;
             request =  request.clone({
                 body: request.body.append('pin', this.authService.getMfaCode())
