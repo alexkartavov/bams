@@ -3,6 +3,8 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 import { MerchantModel } from 'src/app/models/merchant-model';
 import { MerchantNoteModel } from 'src/app/models/merchant-note-model';
 import { AuthService } from 'src/app/_services/auth.service';
+import { MerchantDataService } from 'src/app/_services/merchant-data.service';
+import { AlertifyService } from 'src/app/_services/alertify.service';
 
 @Component({
   selector: 'app-merchant-notes',
@@ -21,26 +23,28 @@ export class MerchantNotesComponent implements OnInit {
 
   constructor(
     private modalService: BsModalService,
-    private authService: AuthService) { }
+    private authService: AuthService,
+    private alertify: AlertifyService,
+    private merchDataService: MerchantDataService) { }
 
   ngOnInit() {
   }
 
   openModal(template) {
-    this.notes = [];
-    let note = new MerchantNoteModel();
-    note.note = 'test';
-    note.time = Date.now();
-    note.user = this.authService.getUserName();
+    // this.notes = [];
+    // let note = new MerchantNoteModel();
+    // note.note = 'test';
+    // note.time = Date.now();
+    // note.user = this.authService.getUserName();
 
-    this.notes.push(note);
+    // this.notes.push(note);
 
-    note = new MerchantNoteModel();
-    note.note = 'test 2';
-    note.time = Date.now();
-    note.user = this.authService.getUserName();
+    // note = new MerchantNoteModel();
+    // note.note = 'test 2';
+    // note.time = Date.now();
+    // note.user = this.authService.getUserName();
 
-    this.notes.unshift(note);
+    // this.notes.unshift(note);
 
     this.modalRef = this.modalService.show(template, {class: 'modal-lg', ignoreBackdropClick: true});
   }
@@ -49,12 +53,21 @@ export class MerchantNotesComponent implements OnInit {
     if (merchant) {
       this.header = h;
       this.merchant = merchant;
-      // this.merchDataService.getMerchantDelails(merchant.id).subscribe(m => {
-      //   this.m = m;
-      //   this.openModal(this.tmpl);
-      // });
+      this.merchDataService.getNotes(merchant.applicationReferenceNo).subscribe(notes => {
+        this.notes = [];
+        if (notes && notes.length) {
+          notes.forEach(n => {
+            const noteModel = new MerchantNoteModel();
+            noteModel.note = n.notes;
+            // noteModel.time = Date.now();
+            // noteModel.user = this.authService.getUserName();
+            this.notes.unshift(noteModel);
+          });
+        }
+        this.openModal(this.tmpl);
+      });
 
-      this.openModal(this.tmpl);
+      // this.openModal(this.tmpl);
     }
   }
 
@@ -67,14 +80,20 @@ export class MerchantNotesComponent implements OnInit {
 
   saveNote() {
     if (this.note.length > 0) {
-      const noteModel = new MerchantNoteModel();
-      noteModel.note = this.note;
-      noteModel.time = Date.now();
-      noteModel.user = this.authService.getUserName();
-
-      this.notes.unshift(noteModel);
-
-      this.note = '';
+      this.merchDataService.postNote(this.merchant.applicationReferenceNo, this.note)
+        .subscribe(
+          next => {
+            const noteModel = new MerchantNoteModel();
+            noteModel.note = this.note;
+            noteModel.time = Date.now();
+            noteModel.user = this.authService.getUserName();
+            this.notes.unshift(noteModel);
+            this.note = '';
+          },
+          error => {
+            this.alertify.error('Error posting a note');
+          }
+        );
       // this.modalRef.hide();
     }
   }

@@ -15,30 +15,21 @@ export class MerchantDataService implements OnDestroy {
   public postUrl = environment.merchants.listPostUrl;
   public getUrl = environment.merchantDetails.detailsGetUrl;
   httpOptions: any;
-  httpDetailsOptions: any;
   totalCountSubject = new BehaviorSubject<number>(0);
 
   public getDetailsUrl = environment.merchantDetails.detailsGetUrl;
   public getStatementsUrl = environment.merchantDetails.statementsGetUrl;
 
+  public getNotesUrl = environment.merchantDetails.notesGetUrl;
+  public postNotesUrl = environment.merchantDetails.notesPostUrl;
+
   constructor(private http: HttpClient, private authService: AuthService) {
 
     this.httpOptions = {
       headers: new HttpHeaders({
-        // 'Ocp-Apim-Subscription-Key': environment.merchants.ocpApimSubscriptionKey,
-        // 'Ocp-Api-Trace': 'true',
-        // 'Cache-Control': 'no-cache',
-        'Content-Type': 'application/json',
-        // 'token': ''
-      })
-    };
-    this.httpDetailsOptions = {
-      headers: new HttpHeaders({
-        // 'Ocp-Apim-Subscription-Key': environment.merchantDetails.ocpApimSubscriptionKey,
-        // 'Ocp-Api-Trace': 'true',
         'Cache-Control': 'no-cache',
         'Content-Type': 'application/json',
-        'token': ''
+        'Accept': 'application/json'
       })
     };
   }
@@ -83,7 +74,7 @@ export class MerchantDataService implements OnDestroy {
   getStatements(params: any) {
     return this.http
       .get(this.getStatementsUrl.replace('{merchantId}', params.merchantId).replace('{dateFrom}', params.dateFrom)
-        .replace('{dateTo}', params.dateTo), this.httpDetailsOptions)
+        .replace('{dateTo}', params.dateTo), this.httpOptions)
       .pipe(
         map((data: any) => {
           const statements = [];
@@ -106,5 +97,32 @@ export class MerchantDataService implements OnDestroy {
           return statements;
         })
     );
+  }
+
+  getNotes(appRefNo: string) {
+    return this.http
+      .post(this.getNotesUrl.replace('{appRefNo}', appRefNo), this.authService.getCepSupportUser(), this.httpOptions)
+      .pipe(
+        map((data: any) => {
+          let notes = [];
+          if (!data /*|| !data.result || !data.result.statementRespMap || data.responseCode !== 'success'*/) {
+            return notes;
+          }
+          notes = data;
+          return notes;
+        })
+    );
+  }
+
+  postNote(appRefNo, note) {
+    const params = {
+      bamsSupportNotes: {
+        'applicationReferenceNo': appRefNo,
+        'bamsSupportNotesId': null,
+        'notes': note
+      },
+      cepSupportUser: this.authService.getCepSupportUser()
+    };
+    return this.http.post(this.postNotesUrl, params, this.httpOptions);
   }
 }

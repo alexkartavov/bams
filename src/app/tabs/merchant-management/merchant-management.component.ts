@@ -235,7 +235,7 @@ export class MerchantManagementComponent implements OnInit, OnDestroy, AfterView
       this.supportTicket.merchant.lastName = this.currentRowData.merchantLastName;
       this.supportTicket.merchant.phoneNumber = this.currentRowData.phoneNumber;
       this.supportTicket.merchant.emailAddress = this.currentRowData.emailAddress;
-      this.supportTicket.merchant.channel = this.currentRowData.platform;
+      this.supportTicket.merchant.channel = this.valueService.platformName(this.currentRowData.applicationReferenceNo);
       this.supportTicket.mid = this.currentRowData.midNumber;
       this.supportTicket.id = 0;
       this.supportTicket.type = '';
