@@ -116,12 +116,13 @@ export class MerchantDataService implements OnDestroy {
 
   postNote(appRefNo, note) {
     const params = {
-      bamsSupportNotes: {
-        'applicationReferenceNo': appRefNo,
-        'bamsSupportNotesId': null,
-        'notes': note
-      },
-      cepSupportUser: this.authService.getCepSupportUser()
+      'id': null,
+      'applicationRefNo': appRefNo,
+      'createdBy': this.authService.getUserId(),
+      'createdOn': new Date().toISOString(),
+      'updatedBy': null,
+      'updatedOn': null,
+      'notes': note
     };
     return this.http.post(this.postNotesUrl, params, this.httpOptions);
   }

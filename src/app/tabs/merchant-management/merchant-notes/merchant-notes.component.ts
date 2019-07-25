@@ -59,8 +59,8 @@ export class MerchantNotesComponent implements OnInit {
           notes.forEach(n => {
             const noteModel = new MerchantNoteModel();
             noteModel.note = n.notes;
-            // noteModel.time = Date.now();
-            // noteModel.user = this.authService.getUserName();
+            noteModel.time = n.createdOn;
+            noteModel.user = n.user.firstName + ' ' + n.user.lastName;
             this.notes.unshift(noteModel);
           });
         }
