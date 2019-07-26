@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { StatementDataSource } from './statement-datasource';
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { AlertifyService } from 'src/app/_services/alertify.service';
 
 @Component({
   selector: 'app-merchant-statements',
@@ -29,7 +30,8 @@ export class MerchantStatementsComponent implements OnInit, AfterViewInit, OnDes
   constructor(
     private merchDataService: MerchantDataService,
     private modalService: BsModalService,
-    private http: HttpClient) {
+    private http: HttpClient,
+    private alertify: AlertifyService) {
 
     const now = new Date();
     this.statementYears = [
@@ -63,6 +65,10 @@ export class MerchantStatementsComponent implements OnInit, AfterViewInit, OnDes
   }
 
   public show(id) {
+    if (!id) {
+      this.alertify.error('MID number must be assigned to view statements.');
+      return;
+    }
     if (id) {
       this.merchDataService.getById(id).subscribe(m => {
         this.m = m;

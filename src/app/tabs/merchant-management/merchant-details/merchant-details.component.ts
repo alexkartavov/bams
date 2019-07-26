@@ -3,6 +3,7 @@ import { MerchantDataService } from '../../../_services/merchant-data.service';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { MerchantDetailsModel } from 'src/app/models/merchant-details-model';
 import { MerchantModel } from 'src/app/models/merchant-model';
+import { AlertifyService } from 'src/app/_services/alertify.service';
 
 @Component({
   selector: 'app-merchant-details',
@@ -17,7 +18,10 @@ export class MerchantDetailsComponent implements OnInit {
   @ViewChild('template', { read: TemplateRef }) public tmpl: TemplateRef<any>;
   lgModal: BsModalRef;
 
-  constructor(private merchDataService: MerchantDataService, private modalService: BsModalService) { }
+  constructor(
+    private merchDataService: MerchantDataService,
+    private modalService: BsModalService,
+    private alertify: AlertifyService) { }
 
   ngOnInit() {
   }
@@ -31,6 +35,10 @@ export class MerchantDetailsComponent implements OnInit {
 
   public show(merchant: MerchantModel) {
     if (merchant) {
+      if (!merchant.midNumber) {
+        this.alertify.error('MID number must be assigned to view details.');
+        return;
+      }
       this.merchant = merchant;
       this.merchDataService.getMerchantDelails(merchant.midNumber).subscribe(m => {
         this.m = m;

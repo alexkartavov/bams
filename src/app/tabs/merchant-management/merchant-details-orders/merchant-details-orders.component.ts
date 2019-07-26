@@ -7,6 +7,7 @@ import { MerchantModel } from 'src/app/models/merchant-model';
 import { OrderSummaryModel } from 'src/app/models/order-summary';
 import { OrderDetailModel } from 'src/app/models/order-detail';
 import { merchantOrderSummary, merchantOrderDetails } from 'src/app/_services/test-data/data.merchant.transactions';
+import { AlertifyService } from 'src/app/_services/alertify.service';
 
 @Component({
   selector: 'app-merchant-details-orders',
@@ -26,7 +27,8 @@ export class MerchantDetailsOrdersComponent implements OnInit {
   constructor(
     private merchDataService: MerchantDataService,
     private modalService: BsModalService,
-    private http: HttpClient) { }
+    private http: HttpClient,
+    private alertify: AlertifyService) { }
 
   ngOnInit() {
   }
@@ -41,6 +43,10 @@ export class MerchantDetailsOrdersComponent implements OnInit {
   public show(merchant: MerchantModel) {
     if (merchant) {
       this.merchant = merchant;
+      if (!merchant.midNumber) {
+        this.alertify.error('MID number must be assigned to view transactions.');
+        return;
+      }
       // this.merchDataService.getMerchantDelails(merchant.id).subscribe(m => {
       //   this.m = m;
       //   this.openModal(this.tmpl);
