@@ -65,7 +65,7 @@ describe('ReportingComponent', () => {
       imports: [
         FormsModule,
         ReactiveFormsModule,
-        RouterModule.forRoot(appRoutes),
+        RouterModule.forRoot(appRoutes, { useHash: true }),
         BsDropdownModule.forRoot(),
         BsDatepickerModule.forRoot(),
         TabsModule.forRoot(),

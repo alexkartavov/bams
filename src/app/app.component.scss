@@ -10,6 +10,21 @@
 @import "tabs/merchant-management//merchant-notes/merchant-notes.component";
 @import "home/mfa/mfa.component";
 
+
+.hero-container {
+    height:550px;
+    background-image: url('src/assets/heroimage.jpg');
+    background-repeat: no-repeat;
+    background-position-x: center;
+}
+
+.hero-text {
+    margin-top:200px;
+    font-size:x-large;
+    font-weight:bold;
+    text-shadow: 2px 2px 3px white;
+}
+
 // .tabs-material .nav-tabs { border-bottom: 2px solid #DDD; }
 .tabs-material .nav-tabs > li.active > a,
 .tabs-material .nav-tabs > li.active > a:focus,

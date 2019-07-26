@@ -66,6 +66,7 @@ export class AuthService {
 
             localStorage.setItem('user', JSON.stringify(this.user));
             localStorage.setItem('cepSupportUser', JSON.stringify(user));
+            localStorage.setItem(this.valueService.profileId, user.userProfile);
             if (success) {
               success(this.user);
             }
@@ -105,6 +106,7 @@ export class AuthService {
 
           localStorage.setItem('user', JSON.stringify(this.user));
           localStorage.setItem('cepSupportUser', JSON.stringify(user));
+          localStorage.setItem(this.valueService.profileId, user.userProfile);
           this.decodeToken(this.oauthService.getAccessToken());
           if (success) {
             success(this.user);
@@ -127,7 +129,8 @@ export class AuthService {
   }
 
   logout() {
-    if (this.user && !this.isTestEmail(this.user.email)) {
+    const token = this.getToken();
+    if (token && token !== 'token') {
       this.oauthService.logOut();
     }
     localStorage.removeItem('user');
@@ -166,9 +169,7 @@ export class AuthService {
       if (this.user && this.isTestEmail(this.user.email)) {
         return true;
       } else if (!hasToken) {
-        localStorage.removeItem('user');
-        localStorage.removeItem('cepSupportUser');
-        this.user = null;
+        this.logout();
         return false;
       }
     }
@@ -180,28 +181,29 @@ export class AuthService {
   }
 
   getToken() {
-    if (this.user && !this.isTestEmail(this.user.email)) {
-      return this.oauthService.getAccessToken();
+    const token = this.oauthService.getAccessToken();
+    if (this.user && this.isTestEmail(this.user.email)) {
+        return 'token';
     }
-    return this.user ? 'token' : null;
+    return token;
   }
 
   getUserName() {
-    if (!this.loggedIn()) {
+    if (!this.loggedIn() || !this.getUser()) {
       return '';
     }
     return this.getUser().firstName + ' ' + this.getUser().lastName;
   }
 
   getUserId() {
-    if (!this.loggedIn()) {
+    if (!this.loggedIn() || !this.getUser()) {
       return 0;
     }
     return this.getUser().id;
   }
 
   getUserRole() {
-    if (!this.loggedIn()) {
+    if (!this.loggedIn() || !this.getUser()) {
       return null;
     }
     return this.getUser().role;

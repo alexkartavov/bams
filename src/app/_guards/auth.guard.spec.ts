@@ -81,7 +81,7 @@ describe('AuthGuard', () => {
         MfaComponent
       ],
       imports: [
-        RouterModule.forRoot(appRoutes),
+        RouterModule.forRoot(appRoutes, { useHash: true }),
         FormsModule,
         ReactiveFormsModule,
         BsDropdownModule.forRoot(),

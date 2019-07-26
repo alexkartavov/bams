@@ -125,7 +125,7 @@ import { MfaComponent } from './home/mfa/mfa.component';
       IgxListModule,
       IgxTooltipModule,
       IgxCheckboxModule,
-      RouterModule.forRoot(appRoutes),
+      RouterModule.forRoot(appRoutes, { useHash: true }),
       OAuthModule.forRoot(),
       ButtonsModule.forRoot()
    ],

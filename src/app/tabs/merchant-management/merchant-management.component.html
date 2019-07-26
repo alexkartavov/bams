@@ -97,7 +97,7 @@
           <igx-column header="Actions" width="100px" disableHiding="true">
             <ng-template igxCell let-cell="cell">
               <div class="actions_cell_class">
-                <igx-icon #pop="bs-popover" fontSet="material" class="primary-color" [popover]="menuTemplate" placement="bottom" container="body" [outsideClick]="true" >more_horiz</igx-icon>
+                <igx-icon #pop="bs-popover" fontSet="material" class="primary-color mt-2" [popover]="menuTemplate" placement="bottom" container="body" [outsideClick]="true" >more_horiz</igx-icon>
 
                 <ng-template #menuTemplate>
                   <div>
@@ -114,7 +114,7 @@
                 <app-merchant-notes #merchNotes [id]="cell.row.rowData.id" [merchant]="cell.row.rowData"></app-merchant-notes>
 
                 <app-merchant-notes [merchant]="cell.row.rowData" [header]="'Notes'">
-                  <igx-icon fontSet="material" class="primary-color" title="View Notes">note</igx-icon>
+                  <igx-icon fontSet="fa" name="fa-sticky-note" class="primary-color" title="View Notes">note</igx-icon>
                 </app-merchant-notes>
               </div>
             </ng-template>
