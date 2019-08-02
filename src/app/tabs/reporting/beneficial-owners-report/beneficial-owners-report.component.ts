@@ -12,6 +12,19 @@ import { environment } from 'src/environments/environment';
 })
 export class BeneficialOwnersReportComponent implements OnInit {
 
+  isReq = true;
+  isDiscover = true;
+  isProgress = false;
+
+  boBlob = null;
+  boBlobName = null;
+
+  boDiscover = [];
+  boProgress = [];
+  boProgressIdx = 0;
+
+  formModel: any;
+
   public checkModel = [
     1, // completed: true,
     0, // in-progress: false (formerly draft),
@@ -62,35 +75,128 @@ export class BeneficialOwnersReportComponent implements OnInit {
   }
 
   download() {
-    this.getAll((headers, items) => {
-      // this.exportService.exportXlsxFile(headers, items, 'Beneficial_Owners_' + formatDate(new Date(), 'yyyy_MM_dd', 'en-US'), 'BO');
-      this.exportService.download('Beneficial_Owners_' + formatDate(new Date(), 'yyyy_MM_dd', 'en-US') + '.csv', items);
-    });
+    this.getAll();
   }
 
-  requestParams() {
-    let status = 0;
-    for (let i = 0; i < this.checkModel.length; i++) {
-      // tslint:disable-next-line:no-bitwise
-      status |= this.checkModel[i];
-    }
-    return {
-      statuses: status,
-      statusez: this.checkModel,
+  resetParams() {
+    this.isReq = true;
+    this.isDiscover = true;
+    this.isProgress = false;
+
+    this.boBlob = null;
+    this.boBlobName = null;
+
+    this.boDiscover = [];
+    this.boProgress = [];
+    this.boProgressIdx = 0;
+
+    this.formModel = {
+      idx: 0,
+      statuses: 0,
+      statusez: [1],
       startDate: formatDate(this.startDate ? new Date(this.startDate) : new Date(0), 'yyyy-MM-dd', 'en-US'),
-      endDate: formatDate(this.endDate ? new Date(this.endDate) : new Date(), 'yyyy-MM-dd', 'en-US')
+      endDate: formatDate(this.endDate ? new Date(this.endDate) : new Date(), 'yyyy-MM-dd', 'en-US'),
+      pageFrom: 1,
+      pageSize: 100,
+      packageDocuments: null
     };
   }
 
-  getAll(ready: Function) {
-    // tslint:disable-next-line:max-line-length
+  getAll() {
+    this.resetParams();
+    this.formModel.statusez = this.checkModel;
+
+    this.reqDiscover(this.formModel, this.checkModel, 0, 0, 1, 100);
+  }
+
+  reqDiscover(p_v, p_statusez, p_statusIdx, p_idx, p_pageFrom, p_pageSize) {
+    p_v.idx = p_idx;
+    p_v.pageFrom = p_pageFrom;
+    p_v.pageSize = p_pageSize;
+    p_v.statuses = p_statusez[p_statusIdx];
+
     const headers = new HttpHeaders({
-      // 'Accept': 'text/csv',
-      // 'Content-Type': 'text/csv',
       'no-cache': 'true'
     });
-    this.httpClient.post(environment.reports.boUrl, this.requestParams(), {headers: headers, responseType: 'text'})
-      .subscribe(data => ready(null, data));
+
+    this.httpClient.post(environment.reports.POSTCSVDISCOVERYURL, p_v, {headers: headers})
+      .subscribe((response: any) => {
+        if (response) {
+          if (response.PackageDocuments) {
+            this.boDiscover.push(response.PackageDocuments);
+          }
+
+          if (response.IsDone) {
+            if (p_statusIdx < p_statusez.length - 1) {
+              setTimeout(() => {
+                this.reqDiscover(p_v, p_statusez, p_statusIdx + 1, 0, 1, 100);
+              });
+            } else {
+              setTimeout(() => {
+                this.isDiscover = false;
+                this.isProgress = true;
+                p_v.pageSize = 20;
+                this.reqProgress(p_v, 0);
+              });
+            }
+          } else {
+            setTimeout(() => {
+              this.reqDiscover(p_v, p_statusez, p_statusIdx, response.Idx, response.PageFrom, response.PageSize);
+            });
+          }
+        }
+      },
+      error => {
+        this.isReq = false;
+        this.isDiscover = false;
+      },
+      () => {
+        this.isReq = false;
+        this.isDiscover = false;
+      });
+  }
+
+  reqProgress(p_v, p_idx) {
+    p_v.idx = p_idx;
+
+    const i0 = p_idx * p_v.pageSize;
+    const i1 = i0 + p_v.pageSize;
+
+    const boDiscover = this.boDiscover;
+
+    p_v.packageDocuments = boDiscover.slice(i0, i1);
+
+    const headers = new HttpHeaders({
+      'no-cache': 'true'
+    });
+
+    this.httpClient.post(environment.reports.POSTCSVDISCOVERYURL, p_v, {headers: headers})
+      .subscribe((response: any) => {
+        if (response) {
+          if (response.CsvString) {
+            this.boProgress.push(response.CsvString);
+            this.boProgressIdx = this.boProgressIdx + p_v.packageDocuments.length;
+          }
+
+          const i2 = response.Idx * p_v.pageSize;
+          if (i2 < boDiscover.length) {
+            setTimeout(() => {
+              this.reqProgress(p_v, response.Idx);
+            });
+          } else {
+            const csv = this.boProgress.join('\r\n');
+            this.exportService.download('Beneficial_Owners_' + formatDate(new Date(), 'yyyy_MM_dd', 'en-US') + '.csv', csv);
+          }
+        }
+      },
+      error => {
+        this.isReq = false;
+        this.isProgress = false;
+      },
+      () => {
+        this.isReq = false;
+        this.isProgress = false;
+      });
   }
 
 }
