@@ -113,7 +113,18 @@ export class BeneficialOwnersReportComponent implements OnInit {
     p_v.idx = p_idx;
     p_v.pageFrom = p_pageFrom;
     p_v.pageSize = p_pageSize;
-    p_v.statuses = p_statusez[p_statusIdx];
+    // only request statuses that are set
+    do {
+      p_v.statuses = p_statusez[p_statusIdx] ? Math.pow(2, p_statusIdx) : 0;
+    }
+    while (p_v.statuses === 0 && ++p_statusIdx < p_statusez.length);
+
+    // no statuses set
+    if (p_v.statuses === 0) {
+      this.isReq = false;
+      this.isDiscover = false;
+      return;
+    }
 
     const headers = new HttpHeaders({
       'no-cache': 'true'
