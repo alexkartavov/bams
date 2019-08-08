@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { BsDropdownModule, BsDatepickerModule, ButtonsModule } from 'ngx-bootstrap';
+import { BsDropdownModule, BsDatepickerModule, ButtonsModule, ProgressbarModule } from 'ngx-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ModalModule } from 'ngx-bootstrap/modal';
@@ -61,6 +61,7 @@ import { JwtInterceptor} from './_helpers/jwt.interceptor';
 import { ErrorInterceptor } from './_helpers/error.interceptor';
 import { BeneficialOwnersReportComponent } from './tabs/reporting/beneficial-owners-report/beneficial-owners-report.component';
 import { MfaComponent } from './home/mfa/mfa.component';
+import { BoReportProgressComponent } from './tabs/reporting/beneficial-owners-report/bo-report-progress/bo-report-progress.component';
 // import { fakeBackendProvider } from './_helpers/fake-backend';
 
 @NgModule({
@@ -99,7 +100,8 @@ import { MfaComponent } from './home/mfa/mfa.component';
       MerchantNotesComponent,
       ForgotPasswordComponent,
       BeneficialOwnersReportComponent,
-      MfaComponent
+      MfaComponent,
+      BoReportProgressComponent
    ],
    imports: [
       BrowserModule,
@@ -127,7 +129,8 @@ import { MfaComponent } from './home/mfa/mfa.component';
       IgxCheckboxModule,
       RouterModule.forRoot(appRoutes, { useHash: true }),
       OAuthModule.forRoot(),
-      ButtonsModule.forRoot()
+      ButtonsModule.forRoot(),
+      ProgressbarModule.forRoot()
    ],
    providers: [
       AlertifyService,

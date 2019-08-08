@@ -4,8 +4,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { BeneficialOwnersReportComponent } from './beneficial-owners-report.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { ButtonsModule } from 'ngx-bootstrap';
+import { ButtonsModule, ProgressbarModule, ModalModule } from 'ngx-bootstrap';
 import { OAuthService, OAuthModule } from 'angular-oauth2-oidc';
+import { BoReportProgressComponent } from './bo-report-progress/bo-report-progress.component';
 
 describe('BeneficialOwnersReportComponent', () => {
   let component: BeneficialOwnersReportComponent;
@@ -13,13 +14,16 @@ describe('BeneficialOwnersReportComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BeneficialOwnersReportComponent ],
+      declarations: [ BeneficialOwnersReportComponent,
+        BoReportProgressComponent ],
       imports: [
         FormsModule,
         ReactiveFormsModule,
         HttpClientTestingModule,
         OAuthModule.forRoot(),
-        ButtonsModule.forRoot()
+        ButtonsModule.forRoot(),
+        ProgressbarModule.forRoot(),
+        ModalModule.forRoot()
       ]
     })
     .compileComponents();

@@ -1,9 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { ExportService } from 'src/app/_services/export.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ProfileService } from 'src/app/_services/profile.service';
 import { formatDate } from '@angular/common';
 import { environment } from 'src/environments/environment';
+import { BoReportProgressComponent } from './bo-report-progress/bo-report-progress.component';
 
 @Component({
   selector: 'app-beneficial-owners-report',
@@ -40,6 +41,8 @@ export class BeneficialOwnersReportComponent implements OnInit {
   @Input()
   public endDate?: number;
 
+  @ViewChild('boProgressWindow') public boProgressWindow: BoReportProgressComponent;
+
   constructor(
     private httpClient: HttpClient,
     private exportService: ExportService,
@@ -75,6 +78,7 @@ export class BeneficialOwnersReportComponent implements OnInit {
   }
 
   download() {
+    this.boProgressWindow.openModal();
     this.getAll();
   }
 
@@ -110,6 +114,10 @@ export class BeneficialOwnersReportComponent implements OnInit {
   }
 
   reqDiscover(p_v, p_statusez, p_statusIdx, p_idx, p_pageFrom, p_pageSize) {
+    if (!this.isDiscover) {
+      return;
+    }
+
     p_v.idx = p_idx;
     p_v.pageFrom = p_pageFrom;
     p_v.pageSize = p_pageSize;
@@ -126,6 +134,10 @@ export class BeneficialOwnersReportComponent implements OnInit {
       return;
     }
 
+    this.boProgressWindow.setProgressParams('Discovering range ' +
+                  p_pageFrom + ' - ' +
+                  (p_pageFrom + p_pageSize - 1), 0, true, false);
+
     const headers = new HttpHeaders({
       'no-cache': 'true'
     });
@@ -134,18 +146,23 @@ export class BeneficialOwnersReportComponent implements OnInit {
       .subscribe((response: any) => {
         if (response) {
           if (response.PackageDocuments) {
-            this.boDiscover.push(response.PackageDocuments);
+            this.boDiscover.push(...response.PackageDocuments);
           }
 
           if (response.IsDone) {
-            if (p_statusIdx < p_statusez.length - 1) {
+            let nextStatus = p_statusIdx + 1;
+            while (nextStatus < p_statusez.length && !p_statusez[nextStatus]) {
+              nextStatus++;
+            }
+            if (nextStatus < p_statusez.length) {
               setTimeout(() => {
-                this.reqDiscover(p_v, p_statusez, p_statusIdx + 1, 0, 1, 100);
+                this.reqDiscover(p_v, p_statusez, nextStatus, 0, 1, 100);
               });
             } else {
               setTimeout(() => {
                 this.isDiscover = false;
                 this.isProgress = true;
+                p_v.pageFrom = 1;
                 p_v.pageSize = 20;
                 this.reqProgress(p_v, 0);
               });
@@ -162,12 +179,16 @@ export class BeneficialOwnersReportComponent implements OnInit {
         this.isDiscover = false;
       },
       () => {
-        this.isReq = false;
-        this.isDiscover = false;
+        // this.isReq = false;
+        // this.isDiscover = false;
       });
   }
 
   reqProgress(p_v, p_idx) {
+    if (!this.isProgress) {
+      return;
+    }
+
     p_v.idx = p_idx;
 
     const i0 = p_idx * p_v.pageSize;
@@ -177,11 +198,17 @@ export class BeneficialOwnersReportComponent implements OnInit {
 
     p_v.packageDocuments = boDiscover.slice(i0, i1);
 
+    const discovered = (boDiscover && boDiscover.length !== 0) ? boDiscover.length : 1;
+
+    const pct = this.boProgressIdx / discovered * 100.0;
+
+    this.boProgressWindow.setProgressParams('Downloading ' + pct.toFixed(2) + '%', pct, false, true);
+
     const headers = new HttpHeaders({
       'no-cache': 'true'
     });
 
-    this.httpClient.post(environment.reports.POSTCSVDISCOVERYURL, p_v, {headers: headers})
+    this.httpClient.post(environment.reports.POSTCSVPROGRESSURL, p_v, {headers: headers})
       .subscribe((response: any) => {
         if (response) {
           if (response.CsvString) {
@@ -195,6 +222,7 @@ export class BeneficialOwnersReportComponent implements OnInit {
               this.reqProgress(p_v, response.Idx);
             });
           } else {
+            this.boProgressWindow.cancel();
             const csv = this.boProgress.join('\r\n');
             this.exportService.download('Beneficial_Owners_' + formatDate(new Date(), 'yyyy_MM_dd', 'en-US') + '.csv', csv);
           }
@@ -205,9 +233,15 @@ export class BeneficialOwnersReportComponent implements OnInit {
         this.isProgress = false;
       },
       () => {
-        this.isReq = false;
-        this.isProgress = false;
+        // this.isReq = false;
+        // this.isProgress = false;
       });
+  }
+
+  cancelled() {
+    this.isReq = false;
+    this.isDiscover = false;
+    this.isProgress = false;
   }
 
 }

@@ -1,0 +1,19 @@
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Requesting data</h4>
+    <button type="button" class="close pull-right" aria-label="Close" title="Cancel and close" (click)="cancel()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="row">
+      <div class="col" style="height:20px;">
+        <progressbar style="height:100%;" *ngIf="isDiscovering" [value]="100" [striped]="true" [animate]="true"><i>{{message}}</i></progressbar>
+        <progressbar style="height:100%;color:black;" *ngIf="isProgress" [value]="progress"><i>{{message}}</i></progressbar>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-secondary" title="Cancel and close" (click)="cancel()">Cancel</button>
+  </div>
+</ng-template>

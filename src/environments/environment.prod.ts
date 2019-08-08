@@ -63,6 +63,11 @@ export const environment = {
   },
 
   reports: {
-    boUrl: 'https://bams-cep-franchise-' + ENV + '-ue-fa.azurewebsites.net/api/postBoCsv/a6986845-b4fa-4c29-a912-57696d75ab62?code=Zlz0Hn1mpKFrIsE0B/xOZPYgb2pxkXqHFa61DBJjN29JiKLNxx27Ew=='
+    // boUrl:
+      // 'https://bams-cep-franchise-' + ENV + '-ue-fa.azurewebsites.net/api/postBoCsv/a6986845-b4fa-4c29-a912-57696d75ab62?code=Zlz0Hn1mpKFrIsE0B/xOZPYgb2pxkXqHFa61DBJjN29JiKLNxx27Ew=='
+    POSTCSVDISCOVERYURL:
+      'https://bams-bulkreporting-prod-fa.azurewebsites.net/api/postBoCsvDiscover/a6986845-b4fa-4c29-a912-57696d75ab62?code=rPNFY4ASTPj/VkvKEMpZnCKNnqwYxHgeBfyJHVg7dfz/8lHz1xD4fA==',
+    POSTCSVPROGRESSURL:
+      'https://bams-bulkreporting-prod-fa.azurewebsites.net/api/postBoCsvProgress/a6986845-b4fa-4c29-a912-57696d75ab62?code=CeE9He2KYwzmCtUhs06sTi9uVDgjC79cvaZ5ZxsYcs9GM4TOn06Sag=='
   }
 }

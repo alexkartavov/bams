@@ -12,7 +12,7 @@ import { InitialsPipe } from '../_services/initials.pipe';
 import { TimePassedPipe } from '../_services/time-passed.pipe';
 
 import { TabsModule } from 'ngx-bootstrap/tabs';
-import { BsDropdownModule, BsDatepickerModule, ButtonsModule } from 'ngx-bootstrap';
+import { BsDropdownModule, BsDatepickerModule, ButtonsModule, ProgressbarModule } from 'ngx-bootstrap';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { PopoverModule } from 'ngx-bootstrap/popover';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
@@ -55,6 +55,7 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { OAuthModule } from 'angular-oauth2-oidc';
 import { BeneficialOwnersReportComponent } from '../tabs/reporting/beneficial-owners-report/beneficial-owners-report.component';
 import { MfaComponent } from './mfa/mfa.component';
+import { BoReportProgressComponent } from '../tabs/reporting/beneficial-owners-report/bo-report-progress/bo-report-progress.component';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -95,7 +96,8 @@ describe('HomeComponent', () => {
         MerchantDetailsOrdersComponent,
         MerchantNotesComponent,
         ForgotPasswordComponent,
-        MfaComponent
+        MfaComponent,
+        BoReportProgressComponent
       ],
       imports: [
         FormsModule,
@@ -114,7 +116,8 @@ describe('HomeComponent', () => {
         IgxAvatarModule, IgxListModule, IgxTooltipModule,
         IgxCheckboxModule,
         OAuthModule.forRoot(),
-        ButtonsModule.forRoot()
+        ButtonsModule.forRoot(),
+        ProgressbarModule.forRoot()
       ]
     })
     .compileComponents();

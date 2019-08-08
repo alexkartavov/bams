@@ -15,7 +15,7 @@ import { IgxCheckboxComponent, IgxIconComponent, IgxTabsModule, IgxGridModule,
   IgxIconModule, IgxDialogModule, IgxNavbarModule, IgxColumnHidingModule,
   IgxAvatarModule, IgxListModule, IgxTooltipModule, IgxCheckboxModule } from 'igniteui-angular';
 import { BsDropdownModule, BsDatepickerModule, TabsModule, ModalModule,
-  PopoverModule, PaginationModule, TypeaheadModule, PagerComponent, ButtonsModule } from 'ngx-bootstrap';
+  PopoverModule, PaginationModule, TypeaheadModule, PagerComponent, ButtonsModule, ProgressbarModule } from 'ngx-bootstrap';
 import { MerchantManagementComponent } from 'src/app/tabs/merchant-management/merchant-management.component';
 import { UserAccessManagementComponent } from 'src/app/tabs/user-access-management/user-access-management.component';
 import { KnowledgebaseComponent } from 'src/app/tabs/knowledgebase/knowledgebase.component';
@@ -43,6 +43,7 @@ import { InitialsPipe } from 'src/app/_services/initials.pipe';
 import { TimePassedPipe } from 'src/app/_services/time-passed.pipe';
 import { BeneficialOwnersReportComponent } from 'src/app/tabs/reporting/beneficial-owners-report/beneficial-owners-report.component';
 import { MfaComponent } from '../mfa/mfa.component';
+import { BoReportProgressComponent } from 'src/app/tabs/reporting/beneficial-owners-report/bo-report-progress/bo-report-progress.component';
 
 describe('ForgotPasswordComponent', () => {
   let component: ForgotPasswordComponent;
@@ -82,7 +83,8 @@ describe('ForgotPasswordComponent', () => {
         BeneficialOwnersReportComponent,
         MerchantDetailsOrdersComponent,
         MerchantNotesComponent,
-        MfaComponent
+        MfaComponent,
+        BoReportProgressComponent
       ],
       imports: [
         FormsModule,
@@ -99,7 +101,8 @@ describe('ForgotPasswordComponent', () => {
         IgxDialogModule, IgxNavbarModule, IgxColumnHidingModule,
         IgxAvatarModule, IgxListModule, IgxTooltipModule,
         IgxCheckboxModule,
-        ButtonsModule.forRoot()
+        ButtonsModule.forRoot(),
+        ProgressbarModule.forRoot()
       ]
     })
     .compileComponents();

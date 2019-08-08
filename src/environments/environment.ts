@@ -132,8 +132,8 @@ export const environment = {
     // boUrl:
       // 'https://bams-cep-franchise-' + ENV + '-ue-fa.azurewebsites.net/api/postBoCsv/a6986845-b4fa-4c29-a912-57696d75ab62?code=Zlz0Hn1mpKFrIsE0B/xOZPYgb2pxkXqHFa61DBJjN29JiKLNxx27Ew=='
     POSTCSVDISCOVERYURL:
-      'https://bams-bulkreporting-nonprod-fa.azurewebsites.net/api/postBoCsvDiscover/a6986845-b4fa-4c29-a912-57696d75ab62?code=bNmxchhCtWd8WGCp8R7aMCrPsKENFcpnZ9jiJsvqbXDvzGa0BvSqLg==',
+      'https://bams-bulkreporting-nonprod-fa.azurewebsites.net/api/postBoCsvDiscover/a6986845-b4fa-4c29-a912-57696d75ab62?code=8GdeqqzltmdZVXWf7ud4NX2KOZvocRoDFg4uaiLyGxN0E7gOS5ab7w==',
     POSTCSVPROGRESSURL:
-      'https://bams-bulkreporting-nonprod-fa.azurewebsites.net/api/postBoCsvProgress/a6986845-b4fa-4c29-a912-57696d75ab62?code=bNmxchhCtWd8WGCp8R7aMCrPsKENFcpnZ9jiJsvqbXDvzGa0BvSqLg=='
+      'https://bams-bulkreporting-nonprod-fa.azurewebsites.net/api/postBoCsvProgress/a6986845-b4fa-4c29-a912-57696d75ab62?code=q70wnn5PNjGERI8H/42oDMLj2kjrFQ4Ly7Hqml8bhzJsGOYPXbrdJQ=='
   }
 };
