@@ -43,13 +43,6 @@ export class MerchantDataService implements OnDestroy {
       .pipe(map<any, MerchantModel[]>(data => {
         this.totalCountSubject.next(data.totalCount);
 
-        // TODO remove once the endpoint returns merchantIds
-        let id = 0;
-        data.items.forEach(item => {
-          item.id = ++id;
-        });
-        // END TODO
-
         return data.items;
       })
     );

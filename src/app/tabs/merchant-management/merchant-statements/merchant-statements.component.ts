@@ -64,16 +64,14 @@ export class MerchantStatementsComponent implements OnInit, AfterViewInit, OnDes
     this.lgModal = this.modalService.show(template, {initialState/*, class: 'modal-lg'*/});
   }
 
-  public show(id) {
-    if (!id) {
+  public show(m) {
+    if (m && !m.midNumber) {
       this.alertify.error('MID number must be assigned to view statements.');
       return;
     }
-    if (id) {
-      this.merchDataService.getById(id).subscribe(m => {
-        this.m = m;
-        this.openModal(this.tmpl);
-      });
+    if (m) {
+      this.m = m;
+      this.openModal(this.tmpl);
     }
   }
 

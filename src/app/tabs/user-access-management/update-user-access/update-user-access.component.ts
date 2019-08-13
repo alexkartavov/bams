@@ -107,7 +107,7 @@ export class UpdateUserAccessComponent implements OnInit {
   }
 
   openModal(template: BsModalService) {
-    this.modalRef = this.modalService.show(template);
+    this.modalRef = this.modalService.show(template, { ignoreBackdropClick: true });
     this.initModel();
     this.updateFormControls();
   }

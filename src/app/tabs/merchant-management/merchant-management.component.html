@@ -103,7 +103,7 @@
                   <div>
                     <div><button class="btn btn-link btn-sm" (click)="pop.hide();merchDetails.show(cell.row.rowData)">View Details</button></div>
                     <div><button class="btn btn-link btn-sm" (click)="pop.hide();merchDetailsOrders.show(cell.row.rowData)">View Transactions</button></div>
-                    <div><button class="btn btn-link btn-sm" (click)="pop.hide();merchStatements.show(cell.row.rowData.midNumber)">Statements</button></div>
+                    <div><button class="btn btn-link btn-sm" (click)="pop.hide();merchStatements.show(cell.row.rowData)">Statements</button></div>
                     <div><button class="btn btn-link btn-sm" (click)="pop.hide();merchNotes.show('Add a Note', cell.row.rowData)">Add a Note</button></div>
                   </div>
                 </ng-template>
