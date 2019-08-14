@@ -8,7 +8,7 @@
         <app-add-ticket [model]="supportTicket" [editable]="selectedMerchantId < 0" (success)="ticketAdded($event)"><button class="btn btn-primary" (click)="prePopulateSupportTicket()">Add New Ticket</button></app-add-ticket>
         <span #colHiding="bs-popover" [popover]="popTemplate" placement="bottom" title="Hide columns"><igx-icon *ngIf="!showCards">flip</igx-icon></span>
         <span title="Print"><igx-icon (click)="print()">print</igx-icon></span>
-        <span title="Download XLSX"><igx-icon (click)="download()" fontSet="fa" name="fa-download"></igx-icon></span>
+        <span title="Download XLSX"><igx-icon (click)="download()" fontSet="fa" name="fa-download" style="font-size:20px"></igx-icon></span>
         <igx-icon [class.grayedIcon]="showCards" (click)="cardsView()">apps</igx-icon>
         <igx-icon [class.grayedIcon]="!showCards" (click)="gridView()">grid_on</igx-icon>
       </igx-navbar>
