@@ -43,6 +43,20 @@ export class MerchantDataService implements OnDestroy {
       .pipe(map<any, MerchantModel[]>(data => {
         this.totalCountSubject.next(data.totalCount);
 
+        // TODO remove once the endpoint returns proper MIDs from FirstData
+        if (!environment.production) {
+          if (data.items.length > 0) {
+            data.items[0].midNumber = 1249308;
+          }
+          if (data.items.length > 1) {
+            data.items[1].midNumber = 1249309;
+          }
+          if (data.items.length > 2) {
+            data.items[2].midNumber = 1249310;
+          }
+        }
+        // END TODO
+
         return data.items;
       })
     );
@@ -77,7 +91,7 @@ export class MerchantDataService implements OnDestroy {
           }
 
           for (const year in data.result.statementRespMap) {
-            if (!data.result.statementRespMap.hasOwnProperty(year)) {
+            if (!data.result.statementRespMap.hasOwnProperty(year) || year !== params.year) {
               continue;
             }
             const yearStat = data.result.statementRespMap[year];

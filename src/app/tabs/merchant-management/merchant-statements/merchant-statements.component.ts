@@ -85,7 +85,8 @@ export class MerchantStatementsComponent implements OnInit, AfterViewInit, OnDes
     this.dataSource.loadStatements({
       merchantId: merchantId,
       dateFrom: from,
-      dateTo: to
+      dateTo: to,
+      year: year
     });
   }
 

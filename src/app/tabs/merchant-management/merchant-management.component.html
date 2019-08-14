@@ -110,7 +110,7 @@
 
                 <app-merchant-details #merchDetails [id]="cell.row.rowData.id"></app-merchant-details>
                 <app-merchant-details-orders #merchDetailsOrders [id]="cell.row.rowData.id"></app-merchant-details-orders>
-                <app-merchant-statements #merchStatements [id]="cell.row.rowData.id"></app-merchant-statements>
+                <app-merchant-statements #merchStatements [id]="cell.row.rowData.midNumber"></app-merchant-statements>
                 <app-merchant-notes #merchNotes [id]="cell.row.rowData.id" [merchant]="cell.row.rowData"></app-merchant-notes>
 
                 <app-merchant-notes [merchant]="cell.row.rowData" [header]="'Notes'">
