@@ -29,7 +29,6 @@
     "bootswatch": "^4.3.1",
     "classlist.js": "^1.1.20150312",
     "core-js": "^2.6.5",
-    "font-awesome": "^4.7.0",
     "igniteui-angular": "^7.2.3",
     "ngx-bootstrap": "^4.3.0",
     "rxjs": "~6.4.0",
