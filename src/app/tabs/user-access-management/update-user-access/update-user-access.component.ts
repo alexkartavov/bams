@@ -149,6 +149,7 @@ export class UpdateUserAccessComponent implements OnInit {
 
   userChannels() {
     if (this.channels.length === 0) {
+      debugger;
       this.valueService.channels.forEach(c => {
         const user = this.authService.getCepSupportUser();
         if (this.SHOW_ALL || user && user[c.property]) {

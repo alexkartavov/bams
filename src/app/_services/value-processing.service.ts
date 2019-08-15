@@ -103,6 +103,9 @@ export class ValueProcessingService {
     }
   ];
 
+  // TODO: adjust to supported channels
+  supportedChannels = ['bams', 'bana', 'lvmh', 'fb'];
+
   constructor() { }
 
   private getValueByTitle(title: string, values: string[], titles: string[]): string {

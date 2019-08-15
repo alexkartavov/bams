@@ -261,4 +261,36 @@ export class UserAccessManagementComponent implements OnInit, OnDestroy, AfterVi
   isAdmin(): boolean {
     return this.auth.getUserRole() === Role.Admin;
   }
+
+  isSuperAdmin(user): boolean {
+    let r = user.role === Role.Admin;
+    let i = 0;
+    while (r && i < this.valueService.channels.length) {
+      const c = this.valueService.channels[i++];
+      if (this.valueService.supportedChannels.indexOf(c.map) >= 0 && !user[c.map]) {
+        r = false;
+      }
+    }
+    return r;
+  }
+
+  userChannels(user) {
+    const channels = [];
+    this.valueService.channels.forEach(c => {
+      if (user[c.map]) {
+        channels.push(c.title);
+      }
+    });
+    return channels;
+  }
+
+  channelStyle(c) {
+    return {
+      'color': 'white',
+      'background-color': this.valueService.platformNameColor(c),
+      'font-size': 'smaller',
+      'padding': '2px',
+      'margin-left': '2px'
+    };
+  }
 }

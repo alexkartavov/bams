@@ -49,8 +49,15 @@
           <ng-template igxHeader let-value>
             <span title="{{value.header}}">{{value.header}}</span>
           </ng-template>
-          <ng-template igxCell let-value>
-            {{ userRoleTitle(value) }}
+          <ng-template igxCell let-value let-cell="cell">
+            {{ userRoleTitle(value) }} <span *ngIf="isSuperAdmin(cell.row.rowData)">*</span>
+          </ng-template>
+        </igx-column>
+        <igx-column header="Channels" [resizable]="true">
+          <ng-template igxCell let-cell="cell">
+            <div>
+              <span *ngFor="let c of userChannels(cell.row.rowData)" [ngStyle]="channelStyle(c)">{{c}}</span>
+            </div>
           </ng-template>
         </igx-column>
         <igx-column header="Actions" width="100px" disableHiding="true">
