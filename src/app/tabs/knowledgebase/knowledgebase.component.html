@@ -7,7 +7,7 @@
       <igx-navbar [isActionButtonVisible]="false" class="p-0">
         <span *ngIf="isAdmin()"><app-add-faq (success)="faqAdded($event)"><button class="btn btn-primary">Add FAQ</button></app-add-faq></span>
         <span title="Print"><igx-icon (click)="print()">print</igx-icon></span>
-        <span title="Download XLSX"><igx-icon (click)="startDownload()" fontSet="fa" name="fa-download"></igx-icon></span>
+        <span title="Download CSV"><igx-icon (click)="startDownload()">save_alt</igx-icon></span>
       </igx-navbar>
     </div>
   </div>
