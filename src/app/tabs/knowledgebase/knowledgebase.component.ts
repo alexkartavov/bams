@@ -64,7 +64,7 @@ export class KnowledgebaseComponent implements OnInit {
 
   refresh() {
     const params = {
-      search: this.searchBoxText ? this.searchBoxText : ''
+      search: this.searchBoxText ? this.searchBoxText : null
     };
     this.dataSource.loadFaqs(params);
   }

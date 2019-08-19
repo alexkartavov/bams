@@ -35,22 +35,22 @@
         </div>
 
         <div class="row">
-          <div class="form-group col-6">
+          <div class="form-group col-6" title="Enter phone number: NNN-NNN-NNNN">
             <label for="merchantPhoneNumber">Merchant Phone Number:</label>
-            <input #phoneNumber type="text" class="form-control" required name="merchantPhoneNumber" [(ngModel)]="model.merchant.phoneNumber" [attr.disabled]="!editable ? '' : null"
+            <input #phoneNumber type="tel" class="form-control" required pattern="^\d{3}-\d{3}-\d{4}$" required name="merchantPhoneNumber" [(ngModel)]="model.merchant.phoneNumber" [attr.disabled]="!editable ? '' : null"
                 [typeaheadAsync]="true" [typeahead]="merchData" [typeaheadOptionsLimit]="7" typeaheadOptionField="phoneNumber" typeaheadWaitMs="1000"
                 (typeaheadOnSelect)="typeaheadSelect($event)" (typeaheadLoading)="phoneTypeaheadLoading($event, phoneNumber.value)">
           </div>
-          <div class="form-group col-6">
+          <div class="form-group col-6" title="Enter MID numbers only: NNNNNNNNNN">
             <label for="merchantID">Merchant ID:</label>
-            <input #midNumber type="text" class="form-control" name="merchantID" [(ngModel)]="model.mid" [attr.disabled]="!editable ? '' : null"
+            <input #midNumber type="number" class="form-control" name="merchantID" [(ngModel)]="model.mid" [attr.disabled]="!editable ? '' : null"
                 [typeaheadAsync]="true" [typeahead]="merchData" [typeaheadOptionsLimit]="7" typeaheadOptionField="midNumber" typeaheadWaitMs="1000"
                 (typeaheadOnSelect)="typeaheadSelect($event)" (typeaheadLoading)="midTypeaheadLoading($event, midNumber.value)">
           </div>
         </div>
 
         <div class="row">
-          <div class="form-group col-12">
+          <div class="form-group col-12" title="Enter email: name@company.com">
             <label for="merchantEmail">Merchant Email Address:</label>
             <input #email type="email" class="form-control" required email name="merchantEmail" [(ngModel)]="model.merchant.emailAddress" [attr.disabled]="!editable ? '' : null"
             [typeaheadAsync]="true" [typeahead]="merchData" [typeaheadOptionsLimit]="7" typeaheadOptionField="emailAddress" typeaheadWaitMs="1000"

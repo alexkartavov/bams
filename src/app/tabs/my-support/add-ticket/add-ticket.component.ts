@@ -70,7 +70,7 @@ export class AddTicketComponent implements OnInit, OnDestroy {
   }
 
   openModal(template: BsModalService) {
-    this.modalRef = this.modalService.show(template);
+    this.modalRef = this.modalService.show(template, {ignoreBackdropClick: true});
   }
 
   update() {
