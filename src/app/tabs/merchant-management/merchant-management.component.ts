@@ -110,6 +110,7 @@ export class MerchantManagementComponent implements OnInit, OnDestroy, AfterView
   public showCards = false;
   public selectedMerchantId = -1;
   public cardsLoaded = 0;
+  public orderId = null;
 
   public currentRowData: MerchantModel;
   public supportTicket: SupportTicketModel;
@@ -224,6 +225,13 @@ export class MerchantManagementComponent implements OnInit, OnDestroy, AfterView
     this.merchGrid.selectRows([targetCell.row.rowID]);
     this.selectedMerchantId = targetCell.row.rowData.midNumber;
 
+    if (this.selectedMerchantId && !this.orderId) {
+      this.merchDataService.getApplication(targetCell.row.rowData.applicationReferenceNo).subscribe(app => {
+        // TODO: extract orderId from application
+        // this.orderId = app.orderId;
+      });
+    }
+
     this.currentRowData  = targetCell.row.rowData;
   }
 
@@ -258,7 +266,7 @@ export class MerchantManagementComponent implements OnInit, OnDestroy, AfterView
         page: pageNo,
         pageSize: count,
         search: this.searchBoxText ? this.searchBoxText : null,
-        sortByName: this.sortedColumn,
+        sortByName: this.sortedColumn ? this.sortedColumn : null,
         sortAscending: this.sortDirection
       }
     };

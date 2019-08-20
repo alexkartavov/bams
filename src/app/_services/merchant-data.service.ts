@@ -13,7 +13,7 @@ import { AuthService } from './auth.service';
 export class MerchantDataService implements OnDestroy {
 
   public postUrl = environment.merchants.listPostUrl;
-  public getUrl = environment.merchantDetails.detailsGetUrl;
+  public getUrl = environment.merchants.getUrl;
   httpOptions: any;
   totalCountSubject = new BehaviorSubject<number>(0);
 
@@ -22,6 +22,8 @@ export class MerchantDataService implements OnDestroy {
 
   public getNotesUrl = environment.merchantDetails.notesGetUrl;
   public postNotesUrl = environment.merchantDetails.notesPostUrl;
+
+  public getApplicationUrl = environment.merchantDetails.applicationGetUrl;
 
   constructor(private http: HttpClient, private authService: AuthService) {
 
@@ -72,8 +74,23 @@ export class MerchantDataService implements OnDestroy {
     );
   }
 
-  getMerchantDelails(id: number): Observable<MerchantDetailsModel> {
-    return this.http.post(this.getDetailsUrl.replace('{merchantId}', id.toString()), this.authService.getCepSupportUser(), this.httpOptions)
+  getMerchantDelails(merchant: MerchantModel): Observable<MerchantDetailsModel> {
+    const defaultAddress = [null, null, null, null];
+    let address = merchant.address ? merchant.address.split(',') : defaultAddress; // assuming address is 'street, city, state, zip'
+    if (address.length !== 4) { // if not fall back to nulls
+      address = defaultAddress;
+    }
+    const params = {
+      city: address[1] ? address[1].trim() : address[1],
+      dbaName: merchant.dbaName,
+      externalMerchantId: merchant.midNumber,
+      hierarchyLevel: null,
+      merchantId: merchant.id,
+      mid: merchant.midNumber,
+      state: address[2] ? address[2].trim() : address[2],
+      zipCode: address[3] ? address[3].trim() : address[3]
+    };
+    return this.http.post(this.getDetailsUrl, params, this.httpOptions)
       .pipe(map<any, MerchantDetailsModel>(data => data)
     );
   }
@@ -132,5 +149,9 @@ export class MerchantDataService implements OnDestroy {
       'notes': note
     };
     return this.http.post(this.postNotesUrl, params, this.httpOptions);
+  }
+
+  getApplication(appRefNo) {
+    return this.http.post(this.getApplicationUrl.replace('{appRefNo}', appRefNo), this.authService.getCepSupportUser(), this.httpOptions);
   }
 }
