@@ -112,7 +112,7 @@ export class MerchantManagementComponent implements OnInit, OnDestroy, AfterView
   public cardsLoaded = 0;
   public orderId = null;
 
-  public currentRowData: MerchantModel;
+  public currentRowData: MerchantModel = null;
   public supportTicket: SupportTicketModel;
 
   public searchBoxText = '';

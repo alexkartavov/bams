@@ -17,35 +17,52 @@
         <div class="row">
           <div class="form-group col-12">
             <label for="dbaName">DBA Name:</label>
-            <input #dbaName type="text" class="form-control" required name="dbaName" [(ngModel)]="model.merchant.dbaName" [attr.disabled]="!editable ? '' : null"
+            <input #dbaName type="text" class="form-control" required pattern="^[A-Za-z0-9\'\-\s]+$" name="dbaName" [(ngModel)]="model.merchant.dbaName" [attr.disabled]="!editable ? '' : null"
                 [typeaheadAsync]="true" [typeahead]="merchData" [typeaheadOptionsLimit]="7" typeaheadOptionField="dbaName" typeaheadWaitMs="1000"
-                (typeaheadOnSelect)="typeaheadSelect($event)" (typeaheadLoading)="changeTypeaheadLoading($event, dbaName.value)">
+                (typeaheadOnSelect)="typeaheadSelect($event)" (typeaheadLoading)="changeTypeaheadLoading($event, dbaName.value)"
+                onkeypress="return /[A-Za-z0-9\'\-\s]/i.test(event.key)">
+            <div class="invalid-feedback">
+              DBA name is required.
+            </div>
           </div>
         </div>
-
         <div class="row">
           <div class="form-group col-6">
             <label for="merchantFirstName">Merchant First Name:</label>
-            <input type="text" class="form-control" required name="merchantFirstName" [(ngModel)]="model.merchant.firstName" [attr.disabled]="!editable ? '' : null">
+            <input type="text" class="form-control" required pattern="^[A-Za-z\'\-\s]+$" name="merchantFirstName" [(ngModel)]="model.merchant.firstName"
+              [attr.disabled]="!editable ? '' : null" onkeypress="return /[A-Za-z\'\-\s]/i.test(event.key)">
+            <div class="invalid-feedback">
+              First name is required, letters only.
+            </div>
           </div>
           <div class="form-group col-6">
             <label for="merchantLastName">Merchant Last Name:</label>
-            <input type="text" class="form-control" required name="merchantLastName" [(ngModel)]="model.merchant.lastName" [attr.disabled]="!editable ? '' : null">
+            <input type="text" class="form-control" required pattern="^[A-Za-z\'\-\s]+$" name="merchantLastName" [(ngModel)]="model.merchant.lastName"
+              [attr.disabled]="!editable ? '' : null" onkeypress="return /[A-Za-z\'\-\s]/i.test(event.key)">
+            <div class="invalid-feedback">
+              Last name is required, letters only.
+            </div>
           </div>
         </div>
 
         <div class="row">
           <div class="form-group col-6" title="Enter phone number: NNN-NNN-NNNN">
             <label for="merchantPhoneNumber">Merchant Phone Number:</label>
-            <input #phoneNumber type="tel" class="form-control" required pattern="^\d{3}-\d{3}-\d{4}$" required name="merchantPhoneNumber" [(ngModel)]="model.merchant.phoneNumber" [attr.disabled]="!editable ? '' : null"
+            <input #phoneNumber type="tel" class="form-control" required pattern="^[0-9\+\(\)\-\.\s]+$" required name="merchantPhoneNumber" [(ngModel)]="model.merchant.phoneNumber" [attr.disabled]="!editable ? '' : null"
                 [typeaheadAsync]="true" [typeahead]="merchData" [typeaheadOptionsLimit]="7" typeaheadOptionField="phoneNumber" typeaheadWaitMs="1000"
                 (typeaheadOnSelect)="typeaheadSelect($event)" (typeaheadLoading)="phoneTypeaheadLoading($event, phoneNumber.value)">
+            <div class="invalid-feedback">
+              Phone number is required
+            </div>
           </div>
           <div class="form-group col-6" title="Enter MID numbers only: NNNNNNNNNN">
             <label for="merchantID">Merchant ID:</label>
             <input #midNumber type="number" class="form-control" name="merchantID" [(ngModel)]="model.mid" [attr.disabled]="!editable ? '' : null"
                 [typeaheadAsync]="true" [typeahead]="merchData" [typeaheadOptionsLimit]="7" typeaheadOptionField="midNumber" typeaheadWaitMs="1000"
                 (typeaheadOnSelect)="typeaheadSelect($event)" (typeaheadLoading)="midTypeaheadLoading($event, midNumber.value)">
+            <div class="invalid-feedback">
+              MID number format: NNNNNNNNNN.
+            </div>
           </div>
         </div>
 
@@ -55,6 +72,9 @@
             <input #email type="email" class="form-control" required email name="merchantEmail" [(ngModel)]="model.merchant.emailAddress" [attr.disabled]="!editable ? '' : null"
             [typeaheadAsync]="true" [typeahead]="merchData" [typeaheadOptionsLimit]="7" typeaheadOptionField="emailAddress" typeaheadWaitMs="1000"
             (typeaheadOnSelect)="typeaheadSelect($event)" (typeaheadLoading)="emailTypeaheadLoading($event, email.value)">
+            <div class="invalid-feedback">
+              Email is required.
+            </div>
           </div>
         </div>
 
