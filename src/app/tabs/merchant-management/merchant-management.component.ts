@@ -227,8 +227,7 @@ export class MerchantManagementComponent implements OnInit, OnDestroy, AfterView
 
     if (this.selectedMerchantId && !this.orderId) {
       this.merchDataService.getApplication(targetCell.row.rowData.applicationReferenceNo).subscribe(app => {
-        // TODO: extract orderId from application
-        // this.orderId = app.orderId;
+        this.orderId = app.orderId;
       });
     }
 

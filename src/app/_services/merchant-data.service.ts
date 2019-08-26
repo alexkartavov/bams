@@ -75,20 +75,23 @@ export class MerchantDataService implements OnDestroy {
   }
 
   getMerchantDelails(merchant: MerchantModel): Observable<MerchantDetailsModel> {
-    const defaultAddress = [null, null, null, null];
-    let address = merchant.address ? merchant.address.split(',') : defaultAddress; // assuming address is 'street, city, state, zip'
-    if (address.length !== 4) { // if not fall back to nulls
-      address = defaultAddress;
+    // const defaultAddress = [null, null, null, null];
+    // let address = merchant.address ? merchant.address.split(',') : defaultAddress; // assuming address is 'street, city, state, zip'
+    // if (address.length !== 4) { // if not fall back to nulls
+    //   address = defaultAddress;
+    // }
+    if (!merchant.midNumber) {
+      return null;
     }
     const params = {
-      city: address[1] ? address[1].trim() : address[1],
-      dbaName: merchant.dbaName,
-      externalMerchantId: merchant.midNumber,
-      hierarchyLevel: null,
-      merchantId: merchant.id,
-      mid: merchant.midNumber,
-      state: address[2] ? address[2].trim() : address[2],
-      zipCode: address[3] ? address[3].trim() : address[3]
+      city: null, // address[1] ? address[1].trim() : address[1],
+      dbaName: null, // merchant.dbaName,
+      externalMerchantId: null, // merchant.midNumber,
+      hierarchyLevel: '100',
+      merchantId: merchant.midNumber.toString(),
+      mid: null, // merchant.midNumber,
+      state: null, // address[2] ? address[2].trim() : address[2],
+      zipCode: null // address[3] ? address[3].trim() : address[3]
     };
     return this.http.post(this.getDetailsUrl, params, this.httpOptions)
       .pipe(map<any, MerchantDetailsModel>(data => data)
@@ -151,7 +154,7 @@ export class MerchantDataService implements OnDestroy {
     return this.http.post(this.postNotesUrl, params, this.httpOptions);
   }
 
-  getApplication(appRefNo) {
+  getApplication(appRefNo): Observable<any> {
     return this.http.post(this.getApplicationUrl.replace('{appRefNo}', appRefNo), this.authService.getCepSupportUser(), this.httpOptions);
   }
 }
