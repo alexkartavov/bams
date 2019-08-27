@@ -40,13 +40,13 @@ export class MerchantDetailsComponent implements OnInit {
         return;
       }
       this.merchant = merchant;
-      const merchSub = this.merchDataService.getMerchantDelails(merchant);
-      if (merchSub) {
-        merchSub.subscribe(m => {
-          this.m = m;
-          this.openModal(this.tmpl);
-        });
-      }
+      this.merchDataService.getMerchantDelails(merchant).subscribe(m => {
+        this.m = null;
+        if (m && m.result) {
+          this.m = m.result;
+        }
+        this.openModal(this.tmpl);
+      });
     }
   }
 }

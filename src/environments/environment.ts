@@ -19,14 +19,15 @@ export const environment = {
   },
 
   merchantDetails: {
-    detailsGetUrl: 'https://bams-cep-ist-' + ENV + '-ue-aks.eastus.cloudapp.azure.com/core/api/v1/cep-support/merchants/merchantsearch',
+    detailsGetUrl: 'https://bams-cep-ist-' + ENV + '-ue-aks.eastus.cloudapp.azure.com/core/api/v1/cep-support/merchants/biz-track/merchant-details?merchantId={merchantId}',
     statementsGetUrl: 'https://bams-cep-ist-' + ENV + '-ue-aks.eastus.cloudapp.azure.com/core/api/v1/cep-support/merchants/{merchantId}/statementDates?statementType=Location&dateFrom={dateFrom}&dateTo={dateTo}',
     statementGetUrl: 'https://bams-cep-ist-' + ENV + '-ue-aks.eastus.cloudapp.azure.com/core/api/v1/cep-support/merchants/{merchantId}/statement-documents/{key}',
 
     notesGetUrl: 'https://bams-cep-ist-' + ENV + '-ue-aks.eastus.cloudapp.azure.com/core/api/v1/cep-support/merchant-notes/get?appRefNo={appRefNo}',
     notesPostUrl: 'https://bams-cep-ist-' + ENV + '-ue-aks.eastus.cloudapp.azure.com/core/api/v1/cep-support/merchant-notes/save',
 
-    applicationGetUrl: 'https://bams-cep-ist-' + ENV + '-ue-aks.eastus.cloudapp.azure.com/core/api/v1/cep-support/merchant/get-application/{appRefNo}'
+    applicationGetUrl: 'https://bams-cep-ist-' + ENV + '-ue-aks.eastus.cloudapp.azure.com/core/api/v1/cep-support/merchant/get-application/{appRefNo}',
+    ordersGetUrl: 'https://bams-cep-ist-' + ENV + '-ue-aks.eastus.cloudapp.azure.com/core/api/v1/cep-support/merchant/get-orders?orderId={orderId}'
   },
 
   users: {
