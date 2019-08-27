@@ -63,10 +63,10 @@
         <igx-column header="Actions" width="100px" disableHiding="true">
           <ng-template igxCell let-cell="cell">
             <div class="actions_cell_class">
-              <app-update-user-access [okBtnText]="'Update'" [header]="'Edit User Access'" [user]="cell.row.rowData" (userUpdated)="refresh($event)">
+              <app-update-user-access *ngIf="allowAccess(cell.row.rowData)" [okBtnText]="'Update'" [header]="'Edit User Access'" [user]="cell.row.rowData" (userUpdated)="refresh($event)">
                 <igx-icon fontSet="material" class="primary-color">edit</igx-icon>
               </app-update-user-access>
-              <app-confirm [header]="'Confirm delete'" [message]="'Delete user ' + cell.row.rowData.firstName + ' ' + cell.row.rowData.lastName + '?'" [okBtnText]="'Delete'" [cancelBtnText]="'Cancel'" (confirm)="deleteUser(cell.row.rowData.id)">
+              <app-confirm *ngIf="allowAccess(cell.row.rowData)" [header]="'Confirm delete'" [message]="'Delete user ' + cell.row.rowData.firstName + ' ' + cell.row.rowData.lastName + '?'" [okBtnText]="'Delete'" [cancelBtnText]="'Cancel'" (confirm)="deleteUser(cell.row.rowData.id)">
                 <igx-icon fontSet="material" class="primary-color">delete</igx-icon>
               </app-confirm>
             </div>

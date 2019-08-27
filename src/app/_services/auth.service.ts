@@ -59,8 +59,8 @@ export class AuthService {
             };
 
             this.valueService.channels.forEach(c => {
-              if (typeof user[c.map] !== 'undefined') {
-                this.user[c.map] = user[c.map];
+              if (typeof user[c.property] !== 'undefined') {
+                this.user[c.map] = user[c.property];
               }
             });
 
@@ -99,8 +99,8 @@ export class AuthService {
           };
 
           this.valueService.channels.forEach(c => {
-            if (typeof user[c.map] !== 'undefined') {
-              this.user[c.map] = user[c.map];
+            if (typeof user[c.property] !== 'undefined') {
+              this.user[c.map] = user[c.property];
             }
           });
 

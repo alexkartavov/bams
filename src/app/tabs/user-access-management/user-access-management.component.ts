@@ -262,6 +262,10 @@ export class UserAccessManagementComponent implements OnInit, OnDestroy, AfterVi
     return this.auth.getUserRole() === Role.Admin;
   }
 
+  user() {
+    return this.auth.getUser();
+  }
+
   isSuperAdmin(user): boolean {
     let r = user.role === Role.Admin;
     let i = 0;
@@ -272,6 +276,10 @@ export class UserAccessManagementComponent implements OnInit, OnDestroy, AfterVi
       }
     }
     return r;
+  }
+
+  allowAccess(user) {
+    return this.isSuperAdmin(this.user()) || !this.isSuperAdmin(user);
   }
 
   userChannels(user) {
